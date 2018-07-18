@@ -1,0 +1,49 @@
+<template>
+  <div>
+      <!--start of navigation bar-->
+      <v-navigation-drawer
+        v-model="sideNav"
+        app
+        temporary
+      >
+        <v-list>
+          <v-list-tile :to="item.link" v-for="item in menuItems" :key="item.title">
+            <v-list-tile-action>
+              <v-icon>home</v-icon>
+            </v-list-tile-action>
+            <v-list-tile-content>
+              <v-list-tile-title>{{item.title}}</v-list-tile-title>
+            </v-list-tile-content>
+          </v-list-tile>
+        </v-list>
+      </v-navigation-drawer>
+      <!--End of the navigation bar-->
+      <!--start of toolbar-->
+      <v-toolbar flat fixed app>
+        <v-toolbar-side-icon @click.native.stop="sideNav = !sideNav"></v-toolbar-side-icon>
+        <v-toolbar-title><router-link to="/" style="cursor: pointer;">AFROTECH</router-link></v-toolbar-title>
+        <v-spacer></v-spacer>
+        <v-toolbar-items class="hidden-xs-only">
+          <v-btn flat v-for="item in menuItems" :to="item.link" :key="item.title">{{item.title}}</v-btn>
+        </v-toolbar-items>
+      </v-toolbar>
+      <!--end of the toolbar-->
+  </div>
+</template>
+
+<script>
+export default {
+  data: () => ({
+    sideNav: false,
+    menuItems: [
+      {title: 'News', link: '/news'},
+      {title: 'Resources', link: '/resources'},
+      {title: 'Events', link: '/events'},
+      {title: 'Videos', link: '/videos'}
+    ]
+  })
+}
+</script>
+<style>
+
+</style>
