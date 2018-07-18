@@ -106,20 +106,15 @@
       <v-content>
         <v-container grid-list-md text-xs-center>
           <v-layout row wrap>
-            <v-flex xs12 sm6>
-              <v-container grid-list-xl>
-                <v-layout row wrap>
-                  <v-flex v-for="item in placeimage" :key="item.title">
-                    <v-card flat class="text-sm-left">
-                      <v-card-media
-                        :src='item.src'
-                        ripple
-                        height="200px">
-                      </v-card-media>
-                    </v-card>
-                  </v-flex>
-                </v-layout>
-              </v-container>
+            <v-flex xs12 sm6 v-for="item in placeimage" :key="item.title">
+            <v-card flat class="rounded-class">
+              <v-card-media
+                :src='item.src'
+                height="200px"
+                ripple
+                raised flat>
+              </v-card-media>
+            </v-card>
             </v-flex>
           </v-layout>
         </v-container>
@@ -231,5 +226,8 @@ padding: 28px 48px;
   line-height: 1em;
   padding: .8em 2em;
   text-align: center;
+}
+.rounded-class{
+  border-radius:15px;
 }
 </style>
