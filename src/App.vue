@@ -13,16 +13,11 @@
     </v-app>
   </div>
 </template>
-
 <script>
-import headermenu from './components/headermenu.vue'
+import headermenu from './components/headermenu/headermenu.vue'
 export default {
   components: {
     headermenu
   }
 }
 </script>
-
-<style>
-
-</style>

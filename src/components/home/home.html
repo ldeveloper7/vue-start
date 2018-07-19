@@ -1,0 +1,122 @@
+<div>
+  <v-app light>
+    <headermenu />
+    <v-content>
+      <v-container grid-list-md text-xs-center>
+        <v-layout row wrap>
+          <v-flex xs12>
+            <h1 class="text-sm-left">Featured Stories</h1>
+          </v-flex>
+          <v-flex xs12>
+            <v-container grid-list-xl>
+              <v-layout row wrap align-center>
+                <v-flex xs12 md4 v-for="item in cardMenu1" :key="item.title">
+                  <v-card>
+                    <v-card-media
+                      :src='item.src'
+                      height="200px">
+                    </v-card-media>
+
+                    <v-card-title primary-title>
+                      <div>
+                        <h3 class="headline mb-0">{{item.title}}</h3>
+                        <div>{{item.content}}</div>
+                      </div>
+                    </v-card-title>
+
+                    <v-card-actions>
+                      <v-btn flat color="orange">Share</v-btn>
+                      <v-btn flat color="orange">Explore</v-btn>
+                    </v-card-actions>
+                  </v-card>
+                </v-flex>
+              </v-layout>
+            </v-container>
+          </v-flex>
+
+        </v-layout>
+      </v-container>
+    </v-content>
+
+    <v-content style="background-color: #f4f4f4;">
+      <v-container grid-list-md text-xs-center>
+        <v-layout row wrap>
+          <v-flex xs10 class="text-title">
+            <h2>Get access to all things Black <i class="text-primary">in</i> Tech.</h2>
+          </v-flex>
+          <v-flex xs12>
+            <p class="elevated text-center">Submit once and come back whenever you want.</p>
+          </v-flex>
+          <v-flex xs6 sm6>
+            <v-text-field
+              placeholder="Enter your email address"
+              solo
+              flat
+            ></v-text-field>
+          </v-flex>
+          <v-flex xs6 sm6>
+            <v-btn class="btngetstarted">Large Button</v-btn>
+          </v-flex>
+          <v-flex>
+            <p class="headline">By clicking "Get Started" you agree to our Terms of Service and our Payment Policy.</p>
+          </v-flex>
+        </v-layout>
+      </v-container>
+    </v-content>
+
+    <v-content>
+      <v-container grid-list-md text-xs-center>
+        <v-layout row wrap>
+          <v-flex xs12 class="text-title">
+            <h2>Latest News :::::::::::::::::::::::::::::::</h2>
+          </v-flex>
+          <v-flex xs12>
+            <v-container grid-list-xl>
+              <v-layout row wrap>
+                <v-flex xs12 sm3 v-for="item in cardMenu2" :key="item.title">
+                  <v-card flat class="text-sm-left">
+                    <v-card-media
+                      :src='item.src'
+                      height="200px">
+                    </v-card-media>
+
+                    <v-card-title primary-title >
+                      <div>
+                        <h3 class="headline" style="font-weight: bolder">{{item.title}}</h3>
+                        <br>
+                        <div>{{item.content}}</div>
+                      </div>
+                    </v-card-title>
+                  </v-card>
+                </v-flex>
+                <v-flex xs12>
+                  <hr>
+                </v-flex>
+                <v-flex xs12>
+                  <v-btn class="text-xs-right" flat color="blue">More Info --></v-btn>
+                </v-flex>
+              </v-layout>
+            </v-container>
+          </v-flex>
+        </v-layout>
+      </v-container>
+    </v-content>
+
+    <v-content>
+      <v-container grid-list-md text-xs-center>
+        <v-layout row wrap>
+          <v-flex xs12 sm6 v-for="item in placeimage" :key="item.title">
+            <v-card flat class="rounded-class">
+              <v-card-media
+                :src='item.src'
+                height="200px"
+                ripple
+                raised flat>
+              </v-card-media>
+            </v-card>
+          </v-flex>
+        </v-layout>
+      </v-container>
+    </v-content>
+  </v-app>
+</div>

@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import home from '../components/home.vue'
-import news from '../components/news.vue'
-import resources from '../components/resources.vue'
-import events from '../components/events.vue'
-import video from '../components/video.vue'
+import home from '../components/home/home.vue'
+import news from '../components/news/news.vue'
+import resources from '../components/resources/resources.vue'
+import events from '../components/events/events.vue'
+import video from '../components/video/video.vue'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css' // Ensure you are using css-loader
 
