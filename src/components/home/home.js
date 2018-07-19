@@ -50,7 +50,6 @@ export default {
     axios.get(this.url)
       .then((res) => {
         this.fetchLatestNews = res.data
-        console.log(this.fetchLatestNews)
       })
       .catch(e => {
         console.log(e)
