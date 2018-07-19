@@ -73,10 +73,10 @@
           <v-flex xs12>
             <v-container grid-list-xl>
               <v-layout row wrap>
-                <v-flex xs12 sm3 v-for="item in cardMenu2" :key="item.title">
+                <v-flex xs12 sm3 v-for="item in fetchLatestNews" :key="item._id">
                   <v-card flat class="text-sm-left">
                     <v-card-media
-                      :src='item.src'
+                      :src="'https://res.cloudinary.com/blavity/image/upload/c_crop,g_center,w_auto,q_auto:best,g_south_east,x_0/'+item.wp_featuredImage"
                       height="200px">
                     </v-card-media>
 
@@ -84,7 +84,7 @@
                       <div>
                         <h3 class="headline" style="font-weight: bolder">{{item.title}}</h3>
                         <br>
-                        <div>{{item.content}}</div>
+                        <div v-for="(cat, index) in item.categories">{{cat.name}} <span v-if="index+1 !== item.categories.length">,</span></div>
                       </div>
                     </v-card-title>
                   </v-card>
