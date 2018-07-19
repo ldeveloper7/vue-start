@@ -1,10 +1,20 @@
 <div>
   <headermenu></headermenu>
-  <v-content>
-    <h1>News</h1>
-    <h1>News</h1>
-    <h1>News</h1>
-    <h1>News</h1>
-    <h1>News</h1>
+    <v-content>
+    <v-container grid-list-md text-xs-center>
+      <v-layout row wrap>
+        <v-flex xs12 sm6 v-for="item in this.info" :key="item.title">
+          <v-card flat class="rounded-class" style="background-color: greenyellow">
+            <v-card-media
+              :src="'https://res.cloudinary.com/blavity/image/upload/'+item.wp_featuredImage"
+              height="200px"
+              ripple
+              raised flat>
+            </v-card-media>
+            <p>{{item._author.display_name}}</p>
+          </v-card>
+        </v-flex>
+      </v-layout>
+    </v-container>
   </v-content>
 </div>
