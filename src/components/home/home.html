@@ -1,6 +1,6 @@
 <div>
   <v-app light>
-    <headermenu />
+    <headermenu/>
     <v-content>
       <v-container grid-list-md text-xs-center>
         <v-layout row wrap>
@@ -33,7 +33,6 @@
               </v-layout>
             </v-container>
           </v-flex>
-
         </v-layout>
       </v-container>
     </v-content>
@@ -80,12 +79,19 @@
                       height="200px">
                     </v-card-media>
 
-                    <v-card-title primary-title >
+                    <v-card-title primary-title>
                       <div>
-                        <router-link class="font-weight-bold headline"  :to="'/user/'+item._id" style="font-weight: bolder;text-decoration: none">{{item.title}}</router-link>
+                        <router-link class="font-weight-bold headline" :to="'/user/'+item._id"
+                                     style="font-weight: bolder;text-decoration: none">{{item.title}}
+                        </router-link>
                         <br>
                         <br>
-                        <span v-for="(cat, index) in item.categories" class="font-weight-bold" style="color: #3cccb7">{{cat.name}} <span v-if="index+1 !== item.categories.length">, </span> </span>
+                        <span v-for="(cat, index) in item.categories" class="font-weight-bold" style="color: #3cccb7">
+                          <router-link :to="'/categories/'+cat.slug">
+                            {{cat.name}}
+                          </router-link>
+                          <span v-if="index+1 !== item.categories.length">,</span>
+                        </span>
                         <span>} {{item._author.username}}</span>
                       </div>
                     </v-card-title>
