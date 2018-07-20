@@ -1,9 +1,13 @@
 import headermenu from '../headermenu/headermenu.vue'
+import axios from 'axios'
+
 export default {
   components: {
     headermenu
   },
   data: () => ({
+    url: 'https://api.blavity.com/v1/articles/tags/cardi-b/4/0',
+    fetchLatestNews: [],
     cardMenu1: [
       { src: 'https://cdn.vuetifyjs.com/images/cards/desert.jpg',
         title: 'Kangaroo Valley Safari1',
@@ -40,5 +44,15 @@ export default {
       {src: 'http://via.placeholder.com/850x440', title: '1'},
       {src: 'http://via.placeholder.com/850x440', title: '2'}
     ]
-  })
+  }),
+
+  mounted () {
+    axios.get(this.url)
+      .then((res) => {
+        this.fetchLatestNews = res.data
+      })
+      .catch(e => {
+        console.log(e)
+      })
+  }
 }
