@@ -1,6 +1,6 @@
 <div>
   <v-app light>
-    <headermenu />
+    <headermenu/>
     <v-content>
       <v-container grid-list-md text-xs-center>
         <v-layout row wrap>
@@ -8,7 +8,6 @@
             <h1 class="text-sm-left">Featured Stories</h1>
           </v-flex>
           <v-flex xs12>
-            <!--<v-jumbotron>-->
             <v-container raised hover fill-height style="background-color: #f4f4f4">
               <v-layout align-center v-for="item in articleData.slice(0,1)" :key="item._id">
                 <v-flex sm6>
@@ -19,37 +18,101 @@
                 </v-flex>
               </v-layout>
             </v-container>
-            <!--</v-jumbotron>-->
-            <!--<v-container grid-list-xl>-->
-              <!--<v-layout row wrap align-center>-->
-                <!--<v-flex xs12 md4 v-for="item in cardMenu1" :key="item.title">-->
-                  <!--<v-card>-->
-                    <!--<v-card-media-->
-                      <!--:src='item.src'-->
-                      <!--height="200px">-->
-                    <!--</v-card-media>-->
-
-                    <!--<v-card-title primary-title>-->
-                      <!--<div>-->
-                        <!--<h3 class="headline mb-0">{{item.title}}</h3>-->
-                        <!--<div>{{item.content}}</div>-->
-                      <!--</div>-->
-                    <!--</v-card-title>-->
-
-                    <!--<v-card-actions>-->
-                      <!--<v-btn flat color="orange">Share</v-btn>-->
-                      <!--<v-btn flat color="orange">Explore</v-btn>-->
-                    <!--</v-card-actions>-->
-                  <!--</v-card>-->
-                <!--</v-flex>-->
-              <!--</v-layout>-->
-            <!--</v-container>-->
           </v-flex>
-
+          <v-container grid-list-xl>
+            <v-layout row wrap align-center>
+              <v-flex xs12 md4 v-for="item in articleData.slice(1,4)" :key="item._id">
+                <v-card hover>
+                  <v-card-media
+                    :src='baseImageUrl+item.wp_featuredImage'
+                    height="300px">
+                    <!--title of the image-->
+                    <v-container fill-height fluid>
+                      <v-layout fill-height>
+                        <v-flex xs12 align-end flexbox>
+                          <span class="headline font-weight-medium white--text">{{item.title}}</span>
+                          <v-flex xs12 class="text-sm-left">
+                            <v-chip>
+                              <v-avatar>
+                                <img :src="item._author.gravatar">
+                              </v-avatar>
+                              {{item._author.username}}
+                            </v-chip>
+                          </v-flex>
+                        </v-flex>
+                      </v-layout>
+                    </v-container>
+                    <!--end of the title-->
+                  </v-card-media>
+                </v-card>
+              </v-flex>
+            </v-layout>
+          </v-container>
         </v-layout>
       </v-container>
     </v-content>
 
+    <hr class="font-weight-bold">
+    <!--featured Video start-->
+    <v-content>
+      <v-container fluid grid-list-md text-xs-center>
+        <v-layout row wrap>
+          <v-flex xs12>
+            <p class="text-sm-left display-1 font-weight-bold">Featured Video</p>
+          </v-flex>
+          <v-flex xs12 sm6 v-for="item in videoData" :key="item._id">
+            <v-card flat class="text-sm-left fixed">
+              <v-card-media
+                :src="'https://res.cloudinary.com/blavity/image/upload/c_crop,g_center,w_auto,q_auto:best,g_south_east,x_0/'+item.wp_featuredImage"
+                height="300px">
+              </v-card-media>
+
+              <v-card-title primary-title>
+                <div>
+                  <router-link class="font-weight-bold subheading black--text" :to="'/'+item.slug"
+                               style="text-decoration: none">{{item.title}}
+                  </router-link>
+                  <br>
+                  <div><router-link class="body-2 black--text" :to="'/'+item.slug"
+                                    style="text-decoration: none" v-html="item.body.substring(0,240)+'...'">
+                  </router-link></div>
+                </div>
+              </v-card-title>
+            </v-card>
+          </v-flex>
+        </v-layout>
+      </v-container>
+    </v-content>
+    <!--featured Video end-->
+
+    <!--news and features start-->
+    <v-content>
+      <v-container fluid>
+        <v-layout row>
+          <v-flex xs8 order-md3 order-xs3>
+            <v-layout v-for="item in articleData.slice(4,)" :key="item._id">
+              <v-flex xs12 sm3>
+                <!--<img :src="baseImageUrl+item.wp_featuredImage" height="100%" width="100%">-->
+                <v-card>
+                  <v-card-media :src="baseImageUrl+item.wp_featuredImage" height="200px"></v-card-media>
+                </v-card>
+              </v-flex>
+              <v-flex xs12 sm5>
+                <p class="title font-weight-black text-sm-left">{{item.title}}</p>
+                <p class="body-2 text-sm-left font-weight-thin">{{item.subTitle}}</p>
+                <p class="title text-sm-left font-weight-black">{{item._author.username}}</p>
+              </v-flex>
+            </v-layout>
+            <v-btn width="100%">Load More Stories</v-btn>
+          </v-flex>
+          <v-flex xs4 order-md3 order-xs3>
+            <div>hello2</div>
+          </v-flex>
+        </v-layout>
+      </v-container>
+    </v-content>
+
+    <!--news and features end-->
     <v-content style="background-color: #f4f4f4;">
       <v-container grid-list-md text-xs-center>
         <v-layout row wrap>
@@ -94,7 +157,7 @@
 
                     <v-card-title primary-title>
                       <div>
-                        <router-link class="font-weight-bold headline" :to="'/user/'+item._id"
+                        <router-link class="font-weight-bold headline" :to="'/'+item.slug"
                                      style="font-weight: bolder;text-decoration: none">{{item.title}}
                         </router-link>
                         <br>
