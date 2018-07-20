@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import home from '../components/home/home.vue'
-import news from '../components/news/news.vue'
+import category from '../components/category/category.vue'
 import resources from '../components/resources/resources.vue'
 import events from '../components/events/events.vue'
 import video from '../components/video/video.vue'
@@ -19,9 +19,9 @@ export default new Router({
       component: home
     },
     {
-      path: '/news',
-      name: 'news',
-      component: news
+      path: '/categories/:category',
+      name: 'category',
+      component: category
     },
     {
       path: '/resources',
