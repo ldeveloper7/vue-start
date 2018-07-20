@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import home from '../components/home/home.vue'
 import category from '../components/category/category.vue'
+import author from '../components/author/author.vue'
 import resources from '../components/resources/resources.vue'
 import events from '../components/events/events.vue'
 import video from '../components/video/video.vue'
@@ -42,6 +43,11 @@ export default new Router({
       path: '/user/:id',
       name: 'user',
       component: user
+    },
+    {
+      path: '/author/:author',
+      name: 'author',
+      component: author
     }
   ],
   mode: 'history'
