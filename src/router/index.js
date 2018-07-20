@@ -7,6 +7,7 @@ import resources from '../components/resources/resources.vue'
 import events from '../components/events/events.vue'
 import video from '../components/video/video.vue'
 import user from '../components/user/user.vue'
+import tag from '../components/tag/tag.vue'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css' // Ensure you are using css-loader
 
@@ -48,6 +49,11 @@ export default new Router({
       path: '/author/:author',
       name: 'author',
       component: author
+    },
+    {
+      path: '/tag/:tag',
+      name: 'tag',
+      component: tag
     }
   ],
   mode: 'history'
