@@ -6,7 +6,7 @@ import author from '../components/author/author.vue'
 import resources from '../components/resources/resources.vue'
 import events from '../components/events/events.vue'
 import video from '../components/video/video.vue'
-import user from '../components/user/user.vue'
+import singlearticle from '../components/singlearticle/singlearticle.vue'
 import tag from '../components/tag/tag.vue'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css' // Ensure you are using css-loader
@@ -19,6 +19,11 @@ export default new Router({
       path: '/',
       name: 'home',
       component: home
+    },
+    {
+      path: '/:slug',
+      name: 'SingleArticle',
+      component: singlearticle
     },
     {
       path: '/categories/:category',
@@ -39,11 +44,6 @@ export default new Router({
       path: '/videos',
       name: 'videos',
       component: video
-    },
-    {
-      path: '/user/:id',
-      name: 'user',
-      component: user
     },
     {
       path: '/author/:author',
