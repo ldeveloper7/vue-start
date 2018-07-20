@@ -13,7 +13,7 @@ export default {
   },
   mounted () {
     axios
-      .get('https://api.blavity.com/v1/articles/categories/' + this.$route.params.category + '/' + this.loadCount + '/' + (this.totalcount))
+      .get('https://api.blavity.com/v1/articles/tags/' + this.$route.params.tag + '/' + this.loadCount + '/' + (this.totalcount))
       .then(response => {
         this.info = response.data
       })
@@ -24,7 +24,7 @@ export default {
   methods: {
     loadmore: function (count) {
       axios
-        .get('https://api.blavity.com/v1/articles/categories/' + this.$route.params.category + '/' + this.loadCount + '/' + (this.totalcount + count))
+        .get('https://api.blavity.com/v1/articles/tags/' + this.$route.params.tag + '/' + this.loadCount + '/' + (this.totalcount + count))
         .then(response => {
           this.info.push(...response.data)
           this.totalcount = this.totalcount + response.data.length
