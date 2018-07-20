@@ -5,15 +5,12 @@ export default {
     headermenu
   },
   data: () => ({
-    tempData: [],
-    singleData: []
+    singlearticle: []
   }),
   mounted () {
-    let _this = this
-    axios.get('https://api.blavity.com/v1/articles/tags/cardi-b/4/0')
+    axios.get('https://api.blavity.com/v1/' + this.$route.params.slug)
       .then((res) => {
-        _this.tempData = res.data
-        _this.singleData = _this.tempData.find((o) => o._id === _this.$route.params.id)
+        this.singlearticle = res.data
       })
       .catch(e => {
         console.log('Error: ')
