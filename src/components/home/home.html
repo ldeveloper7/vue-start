@@ -1,6 +1,6 @@
 <div>
   <v-app light>
-    <headermenu/>
+    <headermenu />
     <v-content>
       <v-container grid-list-md text-xs-center>
         <v-layout row wrap>
@@ -8,31 +8,44 @@
             <h1 class="text-sm-left">Featured Stories</h1>
           </v-flex>
           <v-flex xs12>
-            <v-container grid-list-xl>
-              <v-layout row wrap align-center>
-                <v-flex xs12 md4 v-for="item in cardMenu1" :key="item.title">
-                  <v-card>
-                    <v-card-media
-                      :src='item.src'
-                      height="200px">
-                    </v-card-media>
-
-                    <v-card-title primary-title>
-                      <div>
-                        <h3 class="headline mb-0">{{item.title}}</h3>
-                        <div v-html='item.content'></div>
-                      </div>
-                    </v-card-title>
-
-                    <v-card-actions>
-                      <v-btn flat color="orange">Share</v-btn>
-                      <v-btn flat color="orange">Explore</v-btn>
-                    </v-card-actions>
-                  </v-card>
+            <!--<v-jumbotron>-->
+            <v-container raised hover fill-height style="background-color: #f4f4f4">
+              <v-layout align-center v-for="item in articleData.slice(0,1)" :key="item._id">
+                <v-flex sm6>
+                  <img style="max-width: 100%" :src="baseImageUrl+item.wp_featuredImage">
+                </v-flex>
+                <v-flex xs12 sm6>
+                  <div class="headline font-weight-medium">{{item.title}}</div>
                 </v-flex>
               </v-layout>
             </v-container>
+            <!--</v-jumbotron>-->
+            <!--<v-container grid-list-xl>-->
+              <!--<v-layout row wrap align-center>-->
+                <!--<v-flex xs12 md4 v-for="item in cardMenu1" :key="item.title">-->
+                  <!--<v-card>-->
+                    <!--<v-card-media-->
+                      <!--:src='item.src'-->
+                      <!--height="200px">-->
+                    <!--</v-card-media>-->
+
+                    <!--<v-card-title primary-title>-->
+                      <!--<div>-->
+                        <!--<h3 class="headline mb-0">{{item.title}}</h3>-->
+                        <!--<div>{{item.content}}</div>-->
+                      <!--</div>-->
+                    <!--</v-card-title>-->
+
+                    <!--<v-card-actions>-->
+                      <!--<v-btn flat color="orange">Share</v-btn>-->
+                      <!--<v-btn flat color="orange">Explore</v-btn>-->
+                    <!--</v-card-actions>-->
+                  <!--</v-card>-->
+                <!--</v-flex>-->
+              <!--</v-layout>-->
+            <!--</v-container>-->
           </v-flex>
+
         </v-layout>
       </v-container>
     </v-content>

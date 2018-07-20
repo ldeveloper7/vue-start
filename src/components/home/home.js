@@ -8,6 +8,9 @@ export default {
   data: () => ({
     url: 'https://api.blavity.com/v1/articles/tags/cardi-b/4/0',
     fetchLatestNews: [],
+    articleUrl: 'https://api.blavity.com/v1/articles/10/0',
+    articleData: [],
+    baseImageUrl: 'https://res.cloudinary.com/blavity/image/upload/c_crop,g_center,w_auto,q_auto:best,g_south_east,x_0/',
     cardMenu1: [
       { src: 'https://cdn.vuetifyjs.com/images/cards/desert.jpg',
         title: 'Kangaroo Valley Safari1',
@@ -50,6 +53,14 @@ export default {
     axios.get(this.url)
       .then((res) => {
         this.fetchLatestNews = res.data
+      })
+      .catch(e => {
+        console.log(e)
+      })
+
+    axios.get(this.articleUrl)
+      .then((res) => {
+        this.articleData = res.data
       })
       .catch(e => {
         console.log(e)
