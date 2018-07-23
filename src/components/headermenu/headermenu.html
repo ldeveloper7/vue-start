@@ -18,7 +18,15 @@
   </v-navigation-drawer>
   <!--End of the navigation bar-->
   <!--start of toolbar-->
-  <v-toolbar flat fixed app>
+  <!--upper toolbar-->
+  <v-toolbar dark flat fixed app v-if="isLogin">
+    <v-spacer></v-spacer>
+    <v-toolbar-items class="hidden-xs-only">
+      <v-btn flat v-for="item in upperMenu" :to="item.link" :key="item.title">{{item.title}}</v-btn>
+    </v-toolbar-items>
+  </v-toolbar>
+  <!--upper toolbar ends-->
+  <v-toolbar light flat fixed app>
     <v-toolbar-side-icon @click.native.stop="sideNav = !sideNav"></v-toolbar-side-icon>
     <v-toolbar-title><router-link to="/" style="cursor: pointer;">AFROTECH</router-link></v-toolbar-title>
     <v-spacer></v-spacer>

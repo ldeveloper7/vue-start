@@ -50,9 +50,10 @@ export default {
         })
         .then(response => {
           if (response.data) {
-            if (response.data.success == true) {
+            if (response.data.success === true) {
               Vue.localStorage.set('token', response.data.token)
               Vue.localStorage.set('user', JSON.stringify(response.data.user))
+              this.$router.push('/')
             } else {
               this.email = ''
               this.password = ''
@@ -68,12 +69,12 @@ export default {
       this.email = ''
       this.password = ''
     }
-  },
-  mounted () {
-    if (Vue.localStorage.get('user')) {
-      location.href = '/';
-    } else {
-
-    }
   }
+  // mounted () {
+  //   if (Vue.localStorage.get('user')) {
+  //     location.href = '/';
+  //   } else {
+  //
+  //   }
+  // }
 }

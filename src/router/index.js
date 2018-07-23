@@ -8,8 +8,10 @@ import resources from '../components/resources/resources.vue'
 import events from '../components/events/events.vue'
 import video from '../components/video/video.vue'
 import singlearticle from '../components/singlearticle/singlearticle.vue'
+import profile from '../components/profile/profile.vue'
 import tag from '../components/tag/tag.vue'
 import login from '../components/login/login.vue'
+import logout from '../components/logout/logout.vue'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css' // Ensure you are using css-loader
 
@@ -53,9 +55,19 @@ export default new Router({
       component: tag
     },
     {
+      path: '/profile',
+      name: 'profile',
+      component: profile
+    },
+    {
       path: '/login',
       name: 'login',
       component: login
+    },
+    {
+      path: '/logout',
+      name: 'logout',
+      component: logout
     },
     {
       path: '/:slug',
