@@ -1,3 +1,4 @@
+'use strict'
 import headermenu from '../headermenu/headermenu.vue'
 import axios from 'axios'
 

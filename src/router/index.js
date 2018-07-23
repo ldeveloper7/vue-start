@@ -1,3 +1,4 @@
+'use strict'
 import Vue from 'vue'
 import Router from 'vue-router'
 import home from '../components/home/home.vue'
@@ -20,11 +21,6 @@ export default new Router({
       path: '/',
       name: 'home',
       component: home
-    },
-    {
-      path: '/:slug',
-      name: 'SingleArticle',
-      component: singlearticle
     },
     {
       path: '/categories/:category',
@@ -60,6 +56,11 @@ export default new Router({
       path: '/login',
       name: 'login',
       component: login
+    },
+    {
+      path: '/:slug',
+      name: 'SingleArticle',
+      component: singlearticle
     }
   ],
   mode: 'history'

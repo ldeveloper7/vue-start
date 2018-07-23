@@ -1,6 +1,12 @@
+'use strict'
+
+import Vue from 'vue'
 import headermenu from '../headermenu/headermenu.vue'
-import { validationMixin } from '../../../node_modules/vuelidate'
-import { required, maxLength, email } from '../../../node_modules/vuelidate/lib/validators'
+import { validationMixin } from 'vuelidate'
+import axios from 'axios'
+import VueLocalStorage from 'vue-localstorage'
+
+Vue.use(VueLocalStorage)
 
 export default {
   mixins: [validationMixin],
@@ -23,6 +29,7 @@ export default {
   data () {
     return {
       show1: false,
+      email: '',
       password: '',
       rules: {
         required: value => !!value || 'Required.',
@@ -33,7 +40,27 @@ export default {
   },
   methods: {
     submit () {
-      this.$v.$touch()
+      axios
+        .post('https://api.blavity.com/v1/auth/authenticate', {
+          'user': {
+            'email': this.email,
+            'password': this.password
+          }
+        })
+        .then(response => {
+          if (response.data) {
+            if (response.data.success == true) {
+              Vue.localStorage.set('token', response.data.token)
+              Vue.localStorage.set('user', JSON.stringify(response.data.user))
+            } else {
+              this.email = ''
+              this.password = ''
+            }
+          }
+        })
+        .catch(e => {
+          console.log(e)
+        })
     },
     clear () {
       this.$v.$reset()
