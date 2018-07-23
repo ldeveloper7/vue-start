@@ -1,6 +1,7 @@
 <div>
   <v-app light>
     <headermenu/>
+    <!--starting block-->
     <v-content>
       <v-container grid-list-md text-xs-center>
         <v-layout row wrap>
@@ -14,7 +15,21 @@
                   <img style="max-width: 100%" :src="baseImageUrl+item.wp_featuredImage">
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <div class="headline font-weight-medium">{{item.title}}</div>
+                  <router-link :to="'/'+item.slug" style="text-decoration: none" class="title font-weight-medium black--text">{{item.title}}</router-link>
+                  <!--<v-flex xs12 sm6 text-xs-center>-->
+                  <br>
+                    <v-btn outline :to="'/'+item.slug">Read This</v-btn>
+                  <br>
+                  <br>
+                  <v-chip>
+                    <v-avatar>
+                      <img :src="baseImageUrl+item._author.profileImagePreference">
+                    </v-avatar>
+                    <router-link class="font-weight-bold subheading black--text" :to="'/author/'+item._author.username"
+                                 style="text-decoration: none">{{item._author.username}}
+                    </router-link>
+                  </v-chip>
+                  <!--</v-flex>-->
                 </v-flex>
               </v-layout>
             </v-container>
@@ -30,13 +45,18 @@
                     <v-container fill-height fluid>
                       <v-layout fill-height>
                         <v-flex xs12 align-end flexbox>
-                          <span class="headline font-weight-medium white--text">{{item.title}}</span>
+                          <!--<span class="headline font-weight-medium white&#45;&#45;text">{{item.title}}</span>-->
+                          <router-link class="font-weight-bold headline white--text" :to="'/'+item.slug"
+                                       style="text-decoration: none">{{item.title}}
+                          </router-link>
                           <v-flex xs12 class="text-sm-left">
                             <v-chip>
                               <v-avatar>
                                 <img :src="item._author.gravatar">
                               </v-avatar>
-                              {{item._author.username}}
+                              <router-link class="font-weight-bold subheading black--text" :to="'/author/'+item._author.username"
+                                           style="text-decoration: none">{{item._author.username}}
+                              </router-link>
                             </v-chip>
                           </v-flex>
                         </v-flex>
@@ -51,6 +71,7 @@
         </v-layout>
       </v-container>
     </v-content>
+    <!--starting block ends-->
 
     <hr class="font-weight-bold">
     <!--featured Video start-->
@@ -86,33 +107,106 @@
     <!--featured Video end-->
 
     <!--news and features start-->
+    <!--<v-content>-->
+      <v-container fluid>
+        <!--<v-layout>-->
+          <v-flex xs12 text-xs-left>
+            <h2 class="font-weight-bold display-1">News and Features</h2>
+          </v-flex>
+        <!--</v-layout>-->
+      </v-container>
+    <!--</v-content>-->
     <v-content>
       <v-container fluid>
         <v-layout row>
-          <v-flex xs8 order-md3 order-xs3>
+          <v-flex xs9 order-md3 order-xs3>
             <v-layout v-for="item in articleData.slice(4,)" :key="item._id">
               <v-flex xs12 sm3>
-                <!--<img :src="baseImageUrl+item.wp_featuredImage" height="100%" width="100%">-->
                 <v-card>
                   <v-card-media :src="baseImageUrl+item.wp_featuredImage" height="200px"></v-card-media>
                 </v-card>
               </v-flex>
               <v-flex xs12 sm5>
-                <p class="title font-weight-black text-sm-left">{{item.title}}</p>
+                <!--<p class="title font-weight-black text-sm-left">{{item.title}}</p>-->
+                <router-link class="font-weight-black title text-sm-center black--text" :to="'/'+item.slug"
+                             style="text-decoration: none">{{item.title}}
+                </router-link>
                 <p class="body-2 text-sm-left font-weight-thin">{{item.subTitle}}</p>
-                <p class="title text-sm-left font-weight-black">{{item._author.username}}</p>
+                <router-link class="font-weight-black title black--text" :to="'/author/'+item._author.username"
+                             style="text-decoration: none">{{item._author.username}}
+                </router-link>
               </v-flex>
             </v-layout>
-            <v-btn width="100%">Load More Stories</v-btn>
+            <v-btn width="100%" v-on:click="articleLoadMore(10)">Load More Stories</v-btn>
           </v-flex>
-          <v-flex xs4 order-md3 order-xs3>
-            <div>hello2</div>
+          <v-flex xs3 order-md3 order-xs3 color="red darken-4" text-xs-center>
+            <v-card dark tile flat color="error">
+              <v-card-text><p class="text-center subheading">Get the Blavity Daily newsletter with the best community finds and news.</p>
+                <hr>
+                <p class="text-center font-weight-bold title">Delivered To You</p>
+                <v-text-field
+                  label="Name"
+                ></v-text-field>
+                <v-text-field
+                  label="Email"
+                ></v-text-field>
+              </v-card-text>
+              <v-btn outline class="text-center">Sign Me Up</v-btn>
+            </v-card>
           </v-flex>
         </v-layout>
       </v-container>
     </v-content>
-
     <!--news and features end-->
+
+    <!--community Start-->
+    <v-content fluid>
+      <!--<v-container fluid grid-list-md text-xs-center>-->
+        <v-layout row wrap style="background-color: dimgray">
+          <v-flex xs12 class="text-title">
+            <h3 class="font-weight-bold text-center white--text headline">Top Community Submitted Articles This Week</h3>
+          </v-flex>
+          <v-flex xs12>
+            <v-container grid-list-xl>
+              <v-layout row wrap align-center>
+                <v-flex xs12 md4 v-for="item in communityData" :key="item._id">
+                  <v-card hover>
+                    <v-card-media
+                      :src='baseImageUrl+item.wp_featuredImage'
+                      height="300px">
+                      <!--title of the image-->
+                      <v-container fill-height fluid>
+                        <v-layout fill-height>
+                          <v-flex xs12 align-end flexbox>
+                            <!--<span class="headline font-weight-medium white&#45;&#45;text">{{item.title}}</span>-->
+                            <router-link class="font-weight-medium headline white--text" :to="'/'+item.slug"
+                                         style="text-decoration: none">{{item.title}}
+                            </router-link>
+                            <v-flex xs12 class="text-sm-left">
+                              <v-chip>
+                                <v-avatar>
+                                  <img :src="item._author.gravatar">
+                                </v-avatar>
+                                <router-link class="font-weight-black title black--text" :to="'/author/'+item._author.username"
+                                             style="text-decoration: none">{{item._author.username}}
+                                </router-link>
+                              </v-chip>
+                            </v-flex>
+                          </v-flex>
+                        </v-layout>
+                      </v-container>
+                      <!--end of the title-->
+                    </v-card-media>
+                  </v-card>
+                </v-flex>
+              </v-layout>
+            </v-container>
+          </v-flex>
+        </v-layout>
+      <!--</v-container>-->
+    </v-content>
+    <!--community Ends-->
+
     <v-content style="background-color: #f4f4f4;">
       <v-container grid-list-md text-xs-center>
         <v-layout row wrap>
