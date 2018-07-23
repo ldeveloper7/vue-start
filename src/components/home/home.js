@@ -1,6 +1,10 @@
 'use strict'
+import Vue from 'vue'
 import headermenu from '../headermenu/headermenu.vue'
 import axios from 'axios'
+import VueLocalStorage from 'vue-localstorage'
+
+Vue.use(VueLocalStorage)
 
 export default {
   components: {

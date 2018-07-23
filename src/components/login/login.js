@@ -1,13 +1,14 @@
 'use strict'
 
 import Vue from 'vue'
+import Router from 'vue-router'
 import headermenu from '../headermenu/headermenu.vue'
 import { validationMixin } from 'vuelidate'
 import axios from 'axios'
 import VueLocalStorage from 'vue-localstorage'
 
 Vue.use(VueLocalStorage)
-
+Vue.use(Router)
 export default {
   mixins: [validationMixin],
   validations: {
@@ -66,6 +67,13 @@ export default {
       this.$v.$reset()
       this.email = ''
       this.password = ''
+    }
+  },
+  mounted () {
+    if (Vue.localStorage.get('user')) {
+      location.href = '/';
+    } else {
+
     }
   }
 }
