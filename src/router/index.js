@@ -10,6 +10,7 @@ import video from '../components/video/video.vue'
 import singlearticle from '../components/singlearticle/singlearticle.vue'
 import profile from '../components/profile/profile.vue'
 import tag from '../components/tag/tag.vue'
+import myposts from '../components/myposts/myposts.vue'
 import login from '../components/login/login.vue'
 import logout from '../components/logout/logout.vue'
 import Vuetify from 'vuetify'
@@ -58,6 +59,11 @@ export default new Router({
       path: '/profile',
       name: 'profile',
       component: profile
+    },
+    {
+      path: '/myposts',
+      name: 'myposts',
+      component: myposts
     },
     {
       path: '/login',

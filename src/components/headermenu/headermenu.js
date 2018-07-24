@@ -11,9 +11,12 @@ export default {
     menuItems: [
       {title: 'Login', link: '/login'},
       {title: 'News', link: '/categories/news'},
+      {title: 'Tech', link: '/tech'},
       {title: 'Resources', link: '/resources'},
       {title: 'Events', link: '/events'},
-      {title: 'Videos', link: '/videos'}
+      {title: 'Videos', link: '/videos'},
+      {title: 'opinion', link: '/opinion'},
+      {title: 'finance', link: '/finance'}
     ],
     upperMenu: [],
     superadmin: [
@@ -27,14 +30,14 @@ export default {
     ],
     editor: [
       {title: 'MY POSTS', link: '/myposts'},
-      {title: 'SCHEDULED POSTS', link: '/myposts'},
+      {title: 'SCHEDULED POSTS', link: '/scheduledposts'},
       {title: 'Author Submissions', link: '/authorSubmissions'},
       {title: 'Profile', link: '/profile'},
       {title: 'SIGN OUT', link: '/logout'}
     ],
     subconauth: [
       {title: 'MY POSTS', link: '/myposts'},
-      {title: 'SCHEDULED POSTS', link: '/myposts'},
+      {title: 'SCHEDULED POSTS', link: '/scheduledposts'},
       {title: 'Profile', link: '/profile'},
       {title: 'SIGN OUT', link: '/logout'}
     ]
