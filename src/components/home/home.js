@@ -7,7 +7,6 @@ export default {
   },
   data () {
     return {
-      url: 'https://api.blavity.com/v1/articles/tags/cardi-b/4/0',
       fetchLatestNews: [],
       articleUrl: 'https://api.blavity.com/v1/articles',
       articleLoadCount: 10,
@@ -18,28 +17,6 @@ export default {
       videoData: [],
       articleData: [],
       communityData: [],
-      cardMenu2: [
-        {
-          src: 'https://cdn.vuetifyjs.com/images/cards/desert.jpg',
-          title: 'Dr. Mareena Robinson Snowden On Being The First Black Woman To Earn Her PhD In Nuclear Science From MIT1',
-          content: 'News } Christine'
-        },
-        {
-          src: 'https://cdn.vuetifyjs.com/images/cards/desert.jpg',
-          title: 'Dr. Mareena Robinson Snowden On Being The First Black Woman To Earn Her PhD In Nuclear Science From MIT2',
-          content: 'News } Christine'
-        },
-        {
-          src: 'https://cdn.vuetifyjs.com/images/cards/desert.jpg',
-          title: 'Dr. Mareena Robinson Snowden On Being The First Black Woman To Earn Her PhD In Nuclear Science From MIT3',
-          content: 'News } Christine'
-        },
-        {
-          src: 'https://cdn.vuetifyjs.com/images/cards/desert.jpg',
-          title: 'Dr. Mareena Robinson Snowden On Being The First Black Woman To Earn Her PhD In Nuclear Science From MIT4',
-          content: 'News } Christine'
-        }
-      ],
       placeimage: [
         {src: 'http://via.placeholder.com/850x440', title: '1'},
         {src: 'http://via.placeholder.com/850x440', title: '2'}
@@ -48,13 +25,6 @@ export default {
   },
 
   mounted () {
-    axios.get(this.url)
-      .then((res) => {
-        this.fetchLatestNews = res.data
-      })
-      .catch(e => {
-        console.log(e)
-      })
     axios.get(this.articleUrl + '/' + this.articleLoadCount + '/' + this.articleTotalCount)
       .then((res) => {
         this.articleData = res.data

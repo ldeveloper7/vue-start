@@ -6,9 +6,6 @@
       <v-container grid-list-md text-xs-center>
         <v-layout row wrap>
           <v-flex xs12>
-            <h1 class="text-sm-left">Featured Stories</h1>
-          </v-flex>
-          <v-flex xs12>
             <v-container raised hover fill-height style="background-color: #f4f4f4">
               <v-layout align-center v-for="item in articleData.slice(0,1)" :key="item._id">
                 <v-flex sm6>
@@ -121,12 +118,12 @@
         <v-layout row>
           <v-flex xs9 order-md3 order-xs3>
             <v-layout v-for="item in articleData.slice(4,)" :key="item._id">
-              <v-flex xs12 sm3>
+              <v-flex xs12 sm4 style="padding: 0 15px 15px 15px">
                 <v-card>
-                  <v-card-media :src="baseImageUrl+item.wp_featuredImage" height="200px"></v-card-media>
+                  <v-card-media :src="baseImageUrl+item.wp_featuredImage" height="200px" style="" ></v-card-media>
                 </v-card>
               </v-flex>
-              <v-flex xs12 sm5>
+              <v-flex xs12 sm8 style="padding: 0 15px 15px 15px">
                 <!--<p class="title font-weight-black text-sm-left">{{item.title}}</p>-->
                 <router-link class="font-weight-black title text-sm-center black--text" :to="'/'+item.slug"
                              style="text-decoration: none">{{item.title}}
@@ -137,7 +134,7 @@
                 </router-link>
               </v-flex>
             </v-layout>
-            <v-btn width="100%" v-on:click="articleLoadMore(10)">Load More Stories</v-btn>
+            <v-btn text-xs-center v-on:click="articleLoadMore(10)">Load More Stories</v-btn>
           </v-flex>
           <v-flex xs3 order-md3 order-xs3 color="red darken-4" text-xs-center>
             <v-card dark tile flat color="error">
@@ -207,94 +204,5 @@
     </v-content>
     <!--community Ends-->
 
-    <v-content style="background-color: #f4f4f4;">
-      <v-container grid-list-md text-xs-center>
-        <v-layout row wrap>
-          <v-flex xs10 class="text-title">
-            <h2>Get access to all things Black <i class="text-primary">in</i> Tech.</h2>
-          </v-flex>
-          <v-flex xs12>
-            <p class="elevated text-center">Submit once and come back whenever you want.</p>
-          </v-flex>
-          <v-flex xs6 sm6>
-            <v-text-field
-              placeholder="Enter your email address"
-              solo
-              flat
-            ></v-text-field>
-          </v-flex>
-          <v-flex xs6 sm6>
-            <v-btn class="btngetstarted">Large Button</v-btn>
-          </v-flex>
-          <v-flex>
-            <p class="headline">By clicking "Get Started" you agree to our Terms of Service and our Payment Policy.</p>
-          </v-flex>
-        </v-layout>
-      </v-container>
-    </v-content>
-
-    <v-content>
-      <v-container grid-list-md text-xs-center>
-        <v-layout row wrap>
-          <v-flex xs12 class="text-title">
-            <h2>Latest News :::::::::::::::::::::::::::::::</h2>
-          </v-flex>
-          <v-flex xs12>
-            <v-container grid-list-xl>
-              <v-layout row wrap>
-                <v-flex xs12 sm3 v-for="item in fetchLatestNews" :key="item._id">
-                  <v-card flat class="text-sm-left">
-                    <v-card-media
-                      :src="'https://res.cloudinary.com/blavity/image/upload/c_crop,g_center,w_auto,q_auto:best,g_south_east,x_0/'+item.wp_featuredImage"
-                      height="200px">
-                    </v-card-media>
-
-                    <v-card-title primary-title>
-                      <div>
-                        <router-link class="font-weight-bold headline" :to="'/'+item.slug"
-                                     style="font-weight: bolder;text-decoration: none">{{item.title}}
-                        </router-link>
-                        <br>
-                        <br>
-                        <span v-for="(cat, index) in item.categories" class="font-weight-bold" style="color: #3cccb7">
-                          <router-link :to="'/categories/'+cat.slug">
-                            {{cat.name}}
-                          </router-link>
-                          <span v-if="index+1 !== item.categories.length">,</span>
-                        </span>
-                        <span>} {{item._author.username}}</span>
-                      </div>
-                    </v-card-title>
-                  </v-card>
-                </v-flex>
-                <v-flex xs12>
-                  <hr>
-                </v-flex>
-                <v-flex xs12>
-                  <v-btn class="text-xs-right" flat color="blue">More Info --></v-btn>
-                </v-flex>
-              </v-layout>
-            </v-container>
-          </v-flex>
-        </v-layout>
-      </v-container>
-    </v-content>
-
-    <v-content>
-      <v-container grid-list-md text-xs-center>
-        <v-layout row wrap>
-          <v-flex xs12 sm6 v-for="item in placeimage" :key="item.title">
-            <v-card flat class="rounded-class">
-              <v-card-media
-                :src='item.src'
-                height="200px"
-                ripple
-                raised flat>
-              </v-card-media>
-            </v-card>
-          </v-flex>
-        </v-layout>
-      </v-container>
-    </v-content>
   </v-app>
 </div>
