@@ -18,6 +18,9 @@
               <v-avatar>
                 <img :src="'https://res.cloudinary.com/blavity/image/upload/c_crop,g_center,w_auto,q_auto:best,g_south_east,x_0/'+singlearticle.wp_featuredImage" height="30%">
               </v-avatar>
+              <router-link class="font-weight-bold subheading black--text" :to="'/author/'+singlearticle._author.username"
+                           style="text-decoration: none">{{singlearticle._author.username}}
+              </router-link>
             </v-chip>
           </v-flex>
           <v-flex xs12 class="text-sm-left">
