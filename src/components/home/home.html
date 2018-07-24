@@ -20,7 +20,7 @@
                   <br>
                   <v-chip>
                     <v-avatar>
-                      <img :src="baseImageUrl+topSingleArticle._author.profileImagePreference">
+                      <img :src="topSingleArticle._author.gravatar">
                     </v-avatar>
                     <router-link class="font-weight-bold subheading black--text" :to="'/author/'+topSingleArticle._author.username"
                                  style="text-decoration: none">{{topSingleArticle._author.username}}
