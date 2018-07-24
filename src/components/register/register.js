@@ -30,8 +30,11 @@ export default {
   data () {
     return {
       show1: false,
+      show2: false,
       email: '',
+      username: '',
       password: '',
+      repassword: '',
       rules: {
         required: value => !!value || 'Required.',
         min: v => v.length >= 8 || 'Min 8 characters',
@@ -47,11 +50,14 @@ export default {
   methods: {
     submit () {
       axios
-        .post('https://api.blavity.com/v1/auth/authenticate', {
+        .post('http://localhost:3100/v1/auth/signup', {
           'user': {
             'email': this.email,
-            'password': this.password
-          }
+            'username': this.username,
+            'password': this.password,
+            'passwordAgain': this.repassword,
+            'wants_newsletter': false
+          }, 'host': 'https://21ninety.com:443'
         })
         .then(response => {
           if (response.data) {
@@ -61,18 +67,26 @@ export default {
               this.$router.push('/')
             } else {
               this.email = ''
+              this.username = ''
               this.password = ''
+              this.repassword = ''
             }
           }
         })
         .catch(e => {
+          this.email = ''
+          this.username = ''
+          this.password = ''
+          this.repassword = ''
           console.log(e)
         })
     },
     clear () {
       this.$v.$reset()
       this.email = ''
+      this.username = ''
       this.password = ''
+      this.repassword = ''
     }
   }
 }
