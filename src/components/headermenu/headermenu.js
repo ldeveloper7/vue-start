@@ -24,6 +24,7 @@ export default {
   }),
   mounted () {
     if (Vue.localStorage.get('user')) {
+      this.menuItems.push({title: 'Me', link: '/profile'})
       this.menuItems.push({title: 'Logout', link: '/logout'})
       this.menuItems.shift()
       this.isLogin = true
