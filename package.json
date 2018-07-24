@@ -17,8 +17,11 @@
     "axios": "^0.18.0",
     "es6-promise": "^4.2.4",
     "vue": "^2.5.2",
+    "vue-localstorage": "^0.6.2",
+    "vue-lodash": "^2.0.0",
     "vue-router": "^3.0.1",
-    "vuetify": "^1.1.6"
+    "vuelidate": "^0.7.4",
+    "vuetify": "^1.1.7"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
