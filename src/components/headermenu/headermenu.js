@@ -54,31 +54,29 @@ export default {
       switch (rolevalue) {
         case '57db549862e4711c9dd1eed6':
         case '57db549862e4711c9dd1eed7':
-          this.superadmin.push({title: `logged in as ` + username + ` <img src=` + image + ` height=30px width=30px>`, link: `/profile`})
+          this.superadmin.push({
+            title: `logged in as ` + username + ` <img src=` + image + ` height=30px width=30px>`,
+            link: `/profile`
+          })
           this.upperMenu = this.superadmin
           break
-
         case '57db549862e4711c9dd1eed8':
-          this.editor.push({title: `logged in as ` + username + ` <img src=` + image + ` height=30px width=30px>`, link: `/profile`})
+          this.editor.push({
+            title: `logged in as ` + username + ` <img src=` + image + ` height=30px width=30px>`,
+            link: `/profile`
+          })
           this.upperMenu = this.editor
           break
-
-        case '57db549862e4711c9dd1eed9':
-        case '57db549862e4711c9dd1eeda':
-        case '57db5b2762e4711c9dd1eedb':
-          this.subconauth.push({title: `logged in as ` + username + ` <img src=` + image + ` height=30px width=30px>`, link: `/profile`})
-          this.upperMenu = this.subconauth
-          break
-
         default:
-          this.upperMenu = this.superadmin
+          this.subconauth.push({
+            title: `logged in as ` + username + ` <img src=` + image + ` height=30px width=30px>`,
+            link: `/profile`
+          })
+          this.upperMenu = this.subconauth
           break
       }
     } else {
       this.isLogin = false
     }
-    // else {
-    //   delete this.menuItems[0]
-    // }
   }
 }
