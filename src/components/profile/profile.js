@@ -7,7 +7,8 @@ Vue.use(VueLocalStorage)
 export default {
   data: () => ({
     msg: 'hello',
-    userData: []
+    userData: [],
+    dialog: false
   }),
   components: {
     headermenu
