@@ -23,28 +23,24 @@ export default {
       {title: 'Author Submissions', link: '/authorSubmissions'},
       {title: 'Pending Post', link: '/pending-post'},
       {title: 'Accounts', link: '/accounts'},
-      {title: 'Profile', link: '/profile'},
       {title: 'SIGN OUT', link: '/logout'}
     ],
     editor: [
       {title: 'MY POSTS', link: '/myposts'},
       {title: 'SCHEDULED POSTS', link: '/scheduledposts'},
       {title: 'Author Submissions', link: '/authorSubmissions'},
-      {title: 'Profile', link: '/profile'},
       {title: 'SIGN OUT', link: '/logout'}
     ],
     subconauth: [
       {title: 'MY POSTS', link: '/myposts'},
       {title: 'SCHEDULED POSTS', link: '/scheduledposts'},
-      {title: 'Profile', link: '/profile'},
       {title: 'SIGN OUT', link: '/logout'}
     ]
   }),
   mounted () {
     if (Vue.localStorage.get('user')) {
-      this.menuItems.push({title: 'Me', link: '/profile'})
-      this.menuItems.push({title: 'Sign out', link: '/logout'})
       this.menuItems.shift()
+      this.menuItems.unshift({title: 'Create Post', link: '/create/post'})
       this.isLogin = true
       var username = JSON.parse(Vue.localStorage.get('user')).username
       var image = JSON.parse(Vue.localStorage.get('user')).profileImagePreference
