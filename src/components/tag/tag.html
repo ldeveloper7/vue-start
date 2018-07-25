@@ -9,7 +9,7 @@
               <v-flex xs12 sm4 v-for="item in this.info" :key="item._id">
                 <v-card flat class="text-sm-left">
                   <v-card-media
-                    :src="'https://res.cloudinary.com/blavity/image/upload/c_crop,g_center,w_auto,q_auto:best,g_south_east,x_0/'+item.wp_featuredImage"
+                    :src="cloudinaryImageUrl+item.wp_featuredImage"
                     height="200px">
                   </v-card-media>
                   <v-card-title primary-title >

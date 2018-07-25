@@ -4,7 +4,9 @@
     <v-toolbar dense flat fixed app v-if="isLogin" color="grey">
       <v-spacer></v-spacer>
       <v-toolbar-items>
-        <v-btn class="caption" flat v-for="item in upperMenu" :to="item.link" :key="item.title" v-html="item.title">{{item.title}}</v-btn>
+        <v-btn class="caption" flat v-for="item in upperMenu" :to="item.link" :key="item.title" v-html="item.title">
+          {{item.title}}
+        </v-btn>
       </v-toolbar-items>
     </v-toolbar>
     <!--upper toolbar ends-->

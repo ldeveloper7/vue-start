@@ -46,10 +46,10 @@ export default {
     }
     if (this.$route.params.verification) {
       axios
-        .get('http://localhost:3100/v1/verification/' + this.$route.params.verification)
+        .get(process.env.LocalAPI + 'verification/' + this.$route.params.verification)
         .then(response => {
           if (response.data.success) {
-            this.msg=response.data.msg
+            this.msg = response.data.msg
           }
         })
         .catch(e => {
@@ -60,7 +60,7 @@ export default {
   methods: {
     submit () {
       axios
-        .post('http://localhost:3100/v1/auth/authenticate', {
+        .post(process.env.LocalAPI + 'auth/authenticate', {
           'user': {
             'email': this.email,
             'password': this.password
@@ -75,7 +75,7 @@ export default {
             } else {
               this.email = ''
               this.password = ''
-              this.msg=response.data.msg
+              this.msg = response.data.msg
             }
           }
         })

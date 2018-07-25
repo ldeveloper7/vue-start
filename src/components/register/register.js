@@ -51,7 +51,7 @@ export default {
   methods: {
     submit () {
       axios
-        .post('http://localhost:3100/v1/auth/signup', {
+        .post(process.env.LocalAPI + 'auth/signup', {
           'user': {
             'email': this.email,
             'username': this.username,
@@ -63,7 +63,7 @@ export default {
         .then(response => {
           if (response.data) {
             if (response.data.success === true) {
-              this.msg=response.data.msg
+              this.msg = response.data.msg
               this.clear()
             } else {
               this.clear()
