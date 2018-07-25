@@ -4,8 +4,6 @@ import Router from 'vue-router'
 import home from '../components/home/home.vue'
 import category from '../components/category/category.vue'
 import author from '../components/author/author.vue'
-import resources from '../components/resources/resources.vue'
-import events from '../components/events/events.vue'
 import video from '../components/video/video.vue'
 import singlearticle from '../components/singlearticle/singlearticle.vue'
 import profile from '../components/profile/profile.vue'
@@ -14,6 +12,7 @@ import myposts from '../components/myposts/myposts.vue'
 import login from '../components/login/login.vue'
 import logout from '../components/logout/logout.vue'
 import PageNotFound from '../components/404/404.vue'
+import register from '../components/register/register.vue'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css' // Ensure you are using css-loader
 
@@ -30,16 +29,6 @@ export default new Router({
       path: '/categories/:category',
       name: 'category',
       component: category
-    },
-    {
-      path: '/resources',
-      name: 'resources',
-      component: resources
-    },
-    {
-      path: '/events',
-      name: 'events',
-      component: events
     },
     {
       path: '/videos',
@@ -72,9 +61,19 @@ export default new Router({
       component: login
     },
     {
+      path: '/register',
+      name: 'register',
+      component: register
+    },
+    {
       path: '/logout',
       name: 'logout',
       component: logout
+    },
+    {
+      path: '/mail/verification/:verification',
+      name: 'login',
+      component: login
     },
     {
       path: '/:slug',

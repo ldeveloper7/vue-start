@@ -18,23 +18,42 @@
                     @blur="$v.email.$touch()"
                   ></v-text-field>
                   <v-text-field
+                    v-model="username"
+                    type="text"
+                    label="Username"
+                    required
+                    @input="$v.email.$touch()"
+                    @blur="$v.email.$touch()"
+                  ></v-text-field>
+                  <v-text-field
                     v-model="password"
                     :append-icon="show1 ? 'visibility_off' : 'visibility'"
                     :rules="[rules.required, rules.min]"
                     :type="show1 ? 'text' : 'password'"
                     name="input-10-1"
-                    label="Normal with hint text"
+                    label="Password"
                     hint="At least 8 characters"
                     counter
                     @click:append="show1 = !show1"
                   ></v-text-field>
+                  <v-text-field
+                    v-model="repassword"
+                    :append-icon="show1 ? 'visibility_off' : 'visibility'"
+                    :rules="[rules.required, rules.min]"
+                    :type="show2 ? 'text' : 'password'"
+                    name="input-10-1"
+                    label="Re Password"
+                    hint="At least 8 characters"
+                    counter
+                    @click:append="show2 = !show2"
+                  ></v-text-field>
                   <v-btn @click="submit">submit</v-btn>
                   <v-btn @click="clear">clear</v-btn>
                 </v-form>
-                <span v-if="msg.length" strong><br>{{msg}}</span>
-                <br><br><br><br>
+                <span v-if="msg.length" strong><br>{{msg}} <br> Please Check your Mail</span>
+                <br><br><br>
                 <h1>
-                  <router-link to="/register">Register</router-link>
+                  <router-link to="/login">Login</router-link>
                 </h1>
               </v-flex>
             </v-layout>

@@ -30,9 +30,12 @@ export default {
   data () {
     return {
       show1: false,
+      show2: false,
       msg: '',
       email: '',
+      username: '',
       password: '',
+      repassword: '',
       rules: {
         required: value => !!value || 'Required.',
         min: v => v.length >= 8 || 'Min 8 characters',
@@ -44,49 +47,40 @@ export default {
     if (Vue.localStorage.get('user')) {
       location.href = '/'
     }
-    if (this.$route.params.verification) {
-      axios
-        .get('http://localhost:3100/v1/verification/' + this.$route.params.verification)
-        .then(response => {
-          if (response.data.success) {
-            this.msg=response.data.msg
-          }
-        })
-        .catch(e => {
-          console.log(e)
-        })
-    }
   },
   methods: {
     submit () {
       axios
-        .post('http://localhost:3100/v1/auth/authenticate', {
+        .post('http://localhost:3100/v1/auth/signup', {
           'user': {
             'email': this.email,
-            'password': this.password
-          }
+            'username': this.username,
+            'password': this.password,
+            'passwordAgain': this.repassword,
+            'wants_newsletter': false
+          }, 'host': 'https://21ninety.com:443'
         })
         .then(response => {
           if (response.data) {
             if (response.data.success === true) {
-              Vue.localStorage.set('token', response.data.token)
-              Vue.localStorage.set('user', JSON.stringify(response.data.user))
-              this.$router.push('/')
-            } else {
-              this.email = ''
-              this.password = ''
               this.msg=response.data.msg
+              this.clear()
+            } else {
+              this.clear()
             }
           }
         })
         .catch(e => {
+          this.clear()
           console.log(e)
         })
     },
     clear () {
       this.$v.$reset()
       this.email = ''
+      this.username = ''
       this.password = ''
+      this.repassword = ''
     }
   }
 }
