@@ -9,7 +9,7 @@
             <v-container raised hover fill-height style="background-color: #f4f4f4">
               <v-layout align-center v-for="topSingleArticle in articleData.slice(0,1)" :key="topSingleArticle._id">
                 <v-flex sm6>
-                  <img style="max-width: 100%" :src="baseImageUrl+topSingleArticle.wp_featuredImage">
+                  <img style="max-width: 100%" :src="cloudinaryImageUrl+topSingleArticle.wp_featuredImage">
                 </v-flex>
                 <v-flex xs12 sm6>
                   <router-link :to="'/'+topSingleArticle.slug" style="text-decoration: none" class="title font-weight-medium black--text">{{topSingleArticle.title}}</router-link>
@@ -36,7 +36,7 @@
               <v-flex xs12 md4 v-for="topThreeArticle in articleData.slice(1,4)" :key="topThreeArticle._id">
                 <v-card hover>
                   <v-card-media
-                    :src='baseImageUrl+topThreeArticle.wp_featuredImage'
+                    :src='cloudinaryImageUrl+topThreeArticle.wp_featuredImage'
                     height="300px">
                     <!--title of the image-->
                     <v-container fill-height fluid>
@@ -80,7 +80,7 @@
           <v-flex xs12 sm6 v-for="videoArticle in videoData" :key="videoArticle._id">
             <v-card flat class="text-sm-left fixed">
               <v-card-media
-                :src="'https://res.cloudinary.com/blavity/image/upload/c_crop,g_center,w_auto,q_auto:best,g_south_east,x_0/'+videoArticle.wp_featuredImage"
+                :src="cloudinaryImageUrl+videoArticle.wp_featuredImage"
                 height="300px">
               </v-card-media>
 
@@ -119,7 +119,7 @@
             <v-layout v-for="newsFeaturesArticles in articleData.slice(4,)" :key="newsFeaturesArticles._id">
               <v-flex xs12 sm4 pl-3 pr-3 pb-3>
                 <v-card>
-                  <v-card-media :src="baseImageUrl+newsFeaturesArticles.wp_featuredImage" height="200px" style="" ></v-card-media>
+                  <v-card-media :src="cloudinaryImageUrl+newsFeaturesArticles.wp_featuredImage" height="200px" style="" ></v-card-media>
                 </v-card>
               </v-flex>
               <v-flex xs12 sm8 pl-3 pr-3 >
@@ -167,7 +167,7 @@
                 <v-flex xs12 md4 v-for="communityArticles in communityData" :key="communityArticles._id">
                   <v-card hover>
                     <v-card-media
-                      :src='baseImageUrl+communityArticles.wp_featuredImage'
+                      :src='cloudinaryImageUrl+communityArticles.wp_featuredImage'
                       height="300px">
                       <!--title of the image-->
                       <v-container fill-height fluid>

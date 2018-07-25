@@ -9,12 +9,13 @@ export default {
     return {
       info: {},
       totalcount: 0,
-      loadCount: 3
+      loadCount: 3,
+      cloudinaryImageUrl: process.env.cloudinaryImageUrl
     }
   },
   mounted () {
     axios
-      .get('https://api.blavity.com/v1/articles/authors/' + this.$route.params.author + '/' + this.loadCount + '/' + (this.totalcount))
+      .get(process.env.LiveAPI + 'articles/authors/' + this.$route.params.author + '/' + this.loadCount + '/' + (this.totalcount))
       .then(response => {
         this.info = response.data
       })
@@ -25,7 +26,7 @@ export default {
   methods: {
     loadmore: function (count) {
       axios
-        .get('https://api.blavity.com/v1/articles/authors/' + this.$route.params.author + '/' + this.loadCount + '/' + (this.totalcount + count))
+        .get(process.env.LiveAPI + 'articles/authors/' + this.$route.params.author + '/' + this.loadCount + '/' + (this.totalcount + count))
         .then(response => {
           this.info.push(...response.data)
           this.totalcount = this.totalcount + response.data.length

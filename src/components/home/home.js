@@ -13,12 +13,9 @@ export default {
   data () {
     return {
       fetchLatestNews: [],
-      articleUrl: 'https://api.blavity.com/v1/articles',
       articleLoadCount: 10,
       articleTotalCount: 0,
-      communityUrl: 'https://api.blavity.com/v1/articles/categories/community-submitted/3',
-      baseImageUrl: 'https://res.cloudinary.com/blavity/image/upload/c_crop,g_center,w_auto,q_auto:best,g_south_east,x_0/',
-      videourl: 'https://api.blavity.com/v1/articles/type/video/2',
+      cloudinaryImageUrl: process.env.cloudinaryImageUrl,
       videoData: [],
       articleData: [],
       communityData: [],
@@ -30,7 +27,7 @@ export default {
   },
 
   mounted () {
-    axios.get(this.articleUrl + '/' + this.articleLoadCount + '/' + this.articleTotalCount)
+    axios.get(process.env.LiveAPI + 'articles' + '/' + this.articleLoadCount + '/' + this.articleTotalCount)
       .then((res) => {
         this.articleData = res.data
       })
@@ -38,14 +35,14 @@ export default {
         console.log(e)
       })
 
-    axios.get(this.videourl)
+    axios.get(process.env.LiveAPI + 'articles/type/video/2')
       .then((res) => {
         this.videoData = res.data
       })
       .catch(e => {
         console.log(e)
       })
-    axios.get(this.communityUrl)
+    axios.get(process.env.LiveAPI + 'articles/categories/community-submitted/3')
       .then((res) => {
         this.communityData = res.data
       })
@@ -58,7 +55,7 @@ export default {
       let _this = this
       // console.log(this.$data.articleTotalCount)
 
-      axios.get('https://api.blavity.com/v1/articles/' + _this.articleLoadCount + '/' + (_this.articleTotalCount + total))
+      axios.get(process.env.LiveAPI + 'articles/' + _this.articleLoadCount + '/' + (_this.articleTotalCount + total))
         .then((res) => {
           this.articleData.push(...res.data)
           this.articleTotalCount += res.data.length

@@ -6,10 +6,12 @@ export default {
     headermenu
   },
   data: () => ({
-    singlearticle: []
+    singlearticle: [],
+    cloudinaryImageUrl: process.env.cloudinaryImageUrl
   }),
   mounted () {
-    axios.get('https://api.blavity.com/v1/' + this.$route.params.slug)
+    // let _this = this
+    axios.get(process.env.LiveAPI + this.$route.params.slug)
       .then((res) => {
         if (res.data) {
           this.singlearticle = res.data
