@@ -3,7 +3,6 @@
   <!--drafts posts start-->
   <v-content>
     <v-container>
-      <!--draft posts start-->
       <v-layout>
         <v-flex xs12>
           <p class="display-1 font-weight-light">draft posts</p>
@@ -15,7 +14,7 @@
       <v-content>
         <v-container>
           <v-layout v-for="item in draftData" key="item._id">
-            <v-flex xs12 sm4>
+            <v-flex xs12 sm4 pr-4 pb-4>
               <v-card>
                 <v-card-media
                   :src="baseImageUrl+item.wp_featuredImage"
@@ -23,38 +22,40 @@
                 ></v-card-media>
               </v-card>
             </v-flex>
-            <v-flex xs12 sm8>
+            <v-flex xs12 sm8 pr-4>
               <v-container>
                 <p>title</p>
                 <v-avatar size="48">
                   <img :src="image" :alt="username">
-                  <router-link class="font-weight-bold subheading black--text" :to="'/author/'+username"
-                               style="text-decoration: none">{{displayname}}
-                  </router-link>
                 </v-avatar>
-                <p>title</p>
+                <router-link class="font-weight-bold subheading black--text" :to="'/author/'+username"
+                             style="text-decoration: none">{{displayname}}
+                </router-link>
+                <!--<p>title</p>-->
               </v-container>
             </v-flex>
           </v-layout>
           <br>
+          <v-btn outline @click="loadMore(3,'draft_post')">Load More</v-btn>
         </v-container>
       </v-content>
-      <!--draft posts start-->
-      <hr>
+    </v-container>
+  </v-content>
+      <!--draft posts end-->
+  <hr>
       <!--submitted for review start-->
-      <v-container>
-        <v-layout>
-          <v-flex xs12>
-            <p class="display-1 font-weight-light">submitted for review</p>
-          </v-flex>
-          <v-spacer></v-spacer>
-        </v-layout>
-      </v-container>
+  <v-content>
+    <v-container>
+      <v-layout>
+        <v-flex xs12>
+          <p class="display-1 font-weight-light">submitted for review</p>
+        </v-flex>
+      </v-layout>
       <hr>
       <v-content>
         <v-container>
           <v-layout v-for="item in submittedData" key="item._id">
-            <v-flex xs12 sm4>
+            <v-flex xs12 sm4 pr-4 pb-4>
               <v-card>
                 <v-card-media
                   :src="baseImageUrl+item.wp_featuredImage"
@@ -62,37 +63,40 @@
                 ></v-card-media>
               </v-card>
             </v-flex>
-            <v-flex xs12 sm8>
+            <v-flex xs12 sm8 pr-4>
               <v-container>
                 <p>title</p>
                 <v-avatar size="48">
                   <img :src="image" :alt="username">
-                  <router-link class="font-weight-bold subheading black--text" :to="'/author/'+username"
-                               style="text-decoration: none">{{displayname}}
-                  </router-link>
                 </v-avatar>
-                <p>title</p>
+                <router-link class="font-weight-bold subheading black--text" :to="'/author/'+username"
+                             style="text-decoration: none">{{displayname}}
+                </router-link>
+                <!--<p>title</p>-->
               </v-container>
             </v-flex>
           </v-layout>
+          <br>
+          <v-btn outline @click="loadMore(3,'submit_review_post')">Load More</v-btn>
         </v-container>
       </v-content>
-      <!--submitted for review end-->
-      <hr>
-      <!--Published posts start-->
-      <v-container>
-        <v-layout>
-          <v-flex xs12>
-            <p class="display-1 font-weight-light">Published posts</p>
-          </v-flex>
-          <v-spacer></v-spacer>
-        </v-layout>
-      </v-container>
+    </v-container>
+  </v-content>
+  <!--submitted for review end-->
+  <hr>
+  <!--Published posts start-->
+  <v-content>
+    <v-container>
+      <v-layout>
+        <v-flex xs12>
+          <p class="display-1 font-weight-light">Published posts</p>
+        </v-flex>
+      </v-layout>
       <hr>
       <v-content>
         <v-container>
           <v-layout v-for="item in publishedData" key="item._id">
-            <v-flex xs12 sm4>
+            <v-flex xs12 sm4 pr-4 pb-4>
               <v-card>
                 <v-card-media
                   :src="baseImageUrl+item.wp_featuredImage"
@@ -100,37 +104,40 @@
                 ></v-card-media>
               </v-card>
             </v-flex>
-            <v-flex xs12 sm8>
+            <v-flex xs12 sm8 pr-4>
               <v-container>
                 <p>title</p>
                 <v-avatar size="48">
                   <img :src="image" :alt="username">
-                  <router-link class="font-weight-bold subheading black--text" :to="'/author/'+username"
-                               style="text-decoration: none">{{displayname}}
-                  </router-link>
                 </v-avatar>
-                <p>title</p>
+                <router-link class="font-weight-bold subheading black--text" :to="'/author/'+username"
+                             style="text-decoration: none">{{displayname}}
+                </router-link>
+                <!--<p>title</p>-->
               </v-container>
             </v-flex>
           </v-layout>
+          <br>
+          <v-btn outline @click="loadMore(3,'publish_post')">Load More</v-btn>
         </v-container>
       </v-content>
-      <!--Published posts start-->
-      <hr>
-      <!--Scheduled posts start-->
-      <v-container>
-        <v-layout>
-          <v-flex xs12>
-            <p class="display-1 font-weight-light">Scheduled posts</p>
-          </v-flex>
-          <v-spacer></v-spacer>
-        </v-layout>
-      </v-container>
+    </v-container>
+  </v-content>
+  <!--Published posts ends-->
+  <hr>
+  <!--Scheduled posts start-->
+  <v-content>
+    <v-container>
+      <v-layout>
+        <v-flex xs12>
+          <p class="display-1 font-weight-light">Scheduled posts</p>
+        </v-flex>
+      </v-layout>
       <hr>
       <v-content>
         <v-container>
           <v-layout v-for="item in scheduledData" key="item._id">
-            <v-flex xs12 sm4>
+            <v-flex xs12 sm4 pr-4 pb-4>
               <v-card>
                 <v-card-media
                   :src="baseImageUrl+item.wp_featuredImage"
@@ -138,25 +145,25 @@
                 ></v-card-media>
               </v-card>
             </v-flex>
-            <v-flex xs12 sm8>
+            <v-flex xs12 sm8 pr-4>
               <v-container>
                 <p>title</p>
                 <v-avatar size="48">
                   <img :src="image" :alt="username">
-                  <router-link class="font-weight-bold subheading black--text" :to="'/author/'+username"
-                               style="text-decoration: none">{{displayname}}
-                  </router-link>
                 </v-avatar>
-                <p>title</p>
+                <router-link class="font-weight-bold subheading black--text" :to="'/author/'+username"
+                             style="text-decoration: none">{{displayname}}
+                </router-link>
+                <!--<p>title</p>-->
               </v-container>
             </v-flex>
           </v-layout>
+          <br>
+          <v-btn outline @click="loadMore(3,'schedule_post')">Load More</v-btn>
         </v-container>
       </v-content>
-      <!--<v-btn @click="postLoadMore(3)">Load More</v-btn>-->
-      <!--Scheduled posts start-->
     </v-container>
   </v-content>
-  <!--draft posts ends-->
+  <!--Scheduled posts ends-->
 
 </div>

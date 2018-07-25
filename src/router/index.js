@@ -51,7 +51,7 @@ export default new Router({
       component: profile
     },
     {
-      path: '/myposts',
+      path: '/:username/myposts',
       name: 'myposts',
       component: myposts
     },

@@ -18,37 +18,60 @@ export default {
     image: null,
     displayname: null,
     loadcount: 3,
-    totalcount: 0
+    totalcount1: 0,
+    totalcount2: 0,
+    totalcount3: 0,
+    totalcount4: 0
   }),
   components: {
     headermenu
   },
   methods: {
-    useNull () {
-      return null
+
+    loadMore (total, postname) {
+      let _this = this
+      switch (postname) {
+        case 'draft_post':
+          axios.get(process.env.LiveAPI + 'articles/' + _this.loadcount + '/' + (_this.totalcount1 + total))
+            .then((res) => {
+              _this.draftData.push(...res.data)
+              _this.totalcount1 += res.data.length
+            })
+          break
+
+        case 'submit_review_post':
+          axios.get(process.env.LiveAPI + 'articles/' + _this.loadcount + '/' + (_this.totalcount2 + total))
+            .then((res) => {
+              _this.submittedData.push(...res.data)
+              _this.totalcount2 += res.data.length
+            })
+          break
+
+        case 'publish_post':
+          axios.get(process.env.LiveAPI + 'articles/' + _this.loadcount + '/' + (_this.totalcount3 + total))
+            .then((res) => {
+              _this.publishedData.push(...res.data)
+              _this.totalcount3 += res.data.length
+            })
+          break
+
+        case 'schedule_post':
+          axios.get(process.env.LiveAPI + 'articles/' + _this.loadcount + '/' + (_this.totalcount4 + total))
+            .then((res) => {
+              _this.scheduledData.push(...res.data)
+              _this.totalcount4 += res.data.length
+            })
+          break
+
+        default:
+          axios.get(process.env.LiveAPI + 'articles/' + _this.loadcount + '/' + (_this.totalcount1 + total))
+            .then((res) => {
+              _this.draftData.push(...res.data)
+              _this.totalcount1 += res.data.length
+            })
+          break
+      }
     }
-    // postLoadMore: function (total) {
-    //   debugger
-    //   let _this = this
-    //   _this.url1 = LiveAPI+`articles/` + _this.loadcount + `/ ` + (_this.totalcount + total)
-    //   _this.url2 = LiveAPI+`v1/articles/` + _this.loadcount + `/ ` + (_this.totalcount + total)
-    //   _this.url3 = LiveAPI+`v1/articles/` + _this.loadcount + `/ ` + (_this.totalcount + total)
-    //   _this.url4 = LiveAPI+`v1/articles/` + _this.loadcount + `/ ` + (_this.totalcount + total)
-    //   _this.urlArray = [_this.url1, _this.url2, _this.url3, _this.url4]
-    //   axios.all([
-    //     axios.get(this.urlArray[0]).catch(null),
-    //     axios.get(this.urlArray[1]).catch(null),
-    //     axios.get(this.urlArray[2]).catch(null),
-    //     axios.get(this.urlArray[3]).catch(null)
-    //   ]).then(axios.spread(function (res1, res2, res3, res4) {
-    //     _this.draftData.push(...res1.data)
-    //     _this.submittedData.push(...res2.data)
-    //     _this.publishedData.push(...res3.data)
-    //     _this.scheduledData.push(...res4.data)
-    //
-    //     this.totalcount += res1.data.length
-    //   }))
-    // }
   },
   mounted () {
     let _this = this
