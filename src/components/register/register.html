@@ -50,6 +50,11 @@
                   <v-btn @click="submit">submit</v-btn>
                   <v-btn @click="clear">clear</v-btn>
                 </v-form>
+                <span v-if="msg.length" strong><br>{{msg}} <br> Please Check your Mail</span>
+                <br><br><br>
+                <h1>
+                  <router-link to="/login">Login</router-link>
+                </h1>
               </v-flex>
             </v-layout>
           </v-container>

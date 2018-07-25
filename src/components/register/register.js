@@ -31,6 +31,7 @@ export default {
     return {
       show1: false,
       show2: false,
+      msg: '',
       email: '',
       username: '',
       password: '',
@@ -62,22 +63,15 @@ export default {
         .then(response => {
           if (response.data) {
             if (response.data.success === true) {
-              Vue.localStorage.set('token', response.data.token)
-              Vue.localStorage.set('user', JSON.stringify(response.data.user))
-              this.$router.push('/')
+              this.msg=response.data.msg
+              this.clear()
             } else {
-              this.email = ''
-              this.username = ''
-              this.password = ''
-              this.repassword = ''
+              this.clear()
             }
           }
         })
         .catch(e => {
-          this.email = ''
-          this.username = ''
-          this.password = ''
-          this.repassword = ''
+          this.clear()
           console.log(e)
         })
     },

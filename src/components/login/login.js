@@ -30,6 +30,7 @@ export default {
   data () {
     return {
       show1: false,
+      msg: '',
       email: '',
       password: '',
       rules: {
@@ -43,11 +44,23 @@ export default {
     if (Vue.localStorage.get('user')) {
       location.href = '/'
     }
+    if (this.$route.params.verification) {
+      axios
+        .get('http://localhost:3100/v1/verification/' + this.$route.params.verification)
+        .then(response => {
+          if (response.data.success) {
+            this.msg=response.data.msg
+          }
+        })
+        .catch(e => {
+          console.log(e)
+        })
+    }
   },
   methods: {
     submit () {
       axios
-        .post('https://api.blavity.com/v1/auth/authenticate', {
+        .post('http://localhost:3100/v1/auth/authenticate', {
           'user': {
             'email': this.email,
             'password': this.password
@@ -62,6 +75,7 @@ export default {
             } else {
               this.email = ''
               this.password = ''
+              this.msg=response.data.msg
             }
           }
         })

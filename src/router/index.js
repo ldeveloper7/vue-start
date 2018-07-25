@@ -71,6 +71,11 @@ export default new Router({
       component: logout
     },
     {
+      path: '/mail/verification/:verification',
+      name: 'login',
+      component: login
+    },
+    {
       path: '/:slug',
       name: 'SingleArticle',
       component: singlearticle
