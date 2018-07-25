@@ -12,8 +12,6 @@ export default {
       {title: 'Login', link: '/login'},
       {title: 'News', link: '/categories/news'},
       {title: 'Tech', link: '/tech'},
-      {title: 'Resources', link: '/resources'},
-      {title: 'Events', link: '/events'},
       {title: 'Videos', link: '/videos'},
       {title: 'opinion', link: '/opinion'},
       {title: 'finance', link: '/finance'}

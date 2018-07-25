@@ -4,8 +4,6 @@ import Router from 'vue-router'
 import home from '../components/home/home.vue'
 import category from '../components/category/category.vue'
 import author from '../components/author/author.vue'
-import resources from '../components/resources/resources.vue'
-import events from '../components/events/events.vue'
 import video from '../components/video/video.vue'
 import singlearticle from '../components/singlearticle/singlearticle.vue'
 import profile from '../components/profile/profile.vue'
@@ -31,16 +29,6 @@ export default new Router({
       path: '/categories/:category',
       name: 'category',
       component: category
-    },
-    {
-      path: '/resources',
-      name: 'resources',
-      component: resources
-    },
-    {
-      path: '/events',
-      name: 'events',
-      component: events
     },
     {
       path: '/videos',
