@@ -1,30 +1,27 @@
 <div>
-  <!--start of navigation bar-->
-  <v-navigation-drawer
-    v-model="sideNav"
-    app
-    temporary
-  >
-    <v-list>
-      <v-list-tile :to="item.link" v-for="item in menuItems" :key="item.title">
-        <v-list-tile-action>
-          <v-icon>home</v-icon>
-        </v-list-tile-action>
-        <v-list-tile-content>
-          <v-list-tile-title>{{item.title}}</v-list-tile-title>
-        </v-list-tile-content>
-      </v-list-tile>
-    </v-list>
-  </v-navigation-drawer>
-  <!--End of the navigation bar-->
-  <!--start of toolbar-->
-  <v-toolbar flat fixed app>
-    <v-toolbar-side-icon @click.native.stop="sideNav = !sideNav"></v-toolbar-side-icon>
-    <v-toolbar-title><router-link to="/" style="cursor: pointer;">AFROTECH</router-link></v-toolbar-title>
-    <v-spacer></v-spacer>
-    <v-toolbar-items class="hidden-xs-only">
-      <v-btn flat v-for="item in menuItems" :to="item.link" :key="item.title">{{item.title}}</v-btn>
-    </v-toolbar-items>
-  </v-toolbar>
+  <v-content>
+    <!--upper toolbar start-->
+    <v-toolbar dense flat fixed app v-if="isLogin" color="grey">
+      <v-spacer></v-spacer>
+      <v-toolbar-items>
+        <v-btn class="caption" flat v-for="item in upperMenu" :to="item.link" :key="item.title" v-html="item.title">{{item.title}}</v-btn>
+      </v-toolbar-items>
+    </v-toolbar>
+    <!--upper toolbar ends-->
+    <!--main toolbar start-->
+    <v-toolbar light flat>
+      <v-toolbar-title style="cursor: pointer;text-transform: uppercase">
+        <router-link to="/">
+          <img height="30px" src="https://blavity.com/images/blavity-icon.png">
+          <span style="float: inherit"></span> blavity
+        </router-link>
+      </v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-toolbar-items class="hidden-xs-only">
+        <v-btn flat v-for="item in menuItems" :to="item.link" :key="item.title">{{item.title}}</v-btn>
+      </v-toolbar-items>
+    </v-toolbar>
+    <!--main toolbar ends-->
+  </v-content>
   <!--end of the toolbar-->
 </div>

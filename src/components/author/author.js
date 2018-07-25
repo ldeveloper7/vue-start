@@ -1,3 +1,4 @@
+'use strict'
 import axios from '../../../node_modules/axios/index'
 import headermenu from '../headermenu/headermenu.vue'
 export default {

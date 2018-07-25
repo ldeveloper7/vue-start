@@ -1,3 +1,4 @@
+'use strict'
 import headermenu from '../headermenu/headermenu.vue'
 import axios from 'axios'
 export default {
@@ -10,10 +11,14 @@ export default {
   mounted () {
     axios.get('https://api.blavity.com/v1/' + this.$route.params.slug)
       .then((res) => {
-        this.singlearticle = res.data
+        if (res.data) {
+          this.singlearticle = res.data
+        } else {
+          this.$router.push('/404')
+        }
       })
       .catch(e => {
-        console.log('Error: ')
+        console.log(e)
       })
   }
 }
