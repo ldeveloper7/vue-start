@@ -39,8 +39,45 @@ export default {
   mounted () {
     if (Vue.localStorage.get('user')) {
       this.userData = JSON.parse(Vue.localStorage.get('user'))
+      let DisplayName = this.userData.display_name
+      let Email = this.userData.email
+      let Username = this.userData.username
+      let Website = this.userData.links
+      let FacebookUrl = this.userData.facebookProfileUrl
+      let TwitterUrl = this.userData.twitterProfileUrl
+      let InstagramUrl = this.userData.instagramProfileUrl
+      let GoogleUrl = this.userData.googleProfileUrl
+      let Bio = this.userData.bio
+
+      this.displayname = DisplayName
+      this.email = Email
+      this.username = Username
+      this.website = Website
+      this.facebookurl = FacebookUrl
+      this.twitterurl = TwitterUrl
+      this.instagramurl = InstagramUrl
+      this.googleurl = GoogleUrl
+      this.bio = Bio
+
+      // let array = [
+      //   {title: 'Display Name', value: DisplayName, vmodel: this.displayname},
+      //   {title: 'Email', value: Email, vmodel: this.email},
+      //   {title: 'Username', value: Username, vmodel: this.username},
+      //   {title: 'Website', value: Website, vmodel: this.website},
+      //   {title: 'Facebook url', value: FacebookUrl, vmodel: this.facebookurl},
+      //   {title: 'Twitter url', value: TwitterUrl, vmodel: this.twitterurl},
+      //   {title: 'Instagram url', value: InstagramUrl, vmodel: this.instagramurl},
+      //   {title: 'Google+ url', value: GoogleUrl, vmodel: this.googleurl},
+      //   {title: 'Bio', value: Bio, vmodel: this.bio}
+      // ]
+      // this.profileData = array
     } else {
       this.$router.push('/')
+    }
+  },
+  methods: {
+    clickme () {
+      console.log(this.displayname + this.username)
     }
   }
 }
