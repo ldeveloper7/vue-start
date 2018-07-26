@@ -8,16 +8,12 @@ Vue.use(VueLocalStorage)
 
 export default {
   data: () => ({
-    baseImageUrl: 'https://res.cloudinary.com/blavity/image/upload/c_crop,g_center,w_auto,q_auto:best,g_south_east,x_0/',
+    baseImageUrl: process.env.cloudinaryImageUrl,
     draftData: [],
     submittedData: [],
     publishedData: [],
     scheduledData: [],
-    // url1: 'https://api.blavity.com/v1/articles/3/0',
-    // url2: 'https://api.blavity.com/v1/articles/3/0',
-    // url3: 'https://api.blavity.com/v1/articles/3/0',
-    // url4: 'https://api.blavity.com/v1/articles/3/0',
-    urlArray: ['https://api.blavity.com/v1/articles/3/0', 'https://api.blavity.com/v1/articles/3/0', 'https://api.blavity.com/v1/articles/3/0', 'https://api.blavity.com/v1/articles/3/0'],
+    urlArray: [process.env.LiveAPI + 'articles/3/0', process.env.LiveAPI + 'articles/3/0', process.env.LiveAPI + 'articles/3/0', process.env.LiveAPI + 'articles/3/0'],
     username: null,
     image: null,
     displayname: null,
@@ -34,10 +30,10 @@ export default {
     // postLoadMore: function (total) {
     //   debugger
     //   let _this = this
-    //   _this.url1 = `https://api.blavity.com/v1/articles/` + _this.loadcount + `/ ` + (_this.totalcount + total)
-    //   _this.url2 = `https://api.blavity.com/v1/articles/` + _this.loadcount + `/ ` + (_this.totalcount + total)
-    //   _this.url3 = `https://api.blavity.com/v1/articles/` + _this.loadcount + `/ ` + (_this.totalcount + total)
-    //   _this.url4 = `https://api.blavity.com/v1/articles/` + _this.loadcount + `/ ` + (_this.totalcount + total)
+    //   _this.url1 = LiveAPI+`articles/` + _this.loadcount + `/ ` + (_this.totalcount + total)
+    //   _this.url2 = LiveAPI+`v1/articles/` + _this.loadcount + `/ ` + (_this.totalcount + total)
+    //   _this.url3 = LiveAPI+`v1/articles/` + _this.loadcount + `/ ` + (_this.totalcount + total)
+    //   _this.url4 = LiveAPI+`v1/articles/` + _this.loadcount + `/ ` + (_this.totalcount + total)
     //   _this.urlArray = [_this.url1, _this.url2, _this.url3, _this.url4]
     //   axios.all([
     //     axios.get(this.urlArray[0]).catch(null),
