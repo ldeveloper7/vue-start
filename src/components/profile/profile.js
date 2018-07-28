@@ -3,29 +3,24 @@ import Vue from 'vue'
 import headermenu from '../headermenu/headermenu.vue'
 import VueLocalStorage from 'vue-localstorage'
 import { validationMixin } from 'vuelidate'
+import axios from 'axios'
 
 Vue.use(VueLocalStorage)
 export default {
   mixins: [validationMixin],
   data: () => ({
     show1: false,
+    show2: false,
+    show3: false,
     userData: [],
     dialog: false,
     dialog1: false,
+    msg: '',
     dialog2: false,
-    profileData: [],
-    displayname: '',
-    email: '',
-    username: '',
-    website: '',
-    facebookurl: '',
-    twitterurl: '',
-    instagramurl: '',
-    googleurl: '',
-    bio: '',
     currentpassword: '',
     newpassword: '',
     passwordagain: '',
+    token: '',
     rules: {
       required: value => !!value || 'Required.',
       min: v => (v.length >= 8 && v.length <= 20) || 'Min 8 characters',
@@ -39,45 +34,68 @@ export default {
   mounted () {
     if (Vue.localStorage.get('user')) {
       this.userData = JSON.parse(Vue.localStorage.get('user'))
-      let DisplayName = this.userData.display_name
-      let Email = this.userData.email
-      let Username = this.userData.username
-      let Website = this.userData.links
-      let FacebookUrl = this.userData.facebookProfileUrl
-      let TwitterUrl = this.userData.twitterProfileUrl
-      let InstagramUrl = this.userData.instagramProfileUrl
-      let GoogleUrl = this.userData.googleProfileUrl
-      let Bio = this.userData.bio
-
-      this.displayname = DisplayName
-      this.email = Email
-      this.username = Username
-      this.website = Website
-      this.facebookurl = FacebookUrl
-      this.twitterurl = TwitterUrl
-      this.instagramurl = InstagramUrl
-      this.googleurl = GoogleUrl
-      this.bio = Bio
-
-      // let array = [
-      //   {title: 'Display Name', value: DisplayName, vmodel: this.displayname},
-      //   {title: 'Email', value: Email, vmodel: this.email},
-      //   {title: 'Username', value: Username, vmodel: this.username},
-      //   {title: 'Website', value: Website, vmodel: this.website},
-      //   {title: 'Facebook url', value: FacebookUrl, vmodel: this.facebookurl},
-      //   {title: 'Twitter url', value: TwitterUrl, vmodel: this.twitterurl},
-      //   {title: 'Instagram url', value: InstagramUrl, vmodel: this.instagramurl},
-      //   {title: 'Google+ url', value: GoogleUrl, vmodel: this.googleurl},
-      //   {title: 'Bio', value: Bio, vmodel: this.bio}
-      // ]
-      // this.profileData = array
+      this.token = Vue.localStorage.get('token')
     } else {
       this.$router.push('/')
     }
   },
   methods: {
+    changeProfile () {
+      var headers = {
+        'token': Vue.localStorage.get('token')
+      }
+      axios.put(process.env.LocalAPI + 'updateProfile/', { 'user': this.userData },
+        { headers: headers })
+        .then(res => {
+          if (res) {
+            if (res.success === true) {
+              this.msg = res.msg
+              this.clear()
+            } else {
+              this.msg = res.msg
+              this.clear()
+            }
+          }
+        })
+        .catch(e => {
+          this.clear()
+        })``
+    },
+    updatePassword () {
+      var headers = {
+        'token': Vue.localStorage.get('token')
+      }
+      if (this.currentpassword !== '' && this.newpassword === this.passwordagain) {
+        axios.post(process.env.LocalAPI + 'change-password/', {
+          'user': {
+            'currentPassword': this.currentpassword,
+            'newPassword': this.newpassword,
+            'confirmNewPassword': this.passwordagain
+          }, 'host': 'https://21ninety.com:443'
+        }, {headers: headers})
+          .then(res => {
+            if (res) {
+              if (res.success === true) {
+                this.msg = res.msg
+                this.clear()
+              } else {
+                this.msg = res.msg
+                this.clear()
+              }
+            }
+          })
+          .catch(e => {
+            this.clear()
+          })
+      }
+    },
+    clear () {
+      this.currentpassword = ''
+      this.newpassword = ''
+      this.passwordagain = ''
+    },
     clickme () {
-      console.log(this.displayname + this.username)
+      console.log(this.userData.display_name)
     }
   }
 }
