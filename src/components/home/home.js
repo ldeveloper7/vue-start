@@ -19,9 +19,16 @@ export default {
       videoData: [],
       articleData: [],
       communityData: [],
+      valid: true,
+      name: '',
+      email: '',
       placeimage: [
         {src: 'http://via.placeholder.com/850x440', title: '1'},
         {src: 'http://via.placeholder.com/850x440', title: '2'}
+      ],
+      emailRules: [
+        v => !!v || 'E-mail is required',
+        v => /.+@.+/.test(v) || 'E-mail must be valid'
       ]
     }
   },
@@ -53,8 +60,6 @@ export default {
   methods: {
     articleLoadMore: function (total) {
       let _this = this
-      // console.log(this.$data.articleTotalCount)
-
       axios.get(process.env.LiveAPI + 'articles/' + _this.articleLoadCount + '/' + (_this.articleTotalCount + total))
         .then((res) => {
           this.articleData.push(...res.data)
@@ -63,6 +68,29 @@ export default {
         .catch(e => {
           console.log(e)
         })
+    },
+    newsletter () {
+      var headers = {
+        'token': Vue.localStorage.get('token')
+      }
+      if (this.$refs.form.validate()) {
+        axios.post(process.env.LiveAPI + 'subscribe',
+          {
+            user: {
+              'name': this.name,
+              'email': this.email
+            }
+          }, {headers: headers})
+          .then(res => {
+            this.clear()
+          })
+          .catch(e => {
+            this.clear()
+          })
+      }
+    },
+    clear () {
+      this.$refs.form.reset()
     }
   }
 }
