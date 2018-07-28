@@ -51,7 +51,7 @@ export default new Router({
       component: profile
     },
     {
-      path: '/myposts',
+      path: '/:username/myposts',
       name: 'myposts',
       component: myposts
     },
@@ -64,6 +64,10 @@ export default new Router({
       path: '/register',
       name: 'register',
       component: register
+    },
+    {
+      path: 'https://www.google.co.in/',
+      name: 'googlelink'
     },
     {
       path: '/logout',
