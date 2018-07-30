@@ -90,6 +90,8 @@ export default {
         _this.publishedData = res3.data
         _this.scheduledData = res4.data
       }))
+    } else {
+      this.$router.push('/')
     }
   }
 }

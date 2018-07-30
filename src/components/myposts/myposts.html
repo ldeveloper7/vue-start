@@ -1,5 +1,5 @@
 <div>
-  <headermenu />
+  <headermenu/>
   <!--drafts posts start-->
   <v-content>
     <v-container>
@@ -8,42 +8,42 @@
           <p class="display-1 font-weight-light">draft posts</p>
         </v-flex>
         <v-spacer></v-spacer>
-        <v-btn color="lime darken-4" flat>New Post</v-btn>
+        <v-btn color="lime darken-4" to="/post" flat>New Post</v-btn>
       </v-layout>
       <hr>
       <v-content>
         <v-container>
-          <v-layout v-for="item in draftData" key="item._id">
+          <v-layout v-for="(singleDraftData, i) in draftData" key="i">
             <v-flex xs12 sm4 pr-4 pb-4>
               <v-card>
                 <v-card-media
-                  :src="baseImageUrl+item.wp_featuredImage"
+                  :src="baseImageUrl+singleDraftData.wp_featuredImage"
                   height="180px"
                 ></v-card-media>
               </v-card>
             </v-flex>
             <v-flex xs12 sm8 pr-4>
               <v-container>
-                <h2>{{item.title}}</h2>
+                <h2>{{singleDraftData.title}}</h2>
                 <v-avatar size="48">
                   <img :src="image" :alt="username">
                 </v-avatar>
                 <router-link class="font-weight-bold subheading black--text" :to="'/author/'+username"
                              style="text-decoration: none">{{displayname}}
                 </router-link>
-                <!--<p>title</p>-->
               </v-container>
             </v-flex>
           </v-layout>
           <br>
-          <v-btn outline @click="loadMore(3,'draft_post')">Load More</v-btn>
+          <v-layout justify-center>
+            <v-btn style="text-align: center" outline @click="loadMore(3,'draft_post')">Load More</v-btn>
+          </v-layout>
         </v-container>
       </v-content>
     </v-container>
   </v-content>
-      <!--draft posts end-->
-  <hr>
-      <!--submitted for review start-->
+  <!--draft posts end-->
+  <!--submitted for review start-->
   <v-content>
     <v-container>
       <v-layout>
@@ -54,36 +54,36 @@
       <hr>
       <v-content>
         <v-container>
-          <v-layout v-for="item in submittedData" key="item._id">
+          <v-layout v-for="(SubmittedArticle, i) in submittedData" key="i">
             <v-flex xs12 sm4 pr-4 pb-4>
               <v-card>
                 <v-card-media
-                  :src="baseImageUrl+item.wp_featuredImage"
+                  :src="baseImageUrl+SubmittedArticle.wp_featuredImage"
                   height="180px"
                 ></v-card-media>
               </v-card>
             </v-flex>
             <v-flex xs12 sm8 pr-4>
               <v-container>
-                <p>title</p>
+                <h2>{{SubmittedArticle.title}}</h2>
                 <v-avatar size="48">
                   <img :src="image" :alt="username">
                 </v-avatar>
                 <router-link class="font-weight-bold subheading black--text" :to="'/author/'+username"
                              style="text-decoration: none">{{displayname}}
                 </router-link>
-                <!--<p>title</p>-->
               </v-container>
             </v-flex>
           </v-layout>
           <br>
-          <v-btn outline @click="loadMore(3,'submit_review_post')">Load More</v-btn>
+          <v-layout justify-center>
+            <v-btn outline @click="loadMore(3,'submit_review_post')">Load More</v-btn>
+          </v-layout>
         </v-container>
       </v-content>
     </v-container>
   </v-content>
   <!--submitted for review end-->
-  <hr>
   <!--Published posts start-->
   <v-content>
     <v-container>
@@ -95,36 +95,36 @@
       <hr>
       <v-content>
         <v-container>
-          <v-layout v-for="item in publishedData" key="item._id">
+          <v-layout v-for="(publishedArticle, i) in publishedData" key="i">
             <v-flex xs12 sm4 pr-4 pb-4>
               <v-card>
                 <v-card-media
-                  :src="baseImageUrl+item.wp_featuredImage"
+                  :src="baseImageUrl+publishedArticle.wp_featuredImage"
                   height="180px"
                 ></v-card-media>
               </v-card>
             </v-flex>
             <v-flex xs12 sm8 pr-4>
               <v-container>
-                <p>title</p>
+                <h2>{{publishedArticle.title}}</h2>
                 <v-avatar size="48">
                   <img :src="image" :alt="username">
                 </v-avatar>
                 <router-link class="font-weight-bold subheading black--text" :to="'/author/'+username"
                              style="text-decoration: none">{{displayname}}
                 </router-link>
-                <!--<p>title</p>-->
               </v-container>
             </v-flex>
           </v-layout>
           <br>
-          <v-btn outline @click="loadMore(3,'publish_post')">Load More</v-btn>
+          <v-layout justify-center>
+            <v-btn outline @click="loadMore(3,'publish_post')">Load More</v-btn>
+          </v-layout>
         </v-container>
       </v-content>
     </v-container>
   </v-content>
   <!--Published posts ends-->
-  <hr>
   <!--Scheduled posts start-->
   <v-content>
     <v-container>
@@ -136,30 +136,31 @@
       <hr>
       <v-content>
         <v-container>
-          <v-layout v-for="item in scheduledData" key="item._id">
+          <v-layout v-for="(scheduleArticle, i) in scheduledData" key="i">
             <v-flex xs12 sm4 pr-4 pb-4>
               <v-card>
                 <v-card-media
-                  :src="baseImageUrl+item.wp_featuredImage"
+                  :src="baseImageUrl+scheduleArticle.wp_featuredImage"
                   height="180px"
                 ></v-card-media>
               </v-card>
             </v-flex>
             <v-flex xs12 sm8 pr-4>
               <v-container>
-                <p>title</p>
+                <h2>{{scheduleArticle.title}}</h2>
                 <v-avatar size="48">
                   <img :src="image" :alt="username">
                 </v-avatar>
                 <router-link class="font-weight-bold subheading black--text" :to="'/author/'+username"
                              style="text-decoration: none">{{displayname}}
                 </router-link>
-                <!--<p>title</p>-->
               </v-container>
             </v-flex>
           </v-layout>
           <br>
-          <v-btn outline @click="loadMore(3,'schedule_post')">Load More</v-btn>
+          <v-layout justify-center>
+            <v-btn outline @click="loadMore(3,'schedule_post')">Load More</v-btn>
+          </v-layout>
         </v-container>
       </v-content>
     </v-container>

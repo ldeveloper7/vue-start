@@ -44,8 +44,8 @@ export default {
       var headers = {
         'token': Vue.localStorage.get('token')
       }
-      axios.put(process.env.LocalAPI + 'updateProfile/', { 'user': this.userData },
-        { headers: headers })
+      axios.put(process.env.LocalAPI + 'updateProfile/', {'user': this.userData},
+        {headers: headers})
         .then(res => {
           if (res.data) {
             if (res.data.success) {
