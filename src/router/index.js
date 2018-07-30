@@ -72,10 +72,6 @@ export default new Router({
       component: register
     },
     {
-      path: 'https://www.google.co.in/',
-      name: 'googlelink'
-    },
-    {
       path: '/logout',
       name: 'logout',
       component: logout
