@@ -47,9 +47,9 @@ export default {
       axios.put(process.env.LocalAPI + 'updateProfile/', { 'user': this.userData },
         { headers: headers })
         .then(res => {
-          if (res) {
-            if (res.success === true) {
-              this.msg = res.msg
+          if (res.data) {
+            if (res.data.success) {
+              this.msg = 'Profile updated successfully'
               this.clear()
             } else {
               this.msg = res.msg
@@ -59,7 +59,7 @@ export default {
         })
         .catch(e => {
           this.clear()
-        })``
+        })
     },
     updatePassword () {
       var headers = {
@@ -74,12 +74,12 @@ export default {
           }, 'host': 'https://21ninety.com:443'
         }, {headers: headers})
           .then(res => {
-            if (res) {
-              if (res.success === true) {
-                this.msg = res.msg
+            if (res.data) {
+              if (res.data.success) {
+                this.msg = res.data.msg
                 this.clear()
               } else {
-                this.msg = res.msg
+                this.msg = res.data.msg
                 this.clear()
               }
             }
@@ -93,9 +93,6 @@ export default {
       this.currentpassword = ''
       this.newpassword = ''
       this.passwordagain = ''
-    },
-    clickme () {
-      console.log(this.userData.display_name)
     }
   }
 }
