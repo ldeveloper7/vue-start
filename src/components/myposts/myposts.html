@@ -1,6 +1,5 @@
 <div>
   <headermenu/>
-  <!--drafts posts start-->
   <v-content>
     <v-container>
       <v-layout>
@@ -11,6 +10,9 @@
         <v-btn color="lime darken-4" to="/post" flat>New Post</v-btn>
       </v-layout>
       <hr>
+    </v-container>
+    <!--drafts posts start-->
+    <v-container>
       <v-content>
         <v-container>
           <v-layout v-for="(singleDraftData, i) in draftData" key="i">
