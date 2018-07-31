@@ -1,15 +1,7 @@
 <template>
   <div>
     <v-app>
-    <!--<v-content>-->
-      <!--<v-container>-->
-        <!--<v-layout>-->
-          <!--<v-flex>-->
-            <router-view/>
-          <!--</v-flex>-->
-        <!--</v-layout>-->
-      <!--</v-container>-->
-    <!--</v-content>-->
+      <router-view/>
     </v-app>
   </div>
 </template>
