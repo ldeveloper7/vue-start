@@ -21,6 +21,7 @@ export default {
     newpassword: '',
     passwordagain: '',
     token: '',
+    cloudinaryImageUrl:process.env.cloudinaryImageUrl,
     rules: {
       required: value => !!value || 'Required.',
       min: v => (v.length >= 8 && v.length <= 20) || 'Min 8 characters',

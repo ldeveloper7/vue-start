@@ -43,7 +43,7 @@ export default {
       this.menuItems.unshift({title: 'Create Post', link: '/create/post'})
       this.isLogin = true
       let username = JSON.parse(Vue.localStorage.get('user')).username
-      let image = JSON.parse(Vue.localStorage.get('user')).profileImagePreference
+      let image = process.env.cloudinaryImageUrl + JSON.parse(Vue.localStorage.get('user')).profileImagePreference
       let rolevalue = JSON.parse(Vue.localStorage.get('user'))._role
       switch (rolevalue) {
         case '57db549862e4711c9dd1eed6':
