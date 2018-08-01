@@ -9,7 +9,6 @@ export default {
     articleData: [],
     userList: [],
     username: null,
-    valid: true,
     authorName: '',
     image: null,
     displayname: null,
@@ -33,7 +32,8 @@ export default {
   methods: {
     articleLoadMore: function (total) {
       let _this = this
-      axios.get(_this.urlArray + _this.selected_filter.shortCode + '/*/' + _this.loadcount + '/' + _this.totalcount,
+      let search = (_this.txtsearch) ? _this.txtsearch : '*'
+      axios.get(_this.urlArray + _this.selected_filter.shortCode + '/' + search + '/' + _this.loadcount + '/' + _this.totalcount,
         {
           headers: {
             author: _this.authorName
@@ -67,7 +67,8 @@ export default {
       let _this = this
       _this.loadcount = 3
       _this.totalcount = 0
-      axios.get(_this.urlArray + _this.selected_filter.shortCode + '/*/' + _this.loadcount + '/' + _this.totalcount,
+      let search = (_this.txtsearch) ? _this.txtsearch : '*'
+      axios.get(_this.urlArray + _this.selected_filter.shortCode + '/' + search + '/' + _this.loadcount + '/' + _this.totalcount,
         {
           headers: {
             author: _this.authorName
@@ -86,6 +87,24 @@ export default {
       _this.loadcount = 3
       _this.totalcount = 0
       axios.get(_this.urlArray + _this.selected_filter.shortCode + '/*/' + _this.loadcount + '/' + _this.totalcount,
+        {
+          headers: {
+            author: _this.authorName
+          }
+        })
+        .then((res) => {
+          _this.articleData = res.data
+          _this.totalcount += res.data.length
+        })
+        .catch(e => {
+          console.log(e)
+        })
+    },
+    searchBtn: function () {
+      let _this = this
+      _this.loadcount = 3
+      _this.totalcount = 0
+      axios.get(_this.urlArray + _this.selected_filter.shortCode + '/' + _this.txtsearch + '/' + _this.loadcount + '/' + _this.totalcount,
         {
           headers: {
             author: _this.authorName
