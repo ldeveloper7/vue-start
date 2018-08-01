@@ -1,9 +1,7 @@
 'use strict'
 import Vue from 'vue'
-import VueFilterDateFormat from 'vue-filter-date-format'
 import headermenu from '../headermenu/headermenu.vue'
 import axios from 'axios'
-Vue.use(VueFilterDateFormat)
 
 export default {
   data: () => ({
@@ -25,7 +23,9 @@ export default {
       {shortCode: 'draft', text: 'Draft Post'}
     ],
     fetchedLocale: '',
-    setLocale: null
+    setLocale: null,
+    search: '',
+    articleLoadMoreButton: 1
   }),
   components: {
     headermenu
@@ -33,24 +33,43 @@ export default {
   methods: {
     articleLoadMore: function (total) {
       let _this = this
-      axios.get(_this.urlArray + _this.loadcount + '/' + _this.totalcount, { headers: { token: Vue.localStorage.get('token') } })
+      let headers = {headers: {token: Vue.localStorage.get('token')}}
+      if (total == -1 && this.search.length) {
+        console.log(this.userList)
+        _this.totalcount = 0
+        headers = {headers: {token: Vue.localStorage.get('token'), search: this.search, author: this.selecteduser}}
+      } else if (total == -1) {
+        _this.totalcount = 0
+      }
+      axios.get(_this.urlArray + _this.loadcount + '/' + _this.totalcount, headers)
         .then((res) => {
-          _this.draftData.push(...res.data)
-          _this.totalcount += res.data.length
+          if (res.data.length) {
+            if (total == -1) {
+              _this.draftData = (res.data)
+              _this.totalcount = 0
+            } else {
+              _this.draftData.push(...res.data)
+              _this.totalcount += res.data.length
+            }
+          } else {
+            _this.draftData = {}
+            this.articleLoadMoreButton = 0
+          }
         })
         .catch(e => {
           console.log(e)
         })
     },
     userListchangedValue: function (value) {
-      let _this = this
-      axios.get(process.env.LiveAPI + 'userSearch/50?search=' + value.key).then((res) => {
-        _this.userList = {}
-        console.log(_this.userList)
-        _this.userList = res.data
-      }).catch(e => {
-        console.log(e)
-      })
+      if (this.selecteduser.length) {
+        let _this = this
+        axios.get(process.env.LiveAPI + 'userSearch/50?search=' + this.selecteduser).then((res) => {
+          _this.userList = {}
+          _this.userList = res.data
+        }).catch(e => {
+          console.log(e)
+        })
+      }
     }
   },
   mounted() {
@@ -59,12 +78,12 @@ export default {
       _this.$router.push('/')
     }
     axios.all([
-      axios.get(_this.urlArray + _this.loadcount + '/' + _this.totalcount, { headers: { token: Vue.localStorage.get('token') } }),
+      axios.get(_this.urlArray + _this.loadcount + '/' + _this.totalcount, {headers: {token: Vue.localStorage.get('token')}}),
       axios.get(process.env.LiveAPI + 'userSearch/50?search=')
     ]).then(axios.spread(function (res1, res2) {
       _this.draftData = res1.data
       _this.totalcount = res1.data.length
-      _this.userList = res2.data
+      _this.userList = (res2.data)
     })).catch(e => {
       console.log(e)
     })

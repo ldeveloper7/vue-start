@@ -12,21 +12,25 @@
         </v-flex>
         <v-flex xs3 class="pr-3">
           <v-combobox
-            :model="userList"
+            v-model="selecteduser"
             :items="userList"
             hide-details
             @keypress="userListchangedValue"
+            @change="userListchangedValue"
             placeholder="Select User"
             id="langSelect"
           ></v-combobox>
         </v-flex>
         <v-flex xs4 class="pl-3">
           <v-text-field
+            v-model="search"
             label="Search"
           ></v-text-field>
         </v-flex>
         <v-flex xs2 class="pl-3">
-          <v-btn block xs4 class="block">
+          <v-btn block xs4 class="block"
+                 :disabled="!search"
+                 v-on:click="articleLoadMore(-1)">
             Search
           </v-btn>
         </v-flex>
@@ -46,7 +50,7 @@
               <v-container>
                 <h2>{{item.title}}</h2>
                 <br>
-                <h4 class="text-decoration-none">{{item.updatedAt | dateFormat('YYYY.MM.DD') }}</h4>
+                <h4 class="text-decoration-none">{{item.updatedAt }}</h4>
                 <router-link class="font-weight-bold subheading black--text text-decoration-none"
                              :to="'/author/'+item._author.username">
                   <v-avatar size="48">
@@ -63,7 +67,11 @@
             </v-flex>
           </v-layout>
           <br>
-          <v-btn block text-xs-center v-on:click="articleLoadMore(10)">Load More Stories</v-btn>
+          <v-btn block text-xs-center
+                 v-if="articleLoadMoreButton"
+                 v-on:click="articleLoadMore(10)"
+          >Load More Stories
+          </v-btn>
         </v-container>
       </v-content>
       <!--draft posts start-->
