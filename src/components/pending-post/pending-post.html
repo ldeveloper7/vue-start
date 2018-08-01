@@ -10,8 +10,9 @@
             Pending Post
           </p>
         </v-flex>
-        <v-flex xs4 class="pr-3">
+        <v-flex xs3 class="pr-3">
           <v-combobox
+            :model="userList"
             :items="userList"
             hide-details
             @keypress="userListchangedValue"
@@ -19,14 +20,19 @@
             id="langSelect"
           ></v-combobox>
         </v-flex>
-        <v-flex xs5 class="pl-3">
+        <v-flex xs4 class="pl-3">
           <v-text-field
             label="Search"
           ></v-text-field>
         </v-flex>
+        <v-flex xs2 class="pl-3">
+          <v-btn block xs4 class="block">
+            Search
+          </v-btn>
+        </v-flex>
       </v-layout>
       <v-content class="padding0">
-        <v-container class="text-center">
+        <v-container class="">
           <v-layout v-for="(item, i) in draftData" :key="i">
             <v-flex xs12 sm4 pr-4 pb-4>
               <v-card>
@@ -40,22 +46,28 @@
               <v-container>
                 <h2>{{item.title}}</h2>
                 <br>
-                <v-avatar size="48">
-                  <img :src="image" :alt="username">
-                </v-avatar>
-                <router-link class="font-weight-bold subheading black--text" :to="'/author/'+username"
-                             style="text-decoration: none">{{displayname}}
+                <h4 class="text-decoration-none">{{item.updatedAt | dateFormat('YYYY.MM.DD') }}</h4>
+                <router-link class="font-weight-bold subheading black--text text-decoration-none"
+                             :to="'/author/'+item._author.username">
+                  <v-avatar size="48">
+                    <img :src="item._author.profileImagePreference" :alt="item._author.username">
+                  </v-avatar>
+                  <span v-if="item._author.display_name">
+                    {{item._author.display_name}}
+                  </span>
+                  <span v-if="!item._author.display_name">
+                    {{item._author.username}}
+                  </span>
                 </router-link>
               </v-container>
             </v-flex>
           </v-layout>
           <br>
-          <v-btn text-xs-center v-on:click="articleLoadMore(10)">Load More Stories</v-btn>
+          <v-btn block text-xs-center v-on:click="articleLoadMore(10)">Load More Stories</v-btn>
         </v-container>
       </v-content>
       <!--draft posts start-->
     </v-container>
   </v-content>
   <!--draft posts ends-->
-
 </div>
