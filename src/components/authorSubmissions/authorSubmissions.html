@@ -5,15 +5,12 @@
     <v-container>
       <!--draft posts start-->
       <v-layout>
-        <v-flex xs12>
-          <p class="display-1 font-weight-light">
+        <v-flex xs2 text-center pr-1 pt-2>
+          <h1>
             {{selected_filter.text}}
-          </p>
+          </h1>
         </v-flex>
-        <v-spacer></v-spacer>
-      </v-layout>
-      <v-layout>
-        <v-flex xs12>
+        <v-flex xs2 pl-2 pr-2>
           <v-select
             :items="filter"
             v-model="selected_filter"
@@ -24,6 +21,8 @@
             @change="onchange()"
             id="langSelect"
           ></v-select>
+        </v-flex>
+        <v-flex xs3 pl-2 pr-2>
           <v-combobox
             v-model="authorName"
             :items="userList"
@@ -33,14 +32,20 @@
             @change="onauthorchange()"
             id="langSelect"
           ></v-combobox>
+        </v-flex>
+        <v-flex xs3 pl-2 pr-2>
           <v-text-field
             required
             v-model="txtsearch"
             placeholder='Type here to search'>
           </v-text-field>
+        </v-flex>
+        <v-flex xs1 pl-2 pr-2>
           <v-btn>
             <v-icon>search</v-icon>
           </v-btn>
+        </v-flex>
+        <v-flex xs1 pl-2 pr-2>
           <v-btn>Reset</v-btn>
         </v-flex>
       </v-layout>
@@ -62,7 +67,8 @@
                 <v-avatar size="48">
                   <img :src="baseImageUrl+image" :alt="username">
                 </v-avatar>
-                <router-link v-if="displayname" class="font-weight-bold subheading black--text decoration" :to="'/author/'+username"
+                <router-link v-if="displayname" class="font-weight-bold subheading black--text decoration"
+                             :to="'/author/'+username"
                 >{{displayname}}
                 </router-link>
                 <p v-if="item.body" v-html="item.body.substring(0,150)+'...'" class="body-2 grey--text"></p>
@@ -70,12 +76,11 @@
             </v-flex>
           </v-layout>
           <br>
-          <v-btn text-xs-center v-on:click="articleLoadMore(3)">Load More Stories</v-btn>
+          <v-btn block text-xs-center v-on:click="articleLoadMore(3)">Load More Stories</v-btn>
         </v-container>
       </v-content>
       <!--draft posts start-->
     </v-container>
   </v-content>
   <!--draft posts ends-->
-
 </div>
