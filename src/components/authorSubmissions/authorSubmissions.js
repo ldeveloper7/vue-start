@@ -101,22 +101,24 @@ export default {
         })
     },
     searchBtn: function () {
-      let _this = this
-      _this.loadcount = 3
-      _this.totalcount = 0
-      axios.get(_this.urlArray + _this.selected_filter.shortCode + '/' + _this.txtsearch + '/' + _this.loadcount + '/' + _this.totalcount,
-        {
-          headers: {
-            author: _this.authorName
-          }
-        })
-        .then((res) => {
-          _this.articleData = res.data
-          _this.totalcount += res.data.length
-        })
-        .catch(e => {
-          console.log(e)
-        })
+      if (this.txtsearch !== '') {
+        let _this = this
+        _this.loadcount = 3
+        _this.totalcount = 0
+        axios.get(_this.urlArray + _this.selected_filter.shortCode + '/' + _this.txtsearch + '/' + _this.loadcount + '/' + _this.totalcount,
+          {
+            headers: {
+              author: _this.authorName
+            }
+          })
+          .then((res) => {
+            _this.articleData = res.data
+            _this.totalcount += res.data.length
+          })
+          .catch(e => {
+            console.log(e)
+          })
+      }
     }
   },
   mounted () {
