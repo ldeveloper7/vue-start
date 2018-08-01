@@ -1,0 +1,81 @@
+<div>
+  <headermenu/>
+  <!--drafts posts start-->
+  <v-content>
+    <v-container>
+      <!--draft posts start-->
+      <v-layout>
+        <v-flex xs3 class="font-weight-black strong text-center pt-2 underline">
+          <p class="display-1 font-weight-light text-center">
+            Pending Post
+          </p>
+        </v-flex>
+        <v-flex xs3 class="pr-3">
+          <v-combobox
+            v-model="selecteduser"
+            :items="userList"
+            hide-details
+            @keypress="userListchangedValue"
+            @change="userListchangedValue"
+            placeholder="Select User"
+            id="langSelect"
+          ></v-combobox>
+        </v-flex>
+        <v-flex xs4 class="pl-3">
+          <v-text-field
+            v-model="search"
+            label="Search"
+          ></v-text-field>
+        </v-flex>
+        <v-flex xs2 class="pl-3">
+          <v-btn block xs4 class="block"
+                 :disabled="!search"
+                 v-on:click="articleLoadMore(-1)">
+            Search
+          </v-btn>
+        </v-flex>
+      </v-layout>
+      <v-content class="padding0">
+        <v-container class="">
+          <v-layout v-for="(item, i) in draftData" :key="i">
+            <v-flex xs12 sm4 pr-4 pb-4>
+              <v-card>
+                <v-card-media
+                  :src="baseImageUrl+item.wp_featuredImage"
+                  height="180px"
+                ></v-card-media>
+              </v-card>
+            </v-flex>
+            <v-flex xs12 sm8 pr-4>
+              <v-container>
+                <h2>{{item.title}}</h2>
+                <br>
+                <h4 class="text-decoration-none">{{item.updatedAt }}</h4>
+                <router-link class="font-weight-bold subheading black--text text-decoration-none"
+                             :to="'/author/'+item._author.username">
+                  <v-avatar size="48">
+                    <img :src="item._author.profileImagePreference" :alt="item._author.username">
+                  </v-avatar>
+                  <span v-if="item._author.display_name">
+                    {{item._author.display_name}}
+                  </span>
+                  <span v-if="!item._author.display_name">
+                    {{item._author.username}}
+                  </span>
+                </router-link>
+              </v-container>
+            </v-flex>
+          </v-layout>
+          <br>
+          <v-btn block text-xs-center
+                 v-if="articleLoadMoreButton"
+                 v-on:click="articleLoadMore(10)"
+          >Load More Stories
+          </v-btn>
+        </v-container>
+      </v-content>
+      <!--draft posts start-->
+    </v-container>
+  </v-content>
+  <!--draft posts ends-->
+</div>
