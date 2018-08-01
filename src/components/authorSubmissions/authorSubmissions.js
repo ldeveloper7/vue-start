@@ -126,9 +126,6 @@ export default {
     if (!Vue.localStorage.get('user')) {
       _this.$router.push('/')
     }
-    _this.displayname = JSON.parse(Vue.localStorage.get('user')).display_name
-    _this.username = JSON.parse(Vue.localStorage.get('user')).username
-    _this.image = JSON.parse(Vue.localStorage.get('user')).profileImagePreference
     axios.all([
       axios.get(_this.urlArray + _this.selected_filter.shortCode + '/*/' + _this.loadcount + '/' + _this.totalcount,
         {

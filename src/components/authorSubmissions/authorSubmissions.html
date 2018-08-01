@@ -64,14 +64,18 @@
               <v-container>
                 <h2 v-if="item.title">{{item.title}}</h2>
                 <br>
-                <v-avatar size="48">
-                  <img :src="baseImageUrl+image" :alt="username">
-                </v-avatar>
-                <router-link v-if="displayname" class="font-weight-bold subheading black--text decoration"
-                             :to="'/author/'+username"
-                >{{displayname}}
+                <router-link class="font-weight-bold subheading black--text text-decoration-none"
+                             :to="'/author/'+item._author.username">
+                  <v-avatar size="48">
+                    <img :src="item._author.profileImagePreference">
+                  </v-avatar>
+                  <span v-if="item._author.display_name">
+                    {{item._author.display_name}}
+                  </span>
+                  <span v-if="!item._author.display_name">
+                    {{item._author.username}}
+                  </span>
                 </router-link>
-                <p v-if="item.body" v-html="item.body.substring(0,150)+'...'" class="body-2 grey--text"></p>
               </v-container>
             </v-flex>
           </v-layout>
