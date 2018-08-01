@@ -1,10 +1,178 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
+<div>
+  <headermenu/>
+  <v-content>
+    <v-container class="light-grey">
+      <v-layout fluid>
+        <v-flex>
+          <p class="display-1 grey--text">What type of post will this be?</p>
+          <p class="body-2 font-weight-bold">Please only submit original, unpublished content. Content that has been
+            previously published on other sites will not be accepted.</p>
+          <hr class="display-1">
+          <br>
+        </v-flex>
+      </v-layout>
+      <v-layout>
+        <v-flex>
+          <v-tabs fixed-tabs>
+            <v-tab @click="opiniontab()">
+              Opinion
+            </v-tab>
+            <v-tab @click="videotab()">
+              Video
+            </v-tab>
+            <v-tab @click="newstab()">
+              News
+            </v-tab>
+          </v-tabs>
+        </v-flex>
+      </v-layout>
+    </v-container>
 
-</body>
-</html>
+    <v-container v-if="video">
+      <v-layout>
+        <v-flex text-sm-left>
+          <p class="text-uppercase" v-if="(title==='Video') ? true : false">{{title}}</p>
+          <v-btn small outline @click="uploadvideofunc()">Upload Video Files</v-btn>
+          <v-btn small outline @click="videourlfunc()">Enter Video Url</v-btn>
+        </v-flex>
+      </v-layout>
+    </v-container>
+
+    <v-container v-if="uploadvideoflag">
+      <v-layout>
+        <v-flex text-sm-center>
+          <input type="file">
+        </v-flex>
+      </v-layout>
+    </v-container>
+
+    <v-container v-if="videourlflag">
+      <v-layout>
+        <v-flex text-sm-center>
+          <v-text-field placeholder="Enter the video url"></v-text-field>
+        </v-flex>
+      </v-layout>
+    </v-container>
+
+    <v-container fluid>
+      <v-layout>
+        <v-flex text-sm-center>
+          <p class="headline">Don't leave anything blank! All fields are required!</p>
+        </v-flex>
+      </v-layout>
+    </v-container>
+    <v-container fluid>
+      <v-layout>
+        <v-flex xs8 color="blue">
+          <v-flex xs10 offset-xs1>
+            <p class="text-uppercase" v-if="(title==='Video') ? false : true">{{title}}</p>
+            <v-avatar>
+              <img :src="baseImageUrl+image" height="100">
+            </v-avatar>
+            <span class="title grey--text">{{username}}</span>
+            <hr>
+          </v-flex>
+
+          <v-flex xs10 offset-xs1>
+            <v-text-field
+              label="Title"
+              :placeholder="'The title of this '+titletext">
+            </v-text-field>
+          </v-flex>
+
+          <v-flex xs10 offset-xs1>
+            <v-text-field
+              label="sub-title"
+              :placeholder="sub_title">
+            </v-text-field>
+          </v-flex>
+
+          <v-flex xs10 offset-xs1>
+            <v-text-field
+              label="url"
+              placeholder=" ">
+            </v-text-field>
+            <v-btn outline>Edit</v-btn>
+          </v-flex>
+
+          <v-flex xs10 offset-xs1>
+            <ckeditor v-model="bodycontent" :config="config" @blur="onBlur($event)" @focus="onFocus($event)"/>
+            <!--<v-textarea name="bodycontent">-->
+            <!--</v-textarea>-->
+          </v-flex>
+
+          <v-flex xs10 offset-xs1>
+            <v-textarea
+              v-model="description"
+              label="Description (No need for HTML formatting here.) Try to keep it under 160 characters."
+              placeholder="Let people know what this article is about">
+            </v-textarea>
+          </v-flex>
+        </v-flex>
+
+        <v-flex xs4>
+          <v-flex xs12>
+            <v-btn block outline color="green lighten-4">Preview post</v-btn>
+          </v-flex>
+          <v-flex>
+            <v-btn block outline color="green lighten-4">Save</v-btn>
+            <v-btn block outline color="green lighten-4">Submit</v-btn>
+            <p class="text-sm-center font-weight-bold title">Manage Post</p>
+          </v-flex>
+          <v-flex>
+            <span>Category (pick up to 2)</span>
+            <v-combobox
+              small
+              v-model="categoryvalue"
+              :items="categoryList"
+              hide-details
+              multiple
+              placeholder='Select a Category'
+              @keypress="categorychangedValue"
+            ></v-combobox>
+          </v-flex>
+          <v-flex>
+            <span>Tags (help people find this post)</span>
+            <v-combobox
+              small
+              v-model="tagvalue"
+              :items="tagList"
+              hide-details
+              placeholder='tag1, tag2, tag3, tag4, etc'
+              @keypress="categorychangedValue"
+            ></v-combobox>
+          </v-flex>
+          <v-flex>
+            <br>
+            <p>Hidden Tags (to secretly group articles)</p>
+            <input type="file" @change="previewFile()"><br>
+            <img src="" id="imgpreview" height="200">
+            <br>
+            <v-flex v-if="btnflag">
+              <v-btn>Start</v-btn>
+              <v-btn>Cancel</v-btn>
+              <v-btn>Delete</v-btn>
+            </v-flex>
+            <hr>
+            <v-flex>
+              <br>
+              <p>Description (What is this a picture of?) :</p>
+              <v-text-field
+                placeholder="Feature image Alter Text">
+              </v-text-field>
+              <br>
+
+              <p>Caption / Credits :</p>
+              <v-text-field
+                placeholder="Feature Image Caption">
+              </v-text-field>
+            </v-flex>
+          </v-flex>
+        </v-flex>
+      </v-layout>
+    </v-container>
+  </v-content>
+</div>
+<!--<script>-->
+<!--CKEDITOR.replace('bodycontent')-->
+<!--</script>-->
