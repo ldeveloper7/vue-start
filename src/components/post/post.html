@@ -27,7 +27,6 @@
         </v-flex>
       </v-layout>
     </v-container>
-
     <v-container v-if="video">
       <v-layout>
         <v-flex text-sm-left>
@@ -37,7 +36,6 @@
         </v-flex>
       </v-layout>
     </v-container>
-
     <v-container v-if="uploadvideoflag">
       <v-layout>
         <v-flex text-sm-center>
@@ -45,7 +43,6 @@
         </v-flex>
       </v-layout>
     </v-container>
-
     <v-container v-if="videourlflag">
       <v-layout>
         <v-flex text-sm-center>
@@ -53,7 +50,6 @@
         </v-flex>
       </v-layout>
     </v-container>
-
     <v-container fluid>
       <v-layout>
         <v-flex text-sm-center>
@@ -63,45 +59,35 @@
     </v-container>
     <v-container fluid>
       <v-layout>
-        <v-flex xs8 color="blue">
-          <v-flex xs10 offset-xs1>
+        <v-flex xs8 pl-4 pr-4 color="blue">
+          <v-flex>
             <p class="text-uppercase" v-if="(title==='Video') ? false : true">{{title}}</p>
             <v-avatar>
               <img :src="baseImageUrl+image" height="100">
             </v-avatar>
             <span class="title grey--text">{{username}}</span>
+          </v-flex>
+          <v-flex mt-3>
             <hr>
-          </v-flex>
-
-          <v-flex xs10 offset-xs1>
             <v-text-field
-              label="Title"
-              :placeholder="'The title of this '+titletext">
+              label="Title">
             </v-text-field>
           </v-flex>
-
-          <v-flex xs10 offset-xs1>
+          <v-flex mt-3>
             <v-text-field
-              label="sub-title"
-              :placeholder="sub_title">
+              label="Sub Title">
             </v-text-field>
           </v-flex>
-
-          <v-flex xs10 offset-xs1>
+          <v-flex>
             <v-text-field
-              label="url"
-              placeholder=" ">
+              label="URL">
             </v-text-field>
             <v-btn outline>Edit</v-btn>
           </v-flex>
-
-          <v-flex xs10 offset-xs1>
+          <v-flex>
             <ckeditor v-model="bodycontent" :config="config" @blur="onBlur($event)" @focus="onFocus($event)"/>
-            <!--<v-textarea name="bodycontent">-->
-            <!--</v-textarea>-->
           </v-flex>
-
-          <v-flex xs10 offset-xs1>
+          <v-flex>
             <v-textarea
               v-model="description"
               label="Description (No need for HTML formatting here.) Try to keep it under 160 characters."
@@ -109,10 +95,12 @@
             </v-textarea>
           </v-flex>
         </v-flex>
-
         <v-flex xs4>
           <v-flex xs12>
             <v-btn block outline color="green lighten-4">Preview post</v-btn>
+          </v-flex>
+          <v-flex xs12>
+            <v-btn block outline class="green--text " color="lighten-4">Schedule on</v-btn>
           </v-flex>
           <v-flex>
             <v-btn block outline color="green lighten-4">Save</v-btn>
@@ -131,7 +119,7 @@
               @keypress="categorychangedValue"
             ></v-combobox>
           </v-flex>
-          <v-flex>
+          <v-flex mt-4>
             <span>Tags (help people find this post)</span>
             <v-combobox
               small
@@ -173,6 +161,3 @@
     </v-container>
   </v-content>
 </div>
-<!--<script>-->
-<!--CKEDITOR.replace('bodycontent')-->
-<!--</script>-->
