@@ -2,13 +2,15 @@
 import Vue from 'vue'
 import headermenu from '../headermenu/headermenu.vue'
 import trendingpost from '../trending-post/trending-post.vue'
+import dailynewsletter from '../daily-newsletter/daily-newsletter.vue'
 import axios from 'axios'
 import VueLocalStorage from 'vue-localstorage'
 Vue.use(VueLocalStorage)
 export default {
   components: {
     headermenu,
-    trendingpost
+    trendingpost,
+    dailynewsletter
   },
   data () {
     return {
@@ -60,29 +62,6 @@ export default {
         .catch(e => {
           console.log(e)
         })
-    },
-    newsletter () {
-      var headers = {
-        'token': Vue.localStorage.get('token')
-      }
-      if (_this.$refs.form.validate()) {
-        axios.post(process.env.LiveAPI + 'subscribe',
-          {
-            user: {
-              'name': _this.name,
-              'email': _this.email
-            }
-          }, {headers: headers})
-          .then(res => {
-            _this.clear()
-          })
-          .catch(e => {
-            _this.clear()
-          })
-      }
-    },
-    clear () {
-      _this.$refs.form.reset()
     }
   }
 }
