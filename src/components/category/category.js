@@ -35,6 +35,9 @@ export default {
               this.info.push(...response.data)
             }
             this.totalcount = this.totalcount + response.data.length
+            if (response.data.length < this.loadCount) {
+              this.loadMoreButton = 0
+            }
           } else {
             this.loadMoreButton = 0
           }
