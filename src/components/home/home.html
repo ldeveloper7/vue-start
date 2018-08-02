@@ -6,16 +6,16 @@
       <v-container grid-list-md text-xs-center>
         <v-layout row wrap>
           <v-flex xs12>
-            <v-container raised hover fill-height class="backgroundcolor">
-              <v-layout align-center v-for="topSingleArticle in articleData.slice(0,1)" :key="topSingleArticle._id">
-                <v-flex sm6>
+            <v-container raised hover fill-height ma-0 pa-0 class="backgroundcolor">
+              <v-layout align-center first-article
+                        v-for="topSingleArticle in articleData.slice(0,1)" :key="topSingleArticle._id">
+                <v-flex sm6 pa-0 pt-1>
                   <img class="maxwidth" :src="cloudinaryImageUrl+topSingleArticle.wp_featuredImage">
                 </v-flex>
                 <v-flex xs12 sm6>
                   <router-link :to="'/'+topSingleArticle.slug"
                                class="title font-weight-medium black--text textdecoration">{{topSingleArticle.title}}
                   </router-link>
-                  <!--<v-flex xs12 sm6 text-xs-center>-->
                   <br>
                   <v-btn outline :to="'/'+topSingleArticle.slug">Read This</v-btn>
                   <br>
@@ -33,7 +33,6 @@
                        v-if="!topSingleArticle._author.username"
                     >{{topSingleArticle._author.display_name}}></p>
                   </v-chip>
-                  <!--</v-flex>-->
                 </v-flex>
               </v-layout>
             </v-container>

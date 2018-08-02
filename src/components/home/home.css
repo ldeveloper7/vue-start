@@ -106,3 +106,8 @@ p.elevated {
   outline-width: thin;
 }
 
+.first-article {
+  border-top: 7px solid #a79613;
+  box-shadow: 0 3px 3px rgba(0, 0, 0, .1);
+  transition: all .3s ease;
+}
