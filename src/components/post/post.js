@@ -32,6 +32,13 @@ export default {
     tagList: [],
     titletext: 'Article'
   }),
+  watch: {
+    categoryvalue (val) {
+      if (val.length > 2) {
+        this.$nextTick(() => this.categoryvalue.pop())
+      }
+    }
+  },
   components: {
     headermenu, ckeditor
   },

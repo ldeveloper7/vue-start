@@ -115,6 +115,7 @@
               :items="categoryList"
               hide-details
               multiple
+              hint="Up to 2 categories allows"
               placeholder='Select a Category'
               @keypress="categorychangedValue"
             ></v-combobox>
@@ -126,6 +127,7 @@
               v-model="tagvalue"
               :items="tagList"
               hide-details
+              multiple
               placeholder='tag1, tag2, tag3, tag4, etc'
               @keypress="categorychangedValue"
             ></v-combobox>
