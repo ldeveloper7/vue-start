@@ -29,7 +29,7 @@ export default {
         .get(process.env.LiveAPI + 'articles/categories/' + this.$route.params.category + '/' + this.loadCount + '/' + (this.totalcount))
         .then(response => {
           if (response.data.length) {
-            if (!this.info.length) {
+            if (!this.totalcount) {
               this.info = (response.data)
             } else {
               this.info.push(...response.data)
