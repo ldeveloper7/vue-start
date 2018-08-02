@@ -81,7 +81,6 @@
       </v-container>
     </v-content>
     <!--starting block ends-->
-
     <hr class="font-weight-bold">
     <!--featured Video start-->
     <v-content>
@@ -118,7 +117,6 @@
       </v-container>
     </v-content>
     <!--featured Video end-->
-
     <!--news and features start-->
     <!--<v-content>-->
     <v-container fluid>
@@ -155,48 +153,8 @@
             <v-btn block text-xs-center v-on:click="articleLoadMore(10)">Load More Stories</v-btn>
           </v-flex>
           <v-flex xs3 order-md3 order-xs3 color="red darken-4" text-xs-center>
-            <v-card dark tile flat color="error">
-              <v-form ref="form" v-model="valid" lazy-validation>
-                <v-card-text><p class="text-center subheading">Get the Blavity Daily newsletter with the best community
-                  finds and news.</p>
-                  <hr>
-                  <p class="text-center font-weight-bold title">Delivered To You</p>
-                  <v-text-field
-                    required
-                    label="Name"
-                    v-model="name"
-                    value="name"
-                  ></v-text-field>
-                  <v-text-field
-                    required
-                    :rules="emailRules"
-                    label="Email"
-                    v-model="email"
-                    value="email"
-                  ></v-text-field>
-                </v-card-text>
-                <v-btn outline class="text-center" :disabled="!valid" @click="newsletter()">Sign Me Up</v-btn>
-              </v-form>
-            </v-card>
-            <v-card tile flat class="white mt-5 outline-solid">
-              <v-card-text class="grey outline-solid">
-                <h2 class="text-center underline text-decoration-none white--text ma-1 pa-1 pb-1">
-                  <img src="https://blavity.com/images/fire.png">
-                  TRENDING RIGHT NOW
-                </h2>
-              </v-card-text>
-              <v-layout v-for="(singletrending_articles, i) in trending_articles.slice(0,5)" key="i">
-                <v-flex class="text-aling-left font-weight-bold pr-3 pl-3 pt-3 border-bottom">
-                  <router-link :to="'/'+singletrending_articles.slug"
-                               class="black--text text-decoration-none ">{{singletrending_articles.title}}
-                  </router-link>
-                  <router-link :to="'/author/'+singletrending_articles._author.username"
-                               class="text-decoration-none">
-                    <p class="bold grey--text ">{{singletrending_articles._author.display_name}}</p>
-                  </router-link>
-                </v-flex>
-              </v-layout>
-            </v-card>
+            <dailynewsletter/>
+            <trendingpost/>
           </v-flex>
         </v-layout>
       </v-container>
@@ -250,6 +208,5 @@
       <!--</v-container>-->
     </v-content>
     <!--community Ends-->
-
   </v-app>
 </div>
