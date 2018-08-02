@@ -29,7 +29,7 @@ export default {
         .get(process.env.LiveAPI + 'articles/authors/' + this.$route.params.author + '/' + this.loadCount + '/' + (this.totalcount))
         .then(response => {
           if (response.data.length) {
-            if (!this.info.length) {
+            if (!totalcount) {
               this.info = (response.data)
             } else {
               this.info.push(...response.data)
