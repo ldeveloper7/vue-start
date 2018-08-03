@@ -13,6 +13,11 @@ export default {
     singlearticle: [],
     cloudinaryImageUrl: process.env.cloudinaryImageUrl
   }),
+  watch: {
+    $route () {
+      this.mounted()
+    }
+  },
   mounted () {
     // let _this = this
     axios.get(process.env.LiveAPI + this.$route.params.slug)
