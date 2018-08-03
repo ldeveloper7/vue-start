@@ -91,7 +91,7 @@ export default {
             .then((res) => {
               _this.draftData.push(...res.data.articles)
               _this.totalCountDraft += res.data.articles.length
-              if (res.data.articles.length < 3) {
+              if (res.data.articles.length < _this.loadcount) {
                 _this.loadmoredraftpost = false
               }
             })
@@ -101,7 +101,7 @@ export default {
             .then((res) => {
               _this.submittedData.push(...res.data.articles)
               _this.totalCountSubmited += res.data.articles.length
-              if (res.data.articles.length < 3) {
+              if (res.data.articles.length < _this.loadcount) {
                 _this.loadmoresubmitpost = false
               }
             })
@@ -111,7 +111,7 @@ export default {
             .then((res) => {
               _this.publishedData.push(...res.data.articles)
               _this.totalCountPublish += res.data.articles.length
-              if (res.data.articles.length < 3) {
+              if (res.data.articles.length < _this.loadcount) {
                 _this.loadmorepublishpost = false
               }
             })
@@ -121,7 +121,7 @@ export default {
             .then((res) => {
               _this.scheduledData.push(...res.data.articles)
               _this.totalCountScheduled += res.data.articles.length
-              if (res.data.articles.length < 3) {
+              if (res.data.articles.length < _this.loadcount) {
                 _this.loadmoreschedulepost = false
               }
             })
