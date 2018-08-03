@@ -157,9 +157,9 @@
             <img :src="imageurl" id="imgpreview" height="200">
             <br>
             <v-flex v-if="btnflag">
-              <v-btn>Start</v-btn>
-              <v-btn>Cancel</v-btn>
-              <v-btn>Delete</v-btn>
+              <v-btn :disabled="startbtnflag">Start</v-btn>
+              <v-btn @click="cancel()">Cancel</v-btn>
+              <v-btn @click="cancel()">Delete</v-btn>
             </v-flex>
             <hr>
             <v-flex>

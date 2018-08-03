@@ -52,7 +52,8 @@ export default {
     urlbuttonflag: 'Edit',
     videoFile: '',
     videoUrl: '',
-    videoshowflag: false
+    videoshowflag: false,
+    startbtnflag: true
   }),
   watch: {
     categoryvalue (val) {
@@ -72,6 +73,11 @@ export default {
       this.video = false
       this.uploadvideoflag = false
       this.videourlflag = false
+    },
+    cancel () {
+      this.btnflag = false
+      this.image = ''
+      this.imageurl = ''
     },
     toggle () {
       this.urlflag = !this.urlflag;
