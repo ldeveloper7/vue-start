@@ -47,7 +47,9 @@ export default {
     post_to_social: false,
     post_status: 'draft',
     isScheduled: false,
-    listicle: []
+    listicle: [],
+    urlflag: true,
+    urlbuttonflag: 'Edit'
   }),
   watch: {
     categoryvalue (val) {
@@ -67,6 +69,10 @@ export default {
       this.video = false
       this.uploadvideoflag = false
       this.videourlflag = false
+    },
+    toggle () {
+      this.urlflag = !this.urlflag;
+      (this.urlflag === false) ? this.urlbuttonflag = 'Done' : this.urlbuttonflag = 'Edit'
     },
     videotab () {
       this.sub_title = 'This post Could Definitely Be One Of them!'
@@ -146,7 +152,7 @@ export default {
         post_to_social: this.post_to_social,
         post_status: this.post_status,
         isScheduled: this.isScheduled,
-        wp_featuredImage: 'v1505996762/yupbey2jh3cd01n0qki4',
+        wp_featuredImage: this.image,
         listicle: this.listicle,
         body: this.bodycontent,
         excerpt: this.description,
@@ -168,6 +174,9 @@ export default {
         .catch(e => {
           console.log(e)
         })
+    },
+    keyupfunc: function () {
+      this.txturl = this.txttitle.replace(/[^a-zA-Z0-9 ]/g, '').replace(/[ ]+/g, '-')
     }
   },
   mounted () {
