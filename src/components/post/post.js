@@ -152,7 +152,7 @@ export default {
         post_to_social: this.post_to_social,
         post_status: this.post_status,
         isScheduled: this.isScheduled,
-        wp_featuredImage: this.image,
+        wp_featuredImage: this.image.name,
         listicle: this.listicle,
         body: this.bodycontent,
         excerpt: this.description,
@@ -161,7 +161,7 @@ export default {
         publish_on: new Date(),
         isComplete: false
       }
-      console.log(addArticle)
+
       axios.post(process.env.LocalAPI + 'articles', { article: addArticle },
         {
           headers: {
@@ -169,7 +169,9 @@ export default {
           }
         })
         .then(res => {
-          console.log(res)
+          if (typeof res.data === 'object') {
+            this.$router.push('/' + JSON.parse(Vue.localStorage.get('user')).username + '/myposts')
+          }
         })
         .catch(e => {
           console.log(e)
