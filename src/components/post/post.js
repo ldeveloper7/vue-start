@@ -4,6 +4,7 @@ import Vue from 'vue'
 import VueLocalStorage from 'vue-localstorage'
 import ckeditor from 'vue-ckeditor2'
 import axios from 'axios'
+
 Vue.use(VueLocalStorage)
 export default {
   data: () => ({
@@ -11,7 +12,9 @@ export default {
     description: '',
     categoryvalue: [],
     tagvalue: [],
+    series: [],
     video: false,
+    videourlvalue: '',
     news: false,
     uploadvideoflag: false,
     videourlflag: false,
@@ -38,7 +41,13 @@ export default {
     txturl: '',
     picturedescription: '',
     captioncredits: '',
-    token: ''
+    token: '',
+    commentStatus: false,
+    published: false,
+    post_to_social: false,
+    post_status: 'draft',
+    isScheduled: false,
+    listicle: []
   }),
   watch: {
     categoryvalue (val) {
@@ -82,7 +91,7 @@ export default {
     },
     categorychangedValue: function (value) {
       let _this = this
-      axios.get(process.env.LiveAPI + 'category/50?search=' + value).then((res) => {
+      axios.get(process.env.LocalAPI + 'category/50?search=' + value).then((res) => {
         _this.categoryList = res.data
       }).catch(e => {
         console.log(e)
@@ -90,7 +99,7 @@ export default {
     },
     tagchangedValue: function (value) {
       let _this = this
-      axios.get(process.env.LiveAPI + 'tags/50?search=' + value).then((res) => {
+      axios.get(process.env.LocalAPI + 'tags/50?search=' + value).then((res) => {
         _this.tagList = res.data
       }).catch(e => {
         console.log(e)
@@ -108,6 +117,7 @@ export default {
       })
       fileReader.readAsDataURL(files[0])
       this.image = files[0]
+      this.btnflag = true
     },
     uploadvideofunc: function () {
       this.uploadvideoflag = true
@@ -122,16 +132,28 @@ export default {
     },
     saveArticle: function () {
       const addArticle = {
-        txttitle: this.txttitle,
-        txtsubtitle: this.txtsubtitle,
-        txturl: this.txturl,
-        bodycontent: this.bodycontent,
-        description: this.description,
-        categoryvalue: this.categoryvalue,
-        tagvalue: this.tagvalue,
-        image: this.image,
-        picturedescription: this.picturedescription,
-        captioncredits: this.captioncredits
+        type: this.title,
+        postType: this.title,
+        videourl: this.videourlvalue,
+        tags: this.tagvalue,
+        categories: this.categoryvalue,
+        series: this.series,
+        slug: this.txturl,
+        title: this.txttitle,
+        subTitle: this.txtsubtitle,
+        commentStatus: this.commentStatus,
+        published: this.published,
+        post_to_social: this.post_to_social,
+        post_status: this.post_status,
+        isScheduled: this.isScheduled,
+        wp_featuredImage: 'v1505996762/yupbey2jh3cd01n0qki4',
+        listicle: this.listicle,
+        body: this.bodycontent,
+        excerpt: this.description,
+        featureImagesAlt: this.picturedescription,
+        featureImagesCaption: this.captioncredits,
+        publish_on: new Date(),
+        isComplete: false
       }
       console.log(addArticle)
       axios.post(process.env.LocalAPI + 'articles', { article: addArticle },
@@ -155,8 +177,8 @@ export default {
     let _this = this
     _this.token = (Vue.localStorage.get('token'))
     axios.all([
-      axios.get(process.env.LiveAPI + 'category/50?search='),
-      axios.get(process.env.LiveAPI + 'tags/50?search=')
+      axios.get(process.env.LocalAPI + 'category/50?search='),
+      axios.get(process.env.LocalAPI + 'tags/50?search=')
     ]).then(axios.spread(function (res1, res2) {
       _this.categoryList = res1.data
       _this.tagList = res2.data
