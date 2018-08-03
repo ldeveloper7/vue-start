@@ -39,14 +39,20 @@
     <v-container v-if="uploadvideoflag">
       <v-layout>
         <v-flex text-sm-center>
-          <input type="file">
+          <input type="file" @change="onFileSelected">
+          <video v-if="videoshowflag" width="400" controls>
+            <source :src="videoUrl" type="video/mp4">
+            Your browser does not support HTML5 video.
+          </video>
         </v-flex>
       </v-layout>
     </v-container>
     <v-container v-if="videourlflag">
       <v-layout>
         <v-flex text-sm-center>
-          <v-text-field placeholder="Enter the video url"></v-text-field>
+          <v-text-field
+            placeholder="Enter the video url"
+          v-model="videourlvalue"></v-text-field>
         </v-flex>
       </v-layout>
     </v-container>

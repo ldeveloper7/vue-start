@@ -49,7 +49,10 @@ export default {
     isScheduled: false,
     listicle: [],
     urlflag: true,
-    urlbuttonflag: 'Edit'
+    urlbuttonflag: 'Edit',
+    videoFile: '',
+    videoUrl: '',
+    videoshowflag: false
   }),
   watch: {
     categoryvalue (val) {
@@ -125,6 +128,20 @@ export default {
       this.image = files[0]
       this.btnflag = true
     },
+    onFileSelected (event) {
+      const files = event.target.files
+      let filename = files[0].name
+      if (filename.lastIndexOf('.') <= 0) {
+        return alert('please add a valid file')
+      }
+      const fileReader = new FileReader()
+      fileReader.addEventListener('load', () => {
+        this.videoUrl = fileReader.result
+      })
+      fileReader.readAsDataURL(files[0])
+      this.videoFile = files[0]
+      this.videoshowflag = true
+    },
     uploadvideofunc: function () {
       this.uploadvideoflag = true
       this.videourlflag = false
@@ -140,7 +157,7 @@ export default {
       const addArticle = {
         type: this.title,
         postType: this.title,
-        videourl: this.videourlvalue,
+        videourl: (this.videourlvalue) ? this.videourlvalue : this.videoFile.name,
         tags: this.tagvalue,
         categories: this.categoryvalue,
         series: this.series,
