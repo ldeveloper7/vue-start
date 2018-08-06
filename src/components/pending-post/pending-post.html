@@ -57,7 +57,7 @@
                     <img v-if="item._author.profileImagePreference == 'gravatar'"
                          :src="item._author.gravatar">
                     <img v-if="item._author.profileImagePreference != 'gravatar'"
-                         :src="item._author.profileImagePreference">
+                         :src="baseImageUrl+item._author.profileImagePreference">
                   </v-avatar>
                   <span v-if="item._author.display_name">
                     {{item._author.display_name}}

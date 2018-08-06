@@ -26,7 +26,7 @@
                       <img v-if="topSingleArticle._author.profileImagePreference == 'gravatar'"
                            :src="topSingleArticle._author.gravatar" >
                       <img v-if="topSingleArticle._author.profileImagePreference != 'gravatar'"
-                           :src="topSingleArticle._author.profileImagePreference" >
+                           :src="cloudinaryImageUrl+topSingleArticle._author.profileImagePreference">
                     </v-avatar>
                     <router-link class="font-weight-bold subheading black--text textdecoration"
                                  v-if="topSingleArticle._author.username"
@@ -62,7 +62,7 @@
                                 <img v-if="topThreeArticle._author.profileImagePreference == 'gravatar'"
                                      :src="topThreeArticle._author.gravatar">
                                 <img v-if="topThreeArticle._author.profileImagePreference != 'gravatar'"
-                                     :src="topThreeArticle._author.profileImagePreference">
+                                     :src="cloudinaryImageUrl+topThreeArticle._author.profileImagePreference">
                               </v-avatar>
                               <router-link class="font-weight-bold subheading black--text textdecoration"
                                            :to="'/author/'+topThreeArticle._author.username"
@@ -194,7 +194,7 @@
                                   <img v-if="communityArticles._author.profileImagePreference == 'gravatar'"
                                        :src="communityArticles._author.gravatar">
                                   <img v-if="communityArticles._author.profileImagePreference != 'gravatar'"
-                                    :src="communityArticles._author.profileImagePreference">
+                                    :src="cloudinaryImageUrl+communityArticles._author.profileImagePreference">
                               </v-avatar>
                               <router-link class="font-weight-black title black--text textdecoration"
                                            :to="'/author/'+communityArticles._author.username"
