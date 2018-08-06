@@ -27,7 +27,7 @@
                   <img v-if="singlearticle._author.profileImagePreference == 'gravatar'"
                        :src="singlearticle._author.gravatar" height="30%">
                   <img v-if="singlearticle._author.profileImagePreference != 'gravatar'"
-                       :src="singlearticle._author.profileImagePreference" height="30%">
+                       :src="cloudinaryImageUrl+singlearticle._author.profileImagePreference" height="30%">
                 </v-avatar>
                 <router-link class="font-weight-bold subheading black--text textnone"
                              v-if="singlearticle._author.username"
