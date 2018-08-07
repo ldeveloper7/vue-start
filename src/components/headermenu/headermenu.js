@@ -8,6 +8,7 @@ export default {
   data: () => ({
     sideNav: false,
     isLogin: false,
+    dialog3: false,
     menuItems: [
       {title: 'Login', link: '/login'},
       {title: 'News', link: '/categories/news'},
@@ -37,6 +38,13 @@ export default {
       {title: 'SIGN OUT', link: '/logout'}
     ]
   }),
+  methods: {
+    onSearch () {
+      let searchValue = document.getElementById('txtsearch').value
+      this.dialog3 = false
+      this.$router.push({path: 'search', query: { q: searchValue }})
+    }
+  },
   mounted () {
     if (Vue.localStorage.get('user')) {
       this.menuItems.shift()

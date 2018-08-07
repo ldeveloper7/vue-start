@@ -10,6 +10,7 @@ import profile from '../components/profile/profile.vue'
 import tag from '../components/tag/tag.vue'
 import myposts from '../components/myposts/myposts.vue'
 import post from '../components/post/post.vue'
+import search from '../components/search/search.vue'
 import login from '../components/login/login.vue'
 import logout from '../components/logout/logout.vue'
 import PageNotFound from '../components/404/404.vue'
@@ -47,6 +48,11 @@ export default new Router({
       path: '/tag/:tag',
       name: 'tag',
       component: tag
+    },
+    {
+      path: '/search',
+      name: 'search',
+      component: search
     },
     {
       path: '/profile',

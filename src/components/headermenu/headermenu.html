@@ -21,6 +21,17 @@
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-xs-only">
         <v-btn flat v-for="item in menuItems" :to="item.link" :key="item.title">{{item.title}}</v-btn>
+        <v-btn flat @click.stop="dialog3 = true">search</v-btn>
+        <v-dialog v-model="dialog3" max-width="500px">
+          <v-card>
+            <v-card-title>
+              <v-flex xs12 fluid>
+                <v-text-field @keyup.enter="onSearch" id="txtsearch" placeholder="Type to Search"></v-text-field>
+              </v-flex>
+              <v-spacer></v-spacer>
+            </v-card-title>
+          </v-card>
+        </v-dialog>
       </v-toolbar-items>
     </v-toolbar>
     <!--main toolbar ends-->
