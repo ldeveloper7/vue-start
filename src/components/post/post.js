@@ -185,6 +185,17 @@ export default {
         isComplete: false
       }
 
+      var fd = new FormData()
+      fd.append('image', this.image)
+
+      axios.post('http://192.168.200.18/blavity/insert.php', fd)
+        .then(res => {
+          console.log(res.data)
+        })
+        .catch(err => {
+          console.log(err)
+        })
+
       axios.post(process.env.LocalAPI + 'articles', { article: addArticle },
         {
           headers: {
