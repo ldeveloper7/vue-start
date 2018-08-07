@@ -9,6 +9,7 @@ export default {
     sideNav: false,
     isLogin: false,
     dialog3: false,
+    cloudinaryImageUrl: process.env.cloudinaryImageUrl,
     menuItems: [
       {title: 'Login', link: '/login'},
       {title: 'News', link: '/categories/news'},
@@ -51,7 +52,8 @@ export default {
       this.menuItems.unshift({title: 'Create Post', link: '/post'})
       this.isLogin = true
       let username = JSON.parse(Vue.localStorage.get('user')).username
-      let image = process.env.cloudinaryImageUrl + JSON.parse(Vue.localStorage.get('user')).profileImagePreference
+      var storageUser = JSON.parse(Vue.localStorage.get('user'))
+      let image = (storageUser.profileImagePreference === 'gravatar') ? storageUser.gravatar : (storageUser.profileImagePreference.search('cloudinary') > 0 ? storageUser.profileImagePreference : this.cloudinaryImageUrl + storageUser.profileImagePreference)
       let rolevalue = JSON.parse(Vue.localStorage.get('user'))._role
       switch (rolevalue) {
         case '57db549862e4711c9dd1eed6':
