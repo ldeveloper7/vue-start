@@ -53,7 +53,8 @@ export default {
     videoFile: '',
     videoUrl: '',
     videoshowflag: false,
-    startbtnflag: true
+    startbtnflag: true,
+    convertedImageName: ''
   }),
   watch: {
     categoryvalue (val) {
@@ -104,17 +105,17 @@ export default {
     onFocus (editor) {
       console.log(editor)
     },
-    categorychangedValue: function (value) {
+    categorychangedValue: function () {
       let _this = this
-      axios.get(process.env.LocalAPI + 'category/50?search=' + value).then((res) => {
+      axios.get(process.env.LocalAPI + 'category/50?search=' + document.getElementById('categoryId').value).then((res) => {
         _this.categoryList = res.data
       }).catch(e => {
         console.log(e)
       })
     },
-    tagchangedValue: function (value) {
+    tagchangedValue: function () {
       let _this = this
-      axios.get(process.env.LocalAPI + 'tags/50?search=' + value).then((res) => {
+      axios.get(process.env.LocalAPI + 'tags/50?search=' + document.getElementById('tagId').value).then((res) => {
         _this.tagList = res.data
       }).catch(e => {
         console.log(e)
@@ -133,6 +134,21 @@ export default {
       fileReader.readAsDataURL(files[0])
       this.image = files[0]
       this.btnflag = true
+      var fd = new FormData()
+      fd.append('image', this.image)
+
+      axios.post('http://192.168.200.18/blavity/insert.php', fd)
+        .then(res => {
+          if (res.data.filename) {
+            this.convertedImageName = res.data.filename
+            console.log(this.convertedImageName)
+          } else {
+            alert('Please select an proper Image')
+          }
+        })
+        .catch(err => {
+          console.log(err)
+        })
     },
     onFileSelected (event) {
       const files = event.target.files
@@ -175,7 +191,7 @@ export default {
         post_to_social: this.post_to_social,
         post_status: this.post_status,
         isScheduled: this.isScheduled,
-        wp_featuredImage: this.image.name,
+        wp_featuredImage: this.convertedImageName,
         listicle: this.listicle,
         body: this.bodycontent,
         excerpt: this.description,
@@ -184,17 +200,6 @@ export default {
         publish_on: new Date(),
         isComplete: false
       }
-
-      var fd = new FormData()
-      fd.append('image', this.image)
-
-      axios.post('http://192.168.200.18/blavity/insert.php', fd)
-        .then(res => {
-          console.log(res.data)
-        })
-        .catch(err => {
-          console.log(err)
-        })
 
       axios.post(process.env.LocalAPI + 'articles', { article: addArticle },
         {

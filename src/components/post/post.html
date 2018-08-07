@@ -126,9 +126,10 @@
               :items="categoryList"
               hide-details
               multiple
+              id="categoryId"
               hint="Up to 2 categories allows"
               placeholder='Select a Category'
-              @keypress="categorychangedValue"
+              @keyup="categorychangedValue"
             ></v-combobox>
           </v-flex>
           <v-flex mt-4>
@@ -138,9 +139,10 @@
               v-model="tagvalue"
               :items="tagList"
               hide-details
+              id="tagId"
               multiple
               placeholder='tag1, tag2, tag3, tag4, etc'
-              @keypress="categorychangedValue"
+              @keyup="tagchangedValue"
             ></v-combobox>
           </v-flex>
           <v-flex>
