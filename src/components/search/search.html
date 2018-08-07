@@ -27,7 +27,8 @@
                 <v-layout>
                 <v-chip>
                   <v-avatar>
-                    <img :src="(articleData._author.profileImagePreference === 'gravatar') ? articleData._author.gravatar : articleData._author.profileImagePreference">
+                    <img
+                      :src="(articleData._author.profileImagePreference === 'gravatar') ? articleData._author.gravatar : (articleData._author.profileImagePreference.search('cloudinary') > 0 ? articleData._author.profileImagePreference : cloudinaryImageUrl+articleData._author.profileImagePreference)">
                   </v-avatar>
                   {{articleData._author.display_name ? articleData._author.display_name : articleData._author.username}}
                 </v-chip>
