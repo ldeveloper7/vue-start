@@ -37,13 +37,13 @@ export default {
       {title: 'MY POSTS', link: '/myposts'},
       {title: 'SCHEDULED POSTS', link: '/scheduledposts'},
       {title: 'SIGN OUT', link: '/logout'}
-    ]
+    ],
+    txtsearch: ''
   }),
   methods: {
     onSearch () {
-      let searchValue = document.getElementById('txtsearch').value
       this.dialog3 = false
-      this.$router.push({path: 'search', query: { q: searchValue }})
+      this.$router.push({path: 'search', query: { q: this.txtsearch }})
     }
   },
   mounted () {

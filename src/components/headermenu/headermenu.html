@@ -4,7 +4,8 @@
     <v-toolbar dense flat fixed app v-if="isLogin" color="grey">
       <v-spacer></v-spacer>
       <v-toolbar-items>
-        <v-btn class="caption align-items-center" flat v-for="item in upperMenu" :to="item.link" :key="item.title" v-html="item.title">
+        <v-btn class="caption align-items-center" flat v-for="item in upperMenu" :to="item.link" :key="item.title"
+               v-html="item.title">
           {{item.title}}
         </v-btn>
       </v-toolbar-items>
@@ -26,7 +27,7 @@
           <v-card>
             <v-card-title>
               <v-flex xs12 fluid>
-                <v-text-field @keyup.enter="onSearch" id="txtsearch" placeholder="Type to Search"></v-text-field>
+                <v-text-field @keyup.enter="onSearch" v-model="txtsearch" placeholder="Type to Search"></v-text-field>
               </v-flex>
               <v-spacer></v-spacer>
             </v-card-title>

@@ -35,11 +35,6 @@ export default new Router({
       component: category
     },
     {
-      path: '/videos',
-      name: 'videos',
-      component: video
-    },
-    {
       path: '/author/:author',
       name: 'author',
       component: author

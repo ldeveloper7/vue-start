@@ -1,23 +1,14 @@
 <div>
-  <headermenu />
+  <headermenu/>
   <v-content>
-    <v-container>
-      <v-layout>
-        <v-flex xs10 offset-xs1>
-          <v-text-field v-model="txtsearch"></v-text-field>
-          <v-btn @click="search">Search</v-btn>
-        </v-flex>
-      </v-layout>
-      <v-layout>
-        <v-flex text-sm-center>
-          <p class="grey--text headline">Search Results</p>
-        </v-flex>
-      </v-layout>
-    </v-container>
     <v-content style="padding: 0 0 0 0 !important;">
       <v-container fluid>
         <v-layout row>
-          <v-flex xs9 order-md3 order-xs3>
+          <v-flex xs9 pr-4>
+            <v-flex xs10 mb-5>
+              <v-text-field xs8 text-center v-model="txtsearch"></v-text-field>
+              <v-btn @click="search">Search</v-btn>
+            </v-flex>
             <v-layout v-for="articleData in info" :key="articleData._id">
               <v-flex xs12 sm8 pl-3 pr-3>
                 <router-link class="font-weight-black title text-sm-center black--text linkclass"
@@ -25,13 +16,14 @@
                 >{{articleData.title}}
                 </router-link>
                 <v-layout>
-                <v-chip>
-                  <v-avatar>
-                    <img
-                      :src="(articleData._author.profileImagePreference === 'gravatar') ? articleData._author.gravatar : (articleData._author.profileImagePreference.search('cloudinary') > 0 ? articleData._author.profileImagePreference : cloudinaryImageUrl+articleData._author.profileImagePreference)">
-                  </v-avatar>
-                  {{articleData._author.display_name ? articleData._author.display_name : articleData._author.username}}
-                </v-chip>
+                  <v-chip>
+                    <v-avatar>
+                      <img
+                        :src="(articleData._author.profileImagePreference === 'gravatar') ? articleData._author.gravatar : (articleData._author.profileImagePreference.search('cloudinary') > 0 ? articleData._author.profileImagePreference : cloudinaryImageUrl+articleData._author.profileImagePreference)">
+                    </v-avatar>
+                    {{articleData._author.display_name ? articleData._author.display_name :
+                    articleData._author.username}}
+                  </v-chip>
                 </v-layout>
                 <router-link class="subheading thin black--text linkclass"
                              :to="'/'+articleData.slug"
@@ -45,9 +37,11 @@
                 </v-card>
               </v-flex>
             </v-layout>
-            <v-btn outline color="light-green" text-xs-center v-on:click="loadmore">See More Posts <b>+</b></v-btn>
+            <v-btn block color="info" text-xs-center v-show="loadMoreButton" v-on:click="loadmore(0)">See More Posts
+              <b>&nbsp; +</b></v-btn>
+            <h1 v-show="info.length == 0" >No Search Found</h1>
           </v-flex>
-          <v-flex xs3 order-md3 order-xs3 color="red darken-4" text-xs-center>
+          <v-flex xs3>
             <dailynewsletter/>
             <trendingpost/>
           </v-flex>
