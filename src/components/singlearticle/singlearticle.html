@@ -34,10 +34,8 @@
                    class="font-weight-bold subheading black--text textnone">{{singlearticle._author.display_name}}></p>
               </v-chip>
             </v-flex>
-            <v-flex class="mb-2 mt-2">
-              <img
-                :src="cloudinaryImageUrl+singlearticle.wp_featuredImage"
-                height="100%" width="70%">
+            <v-flex class="mb-2 mt-2 main_featuredImage ">
+              <img :src="cloudinaryImageUrl+singlearticle.wp_featuredImage">
             </v-flex>
             <v-flex class="mb-2 mt-2 article-body">
               <p class="headline"><span v-html='singlearticle.body'></span></p>
