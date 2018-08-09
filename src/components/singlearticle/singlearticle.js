@@ -15,21 +15,25 @@ export default {
   }),
   watch: {
     $route () {
-      this.mounted()
+      this.loadarticle()
     }
   },
   mounted () {
-    // let _this = this
-    axios.get(process.env.LiveAPI + this.$route.params.slug)
-      .then((res) => {
-        if (res.data) {
-          this.singlearticle = res.data
-        } else {
-          this.$router.push('/404')
-        }
-      })
-      .catch(e => {
-        console.log(e)
-      })
+    this.loadarticle()
+  },
+  methods: {
+    loadarticle: function () {
+      axios.get(process.env.LiveAPI + this.$route.params.slug)
+        .then((res) => {
+          if (res.data) {
+            this.singlearticle = res.data
+          } else {
+            this.$router.push('/404')
+          }
+        })
+        .catch(e => {
+          console.log(e)
+        })
+    }
   }
 }
