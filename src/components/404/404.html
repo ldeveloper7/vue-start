@@ -1,4 +1,21 @@
 <div>
-  <headermenu/>
-  <h1>404 PageNotFound </h1>
+  <v-app>
+    <headermenu/>
+    <v-content class="padding0">
+      <v-container fluid ma-5 class="padding0">
+        <v-layout row wrap>
+          <v-flex xs8>
+            <div class="body text-center">
+              <h1>Sorry, we couldn't find the article you were looking for...</h1>
+              <iframe src="//giphy.com/embed/xI5dVJKpKLzK8" frameBorder="0" class="giphy-embed"></iframe>
+            </div>
+          </v-flex>
+          <v-flex xs3 ml-5>
+            <dailynewsletter/>
+            <trendingpost/>
+          </v-flex>
+        </v-layout>
+      </v-container>
+    </v-content>
+  </v-app>
 </div>

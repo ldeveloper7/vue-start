@@ -100,6 +100,11 @@ export default new Router({
       component: pendingpost
     },
     {
+      path: '/404',
+      name: '404',
+      component: PageNotFound
+    },
+    {
       path: '/:slug',
       name: 'SingleArticle',
       component: singlearticle
