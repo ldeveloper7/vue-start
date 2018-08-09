@@ -1,10 +1,10 @@
 'use strict'
 import Vue from 'vue'
+import Vuetify from 'vuetify'
 import Router from 'vue-router'
 import home from '../components/home/home.vue'
 import category from '../components/category/category.vue'
 import author from '../components/author/author.vue'
-import video from '../components/video/video.vue'
 import singlearticle from '../components/singlearticle/singlearticle.vue'
 import profile from '../components/profile/profile.vue'
 import tag from '../components/tag/tag.vue'
@@ -17,7 +17,6 @@ import PageNotFound from '../components/404/404.vue'
 import register from '../components/register/register.vue'
 import authorSubmissions from '../components/authorSubmissions/authorSubmissions.vue'
 import pendingpost from '../components/pending-post/pending-post.vue'
-import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css' // Ensure you are using css-loader
 
 Vue.use(Router)

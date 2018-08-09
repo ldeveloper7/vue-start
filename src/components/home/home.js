@@ -3,6 +3,7 @@ import Vue from 'vue'
 import headermenu from '../headermenu/headermenu.vue'
 import trendingpost from '../trending-post/trending-post.vue'
 import dailynewsletter from '../daily-newsletter/daily-newsletter.vue'
+import footer1 from '../Footer/Footer.vue'
 import axios from 'axios'
 import VueLocalStorage from 'vue-localstorage'
 Vue.use(VueLocalStorage)
@@ -10,7 +11,8 @@ export default {
   components: {
     headermenu,
     trendingpost,
-    dailynewsletter
+    dailynewsletter,
+    footer1
   },
   data () {
     return {
