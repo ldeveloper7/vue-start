@@ -1,3 +1,38 @@
-<section class="footer">
-footer
-</section>
+<div>
+  <v-footer
+    color="grey lighten-1"
+    height="auto">
+    <v-content>
+      <v-container>
+        <v-layout>
+          <v-flex xs12 sm4>
+            <img src="https://blavity.com/images/BlavityLogo_white.png" width="200px">
+            <span><div color="grey">&copy; Blavity Inc. {{ new Date().getFullYear() }}</div></span>
+          </v-flex>
+          <v-flex xs12 sm8>
+            <p color="grey" class="caption"><b>Blavity</b>{{footerContent}}</p>
+          </v-flex>
+        </v-layout>
+        <v-layout justify-center>
+
+            <v-btn
+              v-for="icon in logos"
+              :key="icon"
+              class="mx-3 grey--text"
+              icon
+              :href="icon.link"
+              target="_blank"
+            >
+              <v-icon size="24px">{{ icon.icons }}</v-icon>
+            </v-btn>
+        </v-layout>
+        <hr class="grey pb-0">
+        <v-layout>
+          <v-flex text-sm-center>
+            <router-link class="pr-3 caption textdecoration black--text" :to="menu.link" v-for="menu in footermenu" :key="menu.name">{{menu.name}}</router-link>
+          </v-flex>
+        </v-layout>
+      </v-container>
+    </v-content>
+  </v-footer>
+</div>
