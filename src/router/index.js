@@ -8,6 +8,7 @@ import author from '../components/author/author.vue'
 import singlearticle from '../components/singlearticle/singlearticle.vue'
 import profile from '../components/profile/profile.vue'
 import tag from '../components/tag/tag.vue'
+import editpost from '../components/edit-post/editpost.vue'
 import myposts from '../components/myposts/myposts.vue'
 import post from '../components/post/post.vue'
 import search from '../components/search/search.vue'
@@ -77,6 +78,11 @@ export default new Router({
       path: '/logout',
       name: 'logout',
       component: logout
+    },
+    {
+      path: '/editpost/:editpost',
+      name: 'editpost',
+      component: editpost
     },
     {
       path: '/mail/verification/:verification',

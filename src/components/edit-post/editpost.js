@@ -4,7 +4,6 @@ import Vue from 'vue'
 import VueLocalStorage from 'vue-localstorage'
 import ckeditor from 'vue-ckeditor2'
 import axios from 'axios'
-import footermenu from '../Footer/Footer.vue'
 
 Vue.use(VueLocalStorage)
 export default {
@@ -46,7 +45,7 @@ export default {
     commentStatus: false,
     published: false,
     post_to_social: false,
-    post_status: 'draft',
+    post_status: '',
     isScheduled: false,
     listicle: [],
     urlflag: true,
@@ -55,7 +54,14 @@ export default {
     videoUrl: '',
     videoshowflag: false,
     startbtnflag: true,
-    convertedImageName: ''
+    convertedImageName: '',
+    singlearticle: [],
+    items: [
+      'draft',
+      'submited',
+      'rejected',
+      'publish'
+    ]
   }),
   watch: {
     categoryvalue (val) {
@@ -65,7 +71,7 @@ export default {
     }
   },
   components: {
-    headermenu, ckeditor, footermenu
+    headermenu, ckeditor
   },
   methods: {
     opiniontab () {
@@ -219,12 +225,44 @@ export default {
     },
     keyupfunc: function () {
       this.txturl = this.txttitle.replace(/[^a-zA-Z0-9 ]/g, '').replace(/[ ]+/g, '-')
+    },
+    loadarticle: function () {
+      let _this = this
+      axios.get(process.env.LiveAPI + this.$route.params.editpost)
+        .then((res) => {
+          if (res.data) {
+            _this.singlearticle = res.data
+            _this.txttitle = this.singlearticle.title
+            _this.txtsubtitle = this.singlearticle.subTitle
+            _this.keyupfunc()
+            _this.bodycontent = this.singlearticle.body
+            _this.description = this.singlearticle.excerpt
+            _this.singlearticle.categories.forEach((item) => {
+               _this.categoryvalue.push(item.name)
+            })
+            _this.singlearticle.tags.forEach((item) => {
+              _this.tagvalue.push(item.name)
+            })
+            _this.imageurl = _this.baseImageUrl + _this.singlearticle.wp_featuredImage
+            _this.post_status = _this.singlearticle.post_status
+            _this.picturedescription = _this.singlearticle.featureImagesAlt
+            _this.captioncredits = _this.singlearticle.featureImagesCaption
+            _this.videourlvalue = _this.singlearticle.videourl
+            _this.btnflag = true
+          } else {
+            this.$router.push('/404')
+          }
+        })
+        .catch(e => {
+          console.log(e)
+        })
     }
   },
   mounted () {
     if (!Vue.localStorage.get('user')) {
       this.$router.push('/')
     }
+    this.loadarticle()
     let _this = this
     _this.token = (Vue.localStorage.get('token'))
     axios.all([
