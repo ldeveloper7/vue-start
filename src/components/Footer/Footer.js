@@ -25,5 +25,5 @@ export default {
       {name: 'Press', link: '/press'},
     ],
     footerContent: ' is a community of the most exceptional multi-cultural creators and influencers in the world. We partner with diverse content creators and influencers to help them reach a wider audience, amplify their message, and fund their hustles. We believe that the world shifts according to the way people see it. If you change the way people view the world, you can transform it'
-})
+  })
 }

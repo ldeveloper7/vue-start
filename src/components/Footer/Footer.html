@@ -14,22 +14,23 @@
           </v-flex>
         </v-layout>
         <v-layout justify-center>
-
-            <v-btn
-              v-for="icon in logos"
-              :key="icon"
-              class="mx-3 grey--text"
-              icon
-              :href="icon.link"
-              target="_blank"
-            >
-              <v-icon size="24px">{{ icon.icons }}</v-icon>
-            </v-btn>
+          <v-btn
+            v-for="icon in logos"
+            :key="icon"
+            class="mx-3 grey--text"
+            icon
+            :href="icon.link"
+            target="_blank"
+          >
+            <v-icon size="24px">{{ icon.icons }}</v-icon>
+          </v-btn>
         </v-layout>
         <hr class="grey pb-0">
         <v-layout>
           <v-flex text-sm-center>
-            <router-link class="pr-3 caption textdecoration black--text" :to="menu.link" v-for="menu in footermenu" :key="menu.name">{{menu.name}}</router-link>
+            <router-link class="pr-3 caption textdecoration black--text" :to="menu.link" v-for="menu in footermenu"
+                         :key="menu.name">{{menu.name}}
+            </router-link>
           </v-flex>
         </v-layout>
       </v-container>

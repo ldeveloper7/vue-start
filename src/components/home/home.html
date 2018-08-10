@@ -23,7 +23,8 @@
                   </v-flex>
                   <v-flex mt-4>
                     <v-avatar>
-                      <img :src="(topSingleArticle._author.profileImagePreference === 'gravatar') ? topSingleArticle._author.gravatar : (topSingleArticle._author.profileImagePreference.search('cloudinary') > 0 ? topSingleArticle._author.profileImagePreference : cloudinaryImageUrl+topSingleArticle._author.profileImagePreference)">
+                      <img
+                        :src="(topSingleArticle._author.profileImagePreference === 'gravatar') ? topSingleArticle._author.gravatar : (topSingleArticle._author.profileImagePreference.search('cloudinary') > 0 ? topSingleArticle._author.profileImagePreference : cloudinaryImageUrl+topSingleArticle._author.profileImagePreference)">
                     </v-avatar>
                     <router-link class="font-weight-bold subheading black--text textdecoration"
                                  v-if="topSingleArticle._author.username"
@@ -56,7 +57,8 @@
                           <v-flex>
                             <v-chip>
                               <v-avatar>
-                                <img :src="(topThreeArticle._author.profileImagePreference === 'gravatar') ? topThreeArticle._author.gravatar : (topThreeArticle._author.profileImagePreference.search('cloudinary') > 0 ? topThreeArticle._author.profileImagePreference : cloudinaryImageUrl+topThreeArticle._author.profileImagePreference)">
+                                <img
+                                  :src="(topThreeArticle._author.profileImagePreference === 'gravatar') ? topThreeArticle._author.gravatar : (topThreeArticle._author.profileImagePreference.search('cloudinary') > 0 ? topThreeArticle._author.profileImagePreference : cloudinaryImageUrl+topThreeArticle._author.profileImagePreference)">
                               </v-avatar>
                               <router-link class="font-weight-bold subheading black--text textdecoration"
                                            :to="'/author/'+topThreeArticle._author.username"
@@ -84,7 +86,7 @@
     <hr class="font-weight-bold">
     <!--featured Video start-->
     <v-content style="padding: 0 0 0 0 !important;">
-      <v-container fluid grid-list-md text-xs-center >
+      <v-container fluid grid-list-md text-xs-center>
         <v-layout row wrap>
           <v-flex xs12>
             <p class="text-sm-left display-1 font-weight-bold">Featured Video</p>
@@ -118,7 +120,7 @@
     <!--featured Video end-->
     <!--news and features start-->
     <!--<v-content>-->
-    <v-container fluid >
+    <v-container fluid>
       <!--<v-layout>-->
       <v-flex xs12 text-xs-left pt-0 pb-0>
         <h2 class="font-weight-bold display-1">News and Features</h2>
@@ -185,7 +187,8 @@
                           <v-flex xs12 class="text-sm-left">
                             <v-chip>
                               <v-avatar>
-                                  <img :src="(communityArticles._author.profileImagePreference === 'gravatar') ? communityArticles._author.gravatar : (communityArticles._author.profileImagePreference.search('cloudinary') > 0 ? communityArticles._author.profileImagePreference : cloudinaryImageUrl+communityArticles._author.profileImagePreference)">
+                                <img
+                                  :src="(communityArticles._author.profileImagePreference === 'gravatar') ? communityArticles._author.gravatar : (communityArticles._author.profileImagePreference.search('cloudinary') > 0 ? communityArticles._author.profileImagePreference : cloudinaryImageUrl+communityArticles._author.profileImagePreference)">
                               </v-avatar>
                               <router-link class="font-weight-black title black--text textdecoration"
                                            :to="'/author/'+communityArticles._author.username"
