@@ -3,6 +3,7 @@ import Vue from 'vue'
 import headermenu from '../headermenu/headermenu.vue'
 import VueLocalStorage from 'vue-localstorage'
 import { validationMixin } from 'vuelidate'
+import footermenu from '../Footer/Footer.vue'
 import axios from 'axios'
 
 Vue.use(VueLocalStorage)
@@ -30,7 +31,7 @@ export default {
     }
   }),
   components: {
-    headermenu
+    headermenu, footermenu
   },
   mounted () {
     if (Vue.localStorage.get('user')) {

@@ -3,6 +3,8 @@ import Vue from 'vue'
 import headermenu from '../headermenu/headermenu.vue'
 import axios from 'axios'
 import VueLocalStorage from 'vue-localstorage'
+import footermenu from '../Footer/Footer.vue'
+
 Vue.use(VueLocalStorage)
 export default {
   data: () => ({
@@ -35,7 +37,7 @@ export default {
     loadmoreschedulepost: true,
   }),
   components: {
-    headermenu
+    headermenu, footermenu
   },
   mounted () {
     let _this = this

@@ -7,12 +7,14 @@ import axios from 'axios'
 import VueLocalStorage from 'vue-localstorage'
 import vueHeadful from 'vue-headful';
 Vue.component('vue-headful', vueHeadful);
+import footermenu from '../Footer/Footer.vue'
 Vue.use(VueLocalStorage)
 export default {
   components: {
     headermenu,
     trendingpost,
-    dailynewsletter
+    dailynewsletter,
+    footermenu
   },
   data () {
     return {

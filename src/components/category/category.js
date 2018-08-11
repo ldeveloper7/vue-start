@@ -1,9 +1,10 @@
 'use strict'
 import axios from '../../../node_modules/axios/index'
 import headermenu from '../headermenu/headermenu.vue'
+import footermenu from '../Footer/Footer.vue'
 export default {
   components: {
-    headermenu
+    headermenu, footermenu
   },
   data () {
     return {

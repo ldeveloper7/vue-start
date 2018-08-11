@@ -2,6 +2,7 @@
 import Vue from 'vue'
 import headermenu from '../headermenu/headermenu.vue'
 import axios from 'axios'
+import footermenu from '../Footer/Footer.vue'
 
 export default {
   data: () => ({
@@ -28,7 +29,7 @@ export default {
     articleLoadMoreButton: 1
   }),
   components: {
-    headermenu
+    headermenu, footermenu
   },
   methods: {
     articleLoadMore: function (total) {
