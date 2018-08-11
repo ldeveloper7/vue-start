@@ -68,7 +68,7 @@
                 <router-link class="font-weight-bold subheading black--text text-decoration-none"
                              :to="'/author/'+item._author.username">
                   <v-avatar size="48">
-                    <img :src="(item._author.profileImagePreference === 'gravatar') ? item._author.gravatar : (item._author.profileImagePreference.search('cloudinary') > 0 ? item._author.profileImagePreference : cloudinaryImageUrl+item._author.profileImagePreference)">
+                    <img :src="(item._author.profileImagePreference === 'gravatar') ? item._author.gravatar : (item._author.profileImagePreference.search('cloudinary') > 0 ? item._author.profileImagePreference : baseImageUrl+item._author.profileImagePreference)">
                   </v-avatar>
                   <span v-if="item._author.display_name">
                     {{item._author.display_name}}
