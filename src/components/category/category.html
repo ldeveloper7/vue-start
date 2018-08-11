@@ -1,6 +1,7 @@
 <div>
+  <v-app>
   <vue-headful class="text-uppercase" :title="'Blavity | '+this.$route.params.category"/>
-  <headermenu></headermenu>
+  <headermenu/>
   <v-content>
     <v-container grid-list-md text-xs-center>
       <v-layout row wrap>
@@ -23,22 +24,23 @@
                         <router-link class="font-weight-bold linkclass" :to="'/categories/'+cat.slug">{{cat.name.charAt(0).toUpperCase() + cat.name.slice(1)}}</router-link>
                         <span v-if="index+1 !== item.categories.length">, </span>
                       </span>
-                      <span v-if="item._author.username">|
+                        <span v-if="item._author.username">|
                         <router-link class="font-weight-bold linkclass" :to="'/author/'+item._author.username">{{item._author.username}}</router-link>
                       </span>
-                    </div>
-                  </v-card-title>
-                </v-card>
-              </v-flex>
-              <v-flex xs12>
-                <hr>
-                <v-btn block color="info" v-if="loadMoreButton" v-on:click="loadmore(6)">Load More</v-btn>
-              </v-flex>
-            </v-layout>
-          </v-container>
-        </v-flex>
-      </v-layout>
-    </v-container>
-  </v-content>
-  <footermenu/>
+                      </div>
+                    </v-card-title>
+                  </v-card>
+                </v-flex>
+                <v-flex xs12>
+                  <hr>
+                  <v-btn block color="info" v-if="loadMoreButton" v-on:click="loadmore(6)">Load More</v-btn>
+                </v-flex>
+              </v-layout>
+            </v-container>
+          </v-flex>
+        </v-layout>
+      </v-container>
+    </v-content>
+    <footermenu/>
+  </v-app>
 </div>

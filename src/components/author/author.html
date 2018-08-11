@@ -1,6 +1,7 @@
 <div>
+  <v-app>
   <vue-headful :title="'Blavity | '+this.$route.params.author"/>
-  <headermenu></headermenu>
+  <headermenu/>
   <v-content>
     <v-container grid-list-md text-xs-center>
       <v-layout row wrap>
@@ -43,4 +44,5 @@
     </v-container>
   </v-content>
   <footermenu/>
+  </v-app>
 </div>

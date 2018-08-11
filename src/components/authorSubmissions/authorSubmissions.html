@@ -1,4 +1,5 @@
 <div>
+  <v-app>
   <headermenu/>
   <!--drafts posts start-->
   <v-content>
@@ -67,10 +68,7 @@
                 <router-link class="font-weight-bold subheading black--text text-decoration-none"
                              :to="'/author/'+item._author.username">
                   <v-avatar size="48">
-                    <img v-if="item._author.profileImagePreference == 'gravatar'"
-                         :src="item._author.gravatar" >
-                    <img v-if="item._author.profileImagePreference != 'gravatar'"
-                         :src="baseImageUrl+item._author.profileImagePreference" >
+                    <img :src="(item._author.profileImagePreference === 'gravatar') ? item._author.gravatar : (item._author.profileImagePreference.search('cloudinary') > 0 ? item._author.profileImagePreference : cloudinaryImageUrl+item._author.profileImagePreference)">
                   </v-avatar>
                   <span v-if="item._author.display_name">
                     {{item._author.display_name}}
@@ -91,4 +89,5 @@
   </v-content>
   <!--draft posts ends-->
   <footermenu/>
+  </v-app>
 </div>
