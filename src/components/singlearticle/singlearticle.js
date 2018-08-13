@@ -35,18 +35,19 @@ export default {
             this.singlearticle = res.data
             this.singlearticle.body = this.replaceLegacyBlavityImage(this.singlearticle.body)
             this.singlearticle.body = this.removeSortCode(this.singlearticle.body)
-            let rolevalue = JSON.parse(Vue.localStorage.get('user'))._role
-            switch (rolevalue){
-              case '57db549862e4711c9dd1eed6':
-              case '57db549862e4711c9dd1eed7':
-              case '57db549862e4711c9dd1eed8':
-                this.editarticleflag = true
-                break
-              default:
-                this.editarticleflag = false
-                break
+            if(Vue.localStorage.get('user')) {
+              let rolevalue = JSON.parse(Vue.localStorage.get('user'))._role
+              switch (rolevalue) {
+                case '57db549862e4711c9dd1eed6':
+                case '57db549862e4711c9dd1eed7':
+                case '57db549862e4711c9dd1eed8':
+                  this.editarticleflag = true
+                  break
+                default:
+                  this.editarticleflag = false
+                  break
+              }
             }
-
           } else {
             this.$router.push('/404')
           }
