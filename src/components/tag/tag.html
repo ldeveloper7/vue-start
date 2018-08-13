@@ -21,7 +21,7 @@
                       <br>
                       <br>
                       <span v-for="(cat, index) in item.categories" class="font-weight-bold textcolor">
-                        <router-link class="font-weight-bold linkclass"  :to="'/categories/'+cat.slug.toLowerCase()">{{cat.slug.charAt(0).toUpperCase() + cat.slug.slice(1)}}</router-link>
+                        <router-link class="font-weight-bold linkclass"  :to="'/categories/'+cat.slug.toLowerCase()">{{cat.slug | capitalize}}</router-link>
                         <span v-if="index+1 !== item.categories.length">, </span>
                       </span>
                       <span v-if="item._author.username">|
