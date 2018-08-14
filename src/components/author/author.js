@@ -1,6 +1,9 @@
 'use strict'
+import Vue from 'vue'
 import axios from '../../../node_modules/axios/index'
 import headermenu from '../headermenu/headermenu.vue'
+import vueHeadful from 'vue-headful';
+Vue.component('vue-headful', vueHeadful);
 export default {
   components: {
     headermenu
