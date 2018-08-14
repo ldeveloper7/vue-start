@@ -1,7 +1,9 @@
 <template>
   <div>
     <v-app>
-      <router-view/>
+      <transition name="router-anim">
+        <router-view/>
+      </transition>
     </v-app>
   </div>
 </template>
@@ -13,3 +15,4 @@ export default {
   }
 }
 </script>
+<style src="./main.css"></style>

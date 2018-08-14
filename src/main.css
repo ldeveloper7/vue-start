@@ -1,0 +1,30 @@
+.router-anim-enter-active {
+  animation: coming .2s;
+  animation-delay: .3s;
+  opacity: 0;
+}
+
+.router-anim-leave-active {
+  animation: going .2s;
+}
+
+@keyframes going {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50px);
+    opacity: 0;
+  }
+}
+
+@keyframes coming {
+  from {
+    transform: translateX(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: .5;
+  }
+}
