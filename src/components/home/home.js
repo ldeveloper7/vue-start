@@ -5,6 +5,8 @@ import trendingpost from '../trending-post/trending-post.vue'
 import dailynewsletter from '../daily-newsletter/daily-newsletter.vue'
 import axios from 'axios'
 import VueLocalStorage from 'vue-localstorage'
+import vueHeadful from 'vue-headful';
+Vue.component('vue-headful', vueHeadful);
 Vue.use(VueLocalStorage)
 export default {
   components: {
