@@ -15,7 +15,7 @@ export default {
       {name: 'VIDEOS', link: '/videos'},
       {name: 'OPINION', link: '/categories/opinion'},
       {name: 'MUSIC', link: '/categories/music'},
-      {name: 'About', link: '/categories/about'},
+      {name: 'About', link: '/about'},
       {name: 'Team', link: '/team'},
       {name: 'Advertise', link: 'https://partnerships.blavity.com/'},
       {name: 'Privacy', link: '/privacy'},
