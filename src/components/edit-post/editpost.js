@@ -4,8 +4,8 @@ import Vue from 'vue'
 import VueLocalStorage from 'vue-localstorage'
 import ckeditor from 'vue-ckeditor2'
 import axios from 'axios'
-import vueHeadful from 'vue-headful';
-Vue.component('vue-headful', vueHeadful);
+import vueHeadful from 'vue-headful'
+Vue.component('vue-headful', vueHeadful)
 
 Vue.use(VueLocalStorage)
 export default {
@@ -36,6 +36,7 @@ export default {
     categoryList: [],
     tagList: [],
     titletext: 'Article',
+    pagetitletext: 'Edit Article | ',
     imageurl: '',
     image: '',
     txttitle: '',
@@ -235,6 +236,7 @@ export default {
           if (res.data) {
             _this.singlearticle = res.data
             _this.txttitle = this.singlearticle.title
+            _this.pagetitletext = _this.pagetitletext + this.singlearticle.title
             _this.txtsubtitle = this.singlearticle.subTitle
             _this.keyupfunc()
             _this.bodycontent = this.singlearticle.body
