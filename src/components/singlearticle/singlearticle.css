@@ -40,3 +40,7 @@
   height: auto;
   min-width: 100%;
 }
+
+.rightclass {
+  float: right;
+}

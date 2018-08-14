@@ -15,6 +15,7 @@
                 {{cat.name}}
               </v-btn>
             </span>
+              <v-btn outline color="blue" v-if="editarticleflag" :to="'/editpost/'+singlearticle.slug" class="ml-5 rightclass">Edit Article</v-btn>
             </v-flex>
             <v-flex class="mb-2 mt-2 article-title">
               <h1>{{singlearticle.title}}</h1>
@@ -25,7 +26,9 @@
             <v-flex class="mb-2 mt-2">
               <v-chip>
                 <v-avatar>
-                  <img :src="(singlearticle._author.profileImagePreference === 'gravatar') ? singlearticle._author.gravatar : (singlearticle._author.profileImagePreference.search('cloudinary') > 0 ? singlearticle._author.profileImagePreference : cloudinaryImageUrl+singlearticle._author.profileImagePreference)" height="30%">
+                  <img
+                    :src="(singlearticle._author.profileImagePreference === 'gravatar') ? singlearticle._author.gravatar : (singlearticle._author.profileImagePreference.search('cloudinary') > 0 ? singlearticle._author.profileImagePreference : cloudinaryImageUrl+singlearticle._author.profileImagePreference)"
+                    height="30%">
                 </v-avatar>
                 <router-link class="font-weight-bold subheading black--text textnone"
                              v-if="singlearticle._author.username"
