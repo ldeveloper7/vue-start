@@ -4,6 +4,7 @@ import Vue from 'vue'
 import VueLocalStorage from 'vue-localstorage'
 import ckeditor from 'vue-ckeditor2'
 import axios from 'axios'
+import footermenu from '../Footer/Footer.vue'
 
 Vue.use(VueLocalStorage)
 export default {
@@ -64,7 +65,7 @@ export default {
     }
   },
   components: {
-    headermenu, ckeditor
+    headermenu, ckeditor, footermenu
   },
   methods: {
     opiniontab () {

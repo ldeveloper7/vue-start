@@ -6,7 +6,7 @@
         TRENDING RIGHT NOW
       </h2>
     </v-card-text>
-    <v-layout v-for="(singletrending_articles, i) in trending_articles.slice(0,5)" :key="i">
+    <v-layout v-for="(singletrending_articles, i) in trending_articles.slice(0,5)" :key="i" class="ma-0">
       <v-flex class="text-aling-left font-weight-bold pr-3 pl-3 pt-3 border-bottom">
         <router-link :to="'/'+singletrending_articles.slug"
                      class="black--text text-decoration-none ">{{singletrending_articles.title}}

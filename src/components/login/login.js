@@ -6,6 +6,7 @@ import headermenu from '../headermenu/headermenu.vue'
 import { validationMixin } from 'vuelidate'
 import axios from 'axios'
 import VueLocalStorage from 'vue-localstorage'
+import footermenu from '../Footer/Footer.vue'
 
 Vue.use(VueLocalStorage)
 Vue.use(Router)
@@ -25,7 +26,7 @@ export default {
     }
   },
   components: {
-    headermenu
+    headermenu, footermenu
   },
   data () {
     return {

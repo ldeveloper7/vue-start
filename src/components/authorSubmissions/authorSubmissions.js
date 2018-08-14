@@ -2,6 +2,8 @@
 import Vue from 'vue'
 import headermenu from '../headermenu/headermenu.vue'
 import axios from 'axios'
+import footermenu from '../Footer/Footer.vue'
+
 export default {
   data: () => ({
     baseImageUrl: process.env.cloudinaryImageUrl,
@@ -27,7 +29,7 @@ export default {
     urlArray: process.env.LiveAPI + 'articles/status/'
   }),
   components: {
-    headermenu
+    headermenu, footermenu
   },
   methods: {
     articleLoadMore: function (total) {

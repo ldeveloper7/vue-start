@@ -43,7 +43,7 @@ export default {
   methods: {
     onSearch () {
       this.dialog3 = false
-      this.$router.push({path: 'search', query: { q: this.txtsearch }})
+      this.$router.push({path: '/search', query: { q: this.txtsearch }})
     }
   },
   mounted () {

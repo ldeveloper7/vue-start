@@ -4,9 +4,12 @@ import axios from '../../../node_modules/axios/index'
 import headermenu from '../headermenu/headermenu.vue'
 import vueHeadful from 'vue-headful';
 Vue.component('vue-headful', vueHeadful);
+import footermenu from '../Footer/Footer.vue'
+import trendingpost from '../trending-post/trending-post.vue'
+import dailynewsletter from '../daily-newsletter/daily-newsletter.vue'
 export default {
   components: {
-    headermenu
+    headermenu, footermenu, trendingpost, dailynewsletter
   },
   data () {
     return {
