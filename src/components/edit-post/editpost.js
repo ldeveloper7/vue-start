@@ -4,6 +4,8 @@ import Vue from 'vue'
 import VueLocalStorage from 'vue-localstorage'
 import ckeditor from 'vue-ckeditor2'
 import axios from 'axios'
+import vueHeadful from 'vue-headful';
+Vue.component('vue-headful', vueHeadful);
 
 Vue.use(VueLocalStorage)
 export default {
