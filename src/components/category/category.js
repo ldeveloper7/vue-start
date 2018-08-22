@@ -10,7 +10,7 @@ export default {
     return {
       info: {},
       totalcount: 0,
-      loadCount: 6,
+      loadCount: 8,
       loadMoreButton: 1,
       cloudinaryImageUrl: process.env.cloudinaryImageUrl
     }

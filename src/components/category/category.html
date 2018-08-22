@@ -8,7 +8,7 @@
         <v-flex xs12>
           <v-container grid-list-xl>
             <v-layout row wrap>
-              <v-flex xs12 sm4 v-for="item in this.info" :key="item._id">
+              <v-flex xs12 sm3 v-for="item in this.info" :key="item._id">
                 <v-card flat class="text-sm-left">
                   <v-card-media
                     :src="cloudinaryImageUrl+item.wp_featuredImage"
@@ -21,7 +21,7 @@
                       <br>
                       <br>
                       <span v-for="(cat, index) in item.categories" class="font-weight-bold textcolor">
-                        <router-link class="font-weight-bold linkclass" :to="'/categories/'+cat.slug">{{cat.name.charAt(0).toUpperCase() + cat.name.slice(1)}}</router-link>
+                        <router-link class="font-weight-bold linkclass" :to="'/categories/'+cat.slug">{{cat.name | capitalize}}</router-link>
                         <span v-if="index+1 !== item.categories.length">, </span>
                       </span>
                         <span v-if="item._author.username">|

@@ -15,3 +15,8 @@ a.font-weight-bold.headline {
 span .textcolor {
   color: #3cccb7;
 }
+
+.container {
+  padding: 0 !important;
+  max-width: 1385px !important;
+}
