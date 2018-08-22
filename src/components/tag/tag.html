@@ -3,12 +3,12 @@
   <vue-headful :title="'Blavity | '+this.$route.params.tag"/>
   <headermenu/>
   <v-content>
-    <v-container grid-list-md text-xs-center>
+    <v-container text-xs-center>
       <v-layout row wrap>
         <v-flex xs12>
           <v-container grid-list-xl>
             <v-layout row wrap>
-              <v-flex xs12 sm4 v-for="item in this.info" :key="item._id">
+              <v-flex xs12 sm3 v-for="item in this.info" :key="item._id">
                 <v-card flat class="text-sm-left">
                   <v-card-media
                     :src="cloudinaryImageUrl+item.wp_featuredImage"
