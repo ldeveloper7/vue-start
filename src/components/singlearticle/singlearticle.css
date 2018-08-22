@@ -10,12 +10,9 @@
   padding: 0 !important;
 }
 
-.article-body {
-
-}
-
 .article-body img {
   width: 100% !important;
+  height: auto !important;
 }
 
 .article-body iframe {
