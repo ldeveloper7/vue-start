@@ -10,3 +10,7 @@
 span .inherit {
   float: inherit;
 }
+
+.profileImg {
+  border-radius: 50%;
+}

@@ -11,7 +11,7 @@
               <v-flex xs12 sm12 v-for="item in this.info" :key="item._id">
                 <v-card flat class="text-sm-left">
                   <v-card-media
-                    :src="cloudinaryImageUrl+item.wp_featuredImage"
+                    :src="topSingleArticle.wp_featuredImage.indexOf('http') == -1 ? cloudinaryImageUrl+topSingleArticle.wp_featuredImage : topSingleArticle.wp_featuredImage.replace('http://blavity.com', 'http://legacy.blavity.com')"
                     height="400px"
                     class="cover"
                   >

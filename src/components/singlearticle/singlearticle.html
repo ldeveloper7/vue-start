@@ -2,7 +2,7 @@
   <v-app>
     <vue-headful :title="singlearticle.title"/>
     <headermenu/>
-    <v-content>
+    <v-content class="padding0">
       <v-container fluid ma-5 class="padding0">
         <v-layout row wrap>
           <v-flex xs8>
@@ -39,7 +39,7 @@
               </v-chip>
             </v-flex>
             <v-flex class="mb-2 mt-2 main_featuredImage ">
-              <img :src="cloudinaryImageUrl+singlearticle.wp_featuredImage">
+              <img :src="singlearticle.wp_featuredImage.indexOf('http') == -1 ? cloudinaryImageUrl+singlearticle.wp_featuredImage : singlearticle.wp_featuredImage.replace('http://blavity.com', 'http://legacy.blavity.com')">
             </v-flex>
             <v-flex class="mb-2 mt-2 article-body">
               <p class="headline"><span v-html='singlearticle.body'></span></p>

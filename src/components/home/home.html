@@ -11,7 +11,9 @@
               <v-layout align-center first-article
                         v-for="topSingleArticle in articleData.slice(0,1)" :key="topSingleArticle._id">
                 <v-flex sm6 pa-0 pt-1>
-                  <img class="maxwidth" :src="cloudinaryImageUrl+topSingleArticle.wp_featuredImage">
+                  <img class="maxwidth"
+                       :src="topSingleArticle.wp_featuredImage.indexOf('http') == -1 ? cloudinaryImageUrl+topSingleArticle.wp_featuredImage : topSingleArticle.wp_featuredImage.replace('http://blavity.com', 'http://legacy.blavity.com')"
+                  >
                 </v-flex>
                 <v-flex xs12 sm6>
                   <v-flex pa-5>
@@ -95,7 +97,7 @@
           <v-flex xs12 sm6 v-for="videoArticle in videoData" :key="videoArticle._id">
             <v-card flat class="text-sm-left fixed">
               <v-card-media
-                :src="cloudinaryImageUrl+videoArticle.wp_featuredImage"
+                :src="videoArticle.wp_featuredImage.indexOf('http') == -1 ? cloudinaryImageUrl+videoArticle.wp_featuredImage : videoArticle.wp_featuredImage.replace('http://blavity.com', 'http://legacy.blavity.com')"
                 height="300px">
               </v-card-media>
               <v-card-title primary-title>
@@ -136,7 +138,9 @@
             <v-layout v-for="newsFeaturesArticles in articleData.slice(4,)" :key="newsFeaturesArticles._id">
               <v-flex xs12 sm4 pl-3 pr-3 pb-3>
                 <v-card>
-                  <v-card-media :src="cloudinaryImageUrl+newsFeaturesArticles.wp_featuredImage" height="200px"
+                  <v-card-media
+                    :src="newsFeaturesArticles.wp_featuredImage.indexOf('http') == -1 ? cloudinaryImageUrl+newsFeaturesArticles.wp_featuredImage : newsFeaturesArticles.wp_featuredImage.replace('http://blavity.com', 'http://legacy.blavity.com')"
+                    height="200px"
                   ></v-card-media>
                 </v-card>
               </v-flex>

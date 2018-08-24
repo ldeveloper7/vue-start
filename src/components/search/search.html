@@ -33,7 +33,7 @@
                 </v-flex>
                 <v-flex xs12 sm4 pl-3 pr-3 pb-3>
                   <v-card>
-                    <v-card-media :src="cloudinaryImageUrl+articleData.wp_featuredImage" height="200px"
+                    <v-card-media :src="articleData.wp_featuredImage.indexOf('http') == -1 ? cloudinaryImageUrl+articleData.wp_featuredImage : articleData.wp_featuredImage.replace('http://blavity.com', 'http://legacy.blavity.com')" height="200px"
                     ></v-card-media>
                   </v-card>
                 </v-flex>

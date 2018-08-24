@@ -60,7 +60,7 @@ export default {
         case '57db549862e4711c9dd1eed7':
           this.superadmin[0] = {title: 'MY POSTS', link: '/' + username + '/myposts'}
           this.superadmin.push({
-            title: `logged in as ` + username + ` <img src=` + image + ` height=30px width=30px>`,
+            title: `logged in as ` + username + ` <img style=border-radius:50%; src=` + image + ` height=30px width=30px>`,
             link: `/profile`
           })
           this.upperMenu = this.superadmin
