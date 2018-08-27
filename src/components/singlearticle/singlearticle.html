@@ -15,7 +15,9 @@
                 {{cat.name}}
               </v-btn>
             </span>
-              <v-btn outline color="blue" v-if="editarticleflag" :to="'/editpost/'+singlearticle.slug" class="ml-5 rightclass">Edit Article</v-btn>
+              <v-btn outline color="blue" v-if="editarticleflag" :to="'/editpost/'+singlearticle.slug"
+                     class="ml-5 rightclass">Edit Article
+              </v-btn>
             </v-flex>
             <v-flex class="mb-2 mt-2 article-title">
               <h1>{{singlearticle.title}}</h1>
@@ -38,8 +40,12 @@
                    class="font-weight-bold subheading black--text textnone">{{singlearticle._author.display_name}}></p>
               </v-chip>
             </v-flex>
-            <v-flex class="mb-2 mt-2 main_featuredImage ">
-              <img :src="singlearticle.wp_featuredImage.indexOf('http') == -1 ? cloudinaryImageUrl+singlearticle.wp_featuredImage : singlearticle.wp_featuredImage.replace('http://blavity.com', 'http://legacy.blavity.com')">
+            <v-flex class="mb-2 mt-2 main_featuredImage " v-if="singlearticle.type != 'video'">
+              <img
+                :src="singlearticle.wp_featuredImage.indexOf('http') == -1 ? cloudinaryImageUrl+singlearticle.wp_featuredImage : singlearticle.wp_featuredImage.replace('http://blavity.com', 'http://legacy.blavity.com')">
+            </v-flex>
+            <v-flex class="mb-2 mt-2 " v-if="singlearticle.type == 'video'">
+              <iframe :src="singlearticle.videourl"></iframe>
             </v-flex>
             <v-flex class="mb-2 mt-2 article-body">
               <p class="headline"><span v-html='singlearticle.body'></span></p>

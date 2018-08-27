@@ -37,3 +37,8 @@
 .rightclass {
   float: right;
 }
+
+iframe {
+  height: 500px;
+  width: -webkit-fill-available;
+}
