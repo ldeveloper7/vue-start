@@ -12,8 +12,7 @@
                         v-for="topSingleArticle in articleData.slice(0,1)" :key="topSingleArticle._id">
                 <v-flex sm6 pa-0 pt-1>
                   <img class="maxwidth"
-                       :src="topSingleArticle.image.indexOf('http') == -1 ? topSingleArticle.image : topSingleArticle.image.replace('http://blavity.com', 'http://legacy.blavity.com')"
-                  >
+                       :src="topSingleArticle.image">
                 </v-flex>
                 <v-flex xs12 sm6>
                   <v-flex pa-5>
@@ -97,7 +96,7 @@
           <v-flex xs12 sm6 v-for="videoArticle in videoData" :key="videoArticle._id">
             <v-card flat class="text-sm-left fixed">
               <v-card-media
-                :src="videoArticle.image.indexOf('http') == -1 ? videoArticle.image : videoArticle.image.replace('http://blavity.com', 'http://legacy.blavity.com')"
+                :src="videoArticle.image"
                 height="300px">
               </v-card-media>
               <v-card-title primary-title>
@@ -139,7 +138,7 @@
               <v-flex xs12 sm4 pl-3 pr-3 pb-3>
                 <v-card>
                   <v-card-media
-                    :src="newsFeaturesArticles.image.indexOf('http') == -1 ? newsFeaturesArticles.image : newsFeaturesArticles.image.replace('http://blavity.com', 'http://legacy.blavity.com')"
+                    :src="newsFeaturesArticles.image"
                     height="200px"
                   ></v-card-media>
                 </v-card>
