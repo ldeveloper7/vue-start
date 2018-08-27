@@ -27,15 +27,15 @@
                   <v-flex mt-4>
                     <v-avatar>
                       <img
-                        :src="(topSingleArticle.author.avatar === 'gravatar') ? topSingleArticle.author.gravatar : (topSingleArticle.author.avatar.search('cloudinary') > 0 ? topSingleArticle.author.avatar : topSingleArticle.author.avatar)">
+                        :src="topSingleArticle.author.avatar">
                     </v-avatar>
                     <router-link class="font-weight-bold subheading black--text textdecoration"
-                                 v-if="topSingleArticle.author.username"
-                                 :to="'/author/'+topSingleArticle.author.username"
-                    >{{topSingleArticle.author.username}}
+                                 v-if="topSingleArticle.author.name"
+                                 :to="'/author/'+topSingleArticle.author.name"
+                    >{{topSingleArticle.author.name}}
                     </router-link>
                     <p class="font-weight-bold subheading black--text textdecoration"
-                       v-if="!topSingleArticle.author.username"
+                       v-if="!topSingleArticle.author.name"
                     >{{topSingleArticle.author.display_name}}></p>
                   </v-flex>
                 </v-flex>
@@ -61,14 +61,14 @@
                             <v-chip>
                               <v-avatar>
                                 <img
-                                  :src="(topThreeArticle.author.avatar === 'gravatar') ? topThreeArticle.author.gravatar : (topThreeArticle.author.avatar.search('cloudinary') > 0 ? topThreeArticle.author.avatar : topThreeArticle.author.avatar)">
+                                  :src="topThreeArticle.author.avatar">
                               </v-avatar>
                               <router-link class="font-weight-bold subheading black--text textdecoration"
-                                           :to="'/author/'+topThreeArticle.author.username"
-                                           v-if="topThreeArticle.author.username"
-                              >{{topThreeArticle.author.username}}
+                                           :to="'/author/'+topThreeArticle.author.name"
+                                           v-if="topThreeArticle.author.name"
+                              >{{topThreeArticle.author.name}}
                               </router-link>
-                              <p v-if="!topThreeArticle.author.username"
+                              <p v-if="!topThreeArticle.author.name"
                                  class="font-weight-bold subheading black--text textdecoration"
                               >{{topThreeArticle.author.display_name}}</p>
                             </v-chip>
@@ -151,8 +151,8 @@
                 </router-link>
                 <p class="body-2 text-sm-left font-weight-thin">{{newsFeaturesArticles.subTitle}}</p>
                 <router-link class="font-weight-black title black--text textdecoration"
-                             :to="'/author/'+newsFeaturesArticles.author.username"
-                >{{newsFeaturesArticles.author.username}}
+                             :to="'/author/'+newsFeaturesArticles.author.name"
+                >{{newsFeaturesArticles.author.name}}
                 </router-link>
               </v-flex>
             </v-layout>
@@ -184,8 +184,8 @@
                     <!--title of the image-->
                     <v-container fill-height fluid>
                       <v-layout fill-height>
-                        <v-flex xs12 align-end flexbox>
-                          <router-link class="font-weight-medium headline white--text textdecoration"
+                        <v-flex xs12 align-end flexbox text-center>
+                          <router-link class="font-weight-medium headline textdecoration"
                                        :to="'/'+communityArticles.slug"
                           >{{communityArticles.title}}
                           </router-link>
@@ -193,10 +193,10 @@
                             <v-chip>
                               <v-avatar>
                                 <img
-                                  :src="(communityArticles.author.avatar === 'gravatar') ? communityArticles.author.gravatar : (communityArticles.author.avatar.search('cloudinary') > 0 ? communityArticles.author.avatar : communityArticles.author.avatar)">
+                                  :src="communityArticles.author.avatar">
                               </v-avatar>
                               <router-link class="font-weight-black title black--text textdecoration"
-                                           :to="'/author/'+communityArticles.author.username"
+                                           :to="'/author/'+communityArticles.author.name"
                               >{{communityArticles.author.name}}
                               </router-link>
                             </v-chip>
