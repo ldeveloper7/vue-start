@@ -18,6 +18,7 @@ import PageNotFound from '../components/404/404.vue'
 import register from '../components/register/register.vue'
 import authorSubmissions from '../components/authorSubmissions/authorSubmissions.vue'
 import pendingpost from '../components/pending-post/pending-post.vue'
+import videos from '../components/video/video.vue'
 import 'vuetify/dist/vuetify.min.css' // Ensure you are using css-loader
 
 Vue.use(Router)
@@ -98,6 +99,11 @@ export default new Router({
       path: '/pending-post',
       name: 'pending-post',
       component: pendingpost
+    },
+    {
+      path: '/videos',
+      name: 'videos',
+      component: videos
     },
     {
       path: '/404',

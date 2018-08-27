@@ -1,4 +1,46 @@
 <div>
-  <headermenu/>
-  <h1>Video</h1>
+  <v-app>
+    <vue-headful class="text-uppercase" :title="'Blavity | '+this.$route.params.category"/>
+    <headermenu/>
+    <v-content>
+      <v-container grid-list-md text-xs-center>
+        <v-layout row wrap>
+          <v-flex xs12>
+            <v-container grid-list-xl>
+              <v-layout row wrap>
+                <v-flex xs12 sm3 v-for="item in this.info" :key="item._id">
+                  <v-card flat class="text-sm-left">
+                    <v-card-media
+                      :src="item.wp_featuredImage.indexOf('http') == -1 ? cloudinaryImageUrl+item.wp_featuredImage : item.wp_featuredImage.replace('http://blavity.com', 'http://legacy.blavity.com')"
+                      height="200px">
+                    </v-card-media>
+                    <v-card-title primary-title>
+                      <div>
+                        <router-link class="font-weight-bold headline linkclass" :to="'/'+item.slug">{{item.title}}
+                        </router-link>
+                        <br>
+                        <br>
+                        <span v-for="(cat, index) in item.categories" class="font-weight-bold textcolor">
+                        <router-link class="font-weight-bold linkclass" :to="'/categories/'+cat.slug">{{cat.name | capitalize}}</router-link>
+                        <span v-if="index+1 !== item.categories.length">, </span>
+                      </span>
+                        <span v-if="item._author.username">|
+                        <router-link class="font-weight-bold linkclass" :to="'/author/'+item._author.username">{{item._author.username}}</router-link>
+                      </span>
+                      </div>
+                    </v-card-title>
+                  </v-card>
+                </v-flex>
+                <v-flex xs12>
+                  <hr>
+                  <v-btn block color="info" v-if="loadMoreButton" v-on:click="loadmore(6)">Load More</v-btn>
+                </v-flex>
+              </v-layout>
+            </v-container>
+          </v-flex>
+        </v-layout>
+      </v-container>
+    </v-content>
+    <footermenu/>
+  </v-app>
 </div>
