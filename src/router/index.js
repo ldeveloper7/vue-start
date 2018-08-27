@@ -19,6 +19,7 @@ import register from '../components/register/register.vue'
 import authorSubmissions from '../components/authorSubmissions/authorSubmissions.vue'
 import pendingpost from '../components/pending-post/pending-post.vue'
 import videos from '../components/video/video.vue'
+import video from '../components/singlevideo/singlevideo.vue'
 import 'vuetify/dist/vuetify.min.css' // Ensure you are using css-loader
 
 Vue.use(Router)
@@ -104,6 +105,11 @@ export default new Router({
       path: '/videos',
       name: 'videos',
       component: videos
+    },
+    {
+      path: '/video/:slug',
+      name: 'video',
+      component: video
     },
     {
       path: '/404',

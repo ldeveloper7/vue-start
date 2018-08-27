@@ -34,25 +34,21 @@
                              v-if="singlearticle.author.name"
                              :to="'/author/'+singlearticle.author.name">{{singlearticle.author.name}}
                 </router-link>
-                <p v-if="!singlearticle.author.name"
-                   class="font-weight-bold subheading black--text textnone">{{singlearticle.author.name}}></p>
               </v-chip>
+              <strong><span>{{singlearticle.createdAt}}</span></strong>
             </v-flex>
-            <v-flex class="mb-2 mt-2 main_featuredImage " v-if="singlearticle.type != 'video'">
-              <img :src="singlearticle.image" >
+            <v-flex class="mb-2 mt-2">
+              <iframe :src="singlearticle.source"></iframe>
             </v-flex>
-            <v-flex class="mb-2 mt-2 " v-if="singlearticle.type == 'video'">
-              <iframe :src="singlearticle.videourl"></iframe>
-            </v-flex>
-            <v-flex class="mb-2 mt-2 article-body">
+            <v-flex class="mb-2 mt-2 article-body" v-if="singlearticle.content">
               <p class="headline"><span v-html='singlearticle.content'></span></p>
             </v-flex>
-            <v-flex v-if="singlearticle.tags.length">
+            <v-flex v-if="Object.keys(singlearticle.tags).length">
               <hr class="mb-3">
-              <span class="font-weight-black mt-3">Tags</span>
-              <span v-for="(tag, index) in singlearticle.tags">
-              <v-btn round small outline color="grey" class="bold" :to="'/tag/'+tag.slug">
-                {{tag.name}}
+              <span class="font-weight-black mt-3">Tags : </span>
+              <span v-for="tag in Object.values(singlearticle.tags)">
+              <v-btn round small outline color="grey" class="bold">
+                {{tag}}
               </v-btn>
             </span>
             </v-flex>
