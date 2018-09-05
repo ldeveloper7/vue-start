@@ -41,10 +41,10 @@ export default {
   mounted () {
     let _this = this
     axios.all([
-      axios.get(process.env.LiveAPI + 'articles?' + 'featured=true&' + 'count=' + _this.articleLoadCount).catch(null),
-      axios.get(process.env.LiveAPI + 'videos?sort=newer&count=2').catch(null),
-      axios.get(process.env.LiveAPI + 'resources?sort=newer&count=3').catch(null)
-    ]).then(axios.spread(function (res1, res2, res3) {
+      axios.get(process.env.LiveAPI + 'articles' + '/' + _this.articleLoadCount + '/' + _this.articleTotalCount).catch(null),
+      axios.get(process.env.LiveAPI + 'articles/type/video/2').catch(null),
+      axios.get(process.env.LiveAPI + 'articles/categories/community-submitted/3').catch(null)
+    ]).then(axios.spread(function (res1, res2, res3, res4) {
       _this.articleData = res1.data
       _this.videoData = res2.data
       _this.communityData = res3.data
@@ -55,7 +55,7 @@ export default {
   methods: {
     articleLoadMore: function (total) {
       let _this = this
-      axios.get(process.env.LiveAPI + 'articles?' + 'featured=true&' + 'count=' + (_this.articleData.length + _this.articleLoadCount) )
+      axios.get(process.env.LiveAPI + 'articles/' + _this.articleLoadCount + '/' + (_this.articleTotalCount + total))
         .then((res) => {
           _this.articleData.push(...res.data)
           _this.articleTotalCount += res.data.length

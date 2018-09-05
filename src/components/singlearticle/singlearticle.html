@@ -6,13 +6,15 @@
       <v-container fluid ma-5 class="padding0">
         <v-layout row wrap>
           <v-flex xs8>
-            <v-flex class="mb-2 mt-2" v-if="(singlearticle.categories)">
+            <v-flex class="mb-2 mt-2">
             <span class="bold">
               Posted Under:
             </span>
-              <v-btn round small outline color="grey" :to="'/categories/'+singlearticle.categories.slug">
-                {{singlearticle.categories.name}}
+              <span v-for="(cat, index) in singlearticle.categories">
+              <v-btn round small outline color="grey" :to="'/categories/'+cat.slug.toLowerCase()">
+                {{cat.name}}
               </v-btn>
+            </span>
               <v-btn outline color="blue" v-if="editarticleflag" :to="'/editpost/'+singlearticle.slug"
                      class="ml-5 rightclass">Edit Article
               </v-btn>
@@ -27,25 +29,26 @@
               <v-chip>
                 <v-avatar>
                   <img
-                    :src="singlearticle.author.avatar"
+                    :src="(singlearticle._author.profileImagePreference === 'gravatar') ? singlearticle._author.gravatar : (singlearticle._author.profileImagePreference.search('cloudinary') > 0 ? singlearticle._author.profileImagePreference : cloudinaryImageUrl+singlearticle._author.profileImagePreference)"
                     height="30%">
                 </v-avatar>
                 <router-link class="font-weight-bold subheading black--text textnone"
-                             v-if="singlearticle.author.name"
-                             :to="'/author/'+singlearticle.author.name">{{singlearticle.author.name}}
+                             v-if="singlearticle._author.username"
+                             :to="'/author/'+singlearticle._author.username">{{singlearticle._author.username}}
                 </router-link>
-                <p v-if="!singlearticle.author.name"
-                   class="font-weight-bold subheading black--text textnone">{{singlearticle.author.name}}></p>
+                <p v-if="!singlearticle._author.username"
+                   class="font-weight-bold subheading black--text textnone">{{singlearticle._author.display_name}}></p>
               </v-chip>
             </v-flex>
             <v-flex class="mb-2 mt-2 main_featuredImage " v-if="singlearticle.type != 'video'">
-              <img :src="singlearticle.image" >
+              <img
+                :src="singlearticle.wp_featuredImage.indexOf('http') == -1 ? cloudinaryImageUrl+singlearticle.wp_featuredImage : singlearticle.wp_featuredImage.replace('http://blavity.com', 'http://legacy.blavity.com')">
             </v-flex>
             <v-flex class="mb-2 mt-2 " v-if="singlearticle.type == 'video'">
               <iframe :src="singlearticle.videourl"></iframe>
             </v-flex>
             <v-flex class="mb-2 mt-2 article-body">
-              <p class="headline"><span v-html='singlearticle.content'></span></p>
+              <p class="headline"><span v-html='singlearticle.body'></span></p>
             </v-flex>
             <v-flex v-if="singlearticle.tags.length">
               <hr class="mb-3">

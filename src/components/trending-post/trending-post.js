@@ -11,7 +11,7 @@ export default {
         _this.trending_articles = res.data
       })
       .catch(e => {
-        // console.log(e)
+        console.log(e)
       })
   }
 }
