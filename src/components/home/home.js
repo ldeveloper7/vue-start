@@ -55,7 +55,7 @@ export default {
   methods: {
     articleLoadMore: function (total) {
       let _this = this
-      axios.get(process.env.LiveAPI + 'articles/' + _this.articleLoadCount + '/' + (_this.articleTotalCount + total))
+      axios.get(process.env.LiveAPI + 'articles?' + 'featured=true&' + 'count=' + (_this.articleData.length + _this.articleLoadCount) )
         .then((res) => {
           _this.articleData.push(...res.data)
           _this.articleTotalCount += res.data.length
