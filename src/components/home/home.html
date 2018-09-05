@@ -12,7 +12,8 @@
                         v-for="topSingleArticle in articleData.slice(0,1)" :key="topSingleArticle._id">
                 <v-flex sm6 pa-0 pt-1>
                   <img class="maxwidth"
-                       :src="topSingleArticle.image">
+                       :src="topSingleArticle.wp_featuredImage.indexOf('http') == -1 ? cloudinaryImageUrl+topSingleArticle.wp_featuredImage : topSingleArticle.wp_featuredImage.replace('http://blavity.com', 'http://legacy.blavity.com')"
+                  >
                 </v-flex>
                 <v-flex xs12 sm6>
                   <v-flex pa-5>
@@ -26,16 +27,16 @@
                   <v-flex mt-4>
                     <v-avatar>
                       <img
-                        :src="topSingleArticle.author.avatar">
+                        :src="(topSingleArticle._author.profileImagePreference === 'gravatar') ? topSingleArticle._author.gravatar : (topSingleArticle._author.profileImagePreference.search('cloudinary') > 0 ? topSingleArticle._author.profileImagePreference : cloudinaryImageUrl+topSingleArticle._author.profileImagePreference)">
                     </v-avatar>
                     <router-link class="font-weight-bold subheading black--text textdecoration"
-                                 v-if="topSingleArticle.author.name"
-                                 :to="'/author/'+topSingleArticle.author.name"
-                    >{{topSingleArticle.author.name}}
+                                 v-if="topSingleArticle._author.username"
+                                 :to="'/author/'+topSingleArticle._author.username"
+                    >{{topSingleArticle._author.username}}
                     </router-link>
                     <p class="font-weight-bold subheading black--text textdecoration"
-                       v-if="!topSingleArticle.author.name"
-                    >{{topSingleArticle.author.display_name}}></p>
+                       v-if="!topSingleArticle._author.username"
+                    >{{topSingleArticle._author.display_name}}></p>
                   </v-flex>
                 </v-flex>
               </v-layout>
@@ -46,7 +47,7 @@
               <v-flex xs12 md4 v-for="topThreeArticle in articleData.slice(1,4)" :key="topThreeArticle._id">
                 <v-card hover>
                   <v-card-media
-                    :src='topThreeArticle.image'
+                    :src='cloudinaryImageUrl+topThreeArticle.wp_featuredImage'
                     height="300px">
                     <!--title of the image-->
                     <v-container fill-height fluid>
@@ -60,16 +61,16 @@
                             <v-chip>
                               <v-avatar>
                                 <img
-                                  :src="topThreeArticle.author.avatar">
+                                  :src="(topThreeArticle._author.profileImagePreference === 'gravatar') ? topThreeArticle._author.gravatar : (topThreeArticle._author.profileImagePreference.search('cloudinary') > 0 ? topThreeArticle._author.profileImagePreference : cloudinaryImageUrl+topThreeArticle._author.profileImagePreference)">
                               </v-avatar>
                               <router-link class="font-weight-bold subheading black--text textdecoration"
-                                           :to="'/author/'+topThreeArticle.author.name"
-                                           v-if="topThreeArticle.author.name"
-                              >{{topThreeArticle.author.name}}
+                                           :to="'/author/'+topThreeArticle._author.username"
+                                           v-if="topThreeArticle._author.username"
+                              >{{topThreeArticle._author.username}}
                               </router-link>
-                              <p v-if="!topThreeArticle.author.name"
+                              <p v-if="!topThreeArticle._author.username"
                                  class="font-weight-bold subheading black--text textdecoration"
-                              >{{topThreeArticle.author.display_name}}</p>
+                              >{{topThreeArticle._author.display_name}}</p>
                             </v-chip>
                           </v-flex>
                         </v-flex>
@@ -96,20 +97,20 @@
           <v-flex xs12 sm6 v-for="videoArticle in videoData" :key="videoArticle._id">
             <v-card flat class="text-sm-left fixed">
               <v-card-media
-                :src="videoArticle.image"
+                :src="videoArticle.wp_featuredImage.indexOf('http') == -1 ? cloudinaryImageUrl+videoArticle.wp_featuredImage : videoArticle.wp_featuredImage.replace('http://blavity.com', 'http://legacy.blavity.com')"
                 height="300px">
               </v-card-media>
               <v-card-title primary-title>
                 <div>
                   <router-link class="font-weight-bold subheading black--text textdecoration"
-                               :to="'/video/'+videoArticle.slug"
+                               :to="'/'+videoArticle.slug"
                   >{{videoArticle.title}}
                   </router-link>
                   <br>
                   <div>
                     <router-link class="body-2 black--text textdecoration"
                                  :to="'/'+videoArticle.slug"
-                                 v-html="videoArticle.title.substring(0,240)+'...'">
+                                 v-html="videoArticle.body.substring(0,240)+'...'">
                     </router-link>
                   </div>
                 </div>
@@ -138,7 +139,7 @@
               <v-flex xs12 sm4 pl-3 pr-3 pb-3>
                 <v-card>
                   <v-card-media
-                    :src="newsFeaturesArticles.image"
+                    :src="newsFeaturesArticles.wp_featuredImage.indexOf('http') == -1 ? cloudinaryImageUrl+newsFeaturesArticles.wp_featuredImage : newsFeaturesArticles.wp_featuredImage.replace('http://blavity.com', 'http://legacy.blavity.com')"
                     height="200px"
                   ></v-card-media>
                 </v-card>
@@ -150,8 +151,8 @@
                 </router-link>
                 <p class="body-2 text-sm-left font-weight-thin">{{newsFeaturesArticles.subTitle}}</p>
                 <router-link class="font-weight-black title black--text textdecoration"
-                             :to="'/author/'+newsFeaturesArticles.author.name"
-                >{{newsFeaturesArticles.author.name}}
+                             :to="'/author/'+newsFeaturesArticles._author.username"
+                >{{newsFeaturesArticles._author.username}}
                 </router-link>
               </v-flex>
             </v-layout>
@@ -178,13 +179,13 @@
               <v-flex xs12 md4 v-for="communityArticles in communityData" :key="communityArticles._id">
                 <v-card hover>
                   <v-card-media
-                    :src='communityArticles.featuredMedia.link'
+                    :src='cloudinaryImageUrl+communityArticles.wp_featuredImage'
                     height="300px">
                     <!--title of the image-->
                     <v-container fill-height fluid>
                       <v-layout fill-height>
-                        <v-flex xs12 align-end flexbox text-center>
-                          <router-link class="font-weight-medium headline textdecoration"
+                        <v-flex xs12 align-end flexbox>
+                          <router-link class="font-weight-medium headline white--text textdecoration"
                                        :to="'/'+communityArticles.slug"
                           >{{communityArticles.title}}
                           </router-link>
@@ -192,11 +193,11 @@
                             <v-chip>
                               <v-avatar>
                                 <img
-                                  :src="communityArticles.author.avatar">
+                                  :src="(communityArticles._author.profileImagePreference === 'gravatar') ? communityArticles._author.gravatar : (communityArticles._author.profileImagePreference.search('cloudinary') > 0 ? communityArticles._author.profileImagePreference : cloudinaryImageUrl+communityArticles._author.profileImagePreference)">
                               </v-avatar>
                               <router-link class="font-weight-black title black--text textdecoration"
-                                           :to="'/author/'+communityArticles.author.name"
-                              >{{communityArticles.author.name}}
+                                           :to="'/author/'+communityArticles._author.username"
+                              >{{communityArticles._author.username}}
                               </router-link>
                             </v-chip>
                           </v-flex>
