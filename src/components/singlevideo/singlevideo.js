@@ -29,7 +29,7 @@ export default {
   },
   methods: {
     loadarticle: function () {
-      axios.get(process.env.LiveAPI+ 'articles/' + this.$route.params.slug)
+      axios.get(process.env.LiveAPI+ 'videos/' + this.$route.params.slug)
         .then((res) => {
           if (res.data) {
             this.singlearticle = res.data
