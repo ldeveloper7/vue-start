@@ -45,7 +45,7 @@
                 :src="singlearticle.wp_featuredImage.indexOf('http') == -1 ? cloudinaryImageUrl+singlearticle.wp_featuredImage : singlearticle.wp_featuredImage.replace('http://blavity.com', 'http://legacy.blavity.com')">
             </v-flex>
             <v-flex class="mb-2 mt-2 " v-if="singlearticle.type == 'video'">
-              <iframe :src="singlearticle.videourl"></iframe>
+              <iframe :src="singlearticle.videourl" frameborder="0" allowfullscreen></iframe>
             </v-flex>
             <v-flex class="mb-2 mt-2 article-body">
               <p class="headline"><span v-html='singlearticle.body'></span></p>
